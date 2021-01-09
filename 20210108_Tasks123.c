@@ -5,8 +5,6 @@
 int Base=1;
 int Number=0;
 int *Result;
-int Counter=3999;
- 
 
 char Rerun='y';
 
