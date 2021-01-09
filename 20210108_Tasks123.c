@@ -6,8 +6,6 @@ int Base=1;
 int Number=0;
 int *Result;
 
-char Rerun='y';
-
 int NumberSelection(int *Number)
 {
    printf("Please enter a number to convert:\n");
