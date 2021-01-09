@@ -13,14 +13,14 @@ char Rerun='y';
 int NumberSelection(int *Number)
 {
    printf("Please enter a number to convert:\n");
-   scanf("%d", &Number);
-   while (Number>32767)  //Says warning comparison pointer and int, but segmentation fault crash if derreferenced
+   scanf("%d", Number);
+   while (*Number>32767)  
     {
       printf("Please enter an INT number to convert:\n");
       scanf("%d", &Number);
     }
    
-   return Number;
+   return *Number;
 }
 
 int BaseSelection()
@@ -73,7 +73,7 @@ void BaseConverter(int *Number, int *Base)
             *Number/=*Base;
         }
    
-        printf ("The number in base %d is:\n", Base);
+        printf ("The number in base %d is:\n", *Base);
         for(int i=(Iterate-1); i>=0; i--)
         {
             //Prints in DEC numerals. Don't know how to enable HEX numerals.
