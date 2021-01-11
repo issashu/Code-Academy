@@ -6,6 +6,24 @@ int Base=1;
 int Number=0;
 int *Result;
 
+int NumberSelection(int *Number);
+int BaseSelection();
+void BaseConverter(int *Number, int *Base);
+
+
+int main()
+{
+   
+   Number=NumberSelection(&Number);
+   Base=BaseSelection();   
+        
+   //User selected number and base to convert to.
+   //Following are calculations and convertion left in main,not separate function call
+   
+   BaseConverter(&Number, &Base);
+
+}
+
 int NumberSelection(int *Number)
 {
    printf("Please enter a number to convert:\n");
@@ -77,17 +95,4 @@ void BaseConverter(int *Number, int *Base)
         }
 
         free(Result);
-}
-
-int main()
-{
-   
-   Number=NumberSelection(&Number);
-   Base=BaseSelection();   
-        
-   //User selected number and base to convert to.
-   //Following are calculations and convertion left in main,not separate function call
-   
-   BaseConverter(&Number, &Base);
-
 }
