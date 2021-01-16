@@ -1,16 +1,12 @@
 #include <stdio.h>
+#include <string.h>
 
-int main()
-{
-    char c ='b';
-    int i=100;
-    long int il=11111;
-    long long int ill=1;
-    double d=1000000;
+int main () {
+   char str[]="Hello";
+   char str2[]="Zdrasti";
+   int len1 = strlen(str));
+   int len2 = strlen(str2);    
+   int obshto = len1+len2;
 
-    printf("Long long %d\n", sizeof(ill));
-    printf("Long %d\n", sizeof(il));
-    printf("Int %d\n", sizeof(i));
-    printf("Char %d\n", sizeof(c));
-    printf("Double %d\n", sizeof(d));
+   return(0);
 }
