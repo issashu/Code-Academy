@@ -15,6 +15,7 @@ int main()
             i++;
             
     }
+    printf("%c", s);
     reverse(s);
 }
 
