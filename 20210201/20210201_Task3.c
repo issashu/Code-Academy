@@ -54,6 +54,5 @@ double atof(const char s[]){
         n = 10 * n + (s[i] - '0');
         power*=10;
     }
-    
     return (n/power);    
  }
