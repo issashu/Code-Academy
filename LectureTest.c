@@ -63,16 +63,17 @@ int BarcodeChecksum(int *barcode){
     int CheckSum = 0;
 
     for (int i=0; i<12; i++){
-        if (barcode[i]%2!=0){
+        if (i%2!=0){
             SumOdd+=barcode[i];
         }
-        if(barcode[i]%2==0){
+        if(i%2==0){
             SumEven+=barcode[i];
         }
     }
 
-    /*DEBUG:
+    
     CheckSum = ((((SumOdd*3)+SumEven)-1)%10);
+    
     for (int i=0; i<12; i++){
        printf("%c", barcode[i]);
    }
@@ -80,6 +81,6 @@ int BarcodeChecksum(int *barcode){
     printf("%d\n", SumEven);
     printf("%d\n", CheckSum);
     printf("%d\n", (9-CheckSum));
-    */
+    
     
 }
