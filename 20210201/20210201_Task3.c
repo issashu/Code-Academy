@@ -40,20 +40,27 @@ void RemoveDisplay(char *s){
 }
 
 double atof(const char s[]){ 
-    int i;
+    int i=0;
     int counter=0;
     int power = 1;
     double n = 0.00;
     while (s[counter]!='.'){
         counter++;
     }
-    for(i = 0; s[i] >= '0' && s[i] <= '9' && s[i]!='.'; i++)
+    if(s[0]=='-' || s[0]=='+'){
+        i++;
+    }
+    for(i; s[i] >= '0' && s[i] <= '9' && s[i]!='.'; i++)
         n = 10 * n + (s[i] - '0');
     
     for (i=counter; s[i]!='\0';i++){
         n = 10 * n + (s[i] - '0');
         power*=10;
     }
-
-    return (n/power);
+    if(s[0]=='-'){
+        return (-n/power);
+    }
+    else if(s[0]=='+'){
+        return (n/power);    
+    }
  }
