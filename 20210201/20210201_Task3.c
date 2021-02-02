@@ -47,9 +47,6 @@ double atof(const char s[]){
     while (s[counter]!='.'){
         counter++;
     }
-    if(s[0]=='-' || s[0]=='+'){
-        i++;
-    }
     for(i; s[i] >= '0' && s[i] <= '9' && s[i]!='.'; i++)
         n = 10 * n + (s[i] - '0');
     
@@ -57,10 +54,6 @@ double atof(const char s[]){
         n = 10 * n + (s[i] - '0');
         power*=10;
     }
-    if(s[0]=='-'){
-        return (-n/power);
-    }
-    else if(s[0]=='+'){
-        return (n/power);    
-    }
+    
+    return (n/power);    
  }
