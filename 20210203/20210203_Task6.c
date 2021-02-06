@@ -18,6 +18,12 @@ int main(){
     p1 = b;
     p2 = a;
 
+    printf("%p\n", &a);
+    printf("%p\n", &b);
+    printf("%p\n", p1);
+    printf("%p\n", p2);
+
+
     printf("Value of a is %d\n", p1);
     printf("Value of b is %d\n", p2);
 }
