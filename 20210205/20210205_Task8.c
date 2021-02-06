@@ -18,10 +18,12 @@ int atoi(char *s);
 int main(){
     char String1[] = "Iordan";
     char String2[] = "1234.567890";
+    char String3[] = "12345";
 
     reverse(String1);
     printf("%s\n", String1);
     printf("%lf\n", atof(String2));
+    printf("%d\n", atoi(String3));
 
 
 }
@@ -76,12 +78,8 @@ double atof(char *s){
     while ( *(s+counter) !='.'){
         counter++;
     }
-    for(; *(s+counter) >= '0' && *(s+counter) <= '9' && *(s+counter)!='.'; s++)
+    for(; *(s+counter) >= '0' && *(s+counter) <= '9'; s++)
         n = 10 * n + (*(s+counter) - '0');
     
-    for (i=counter; *(s+i)!='\0';i++){
-        n = 10 * n + (*(s+i) - '0');
-        power*=10;
-    }
-    return (n/power);    
+    return (n);    
  }
