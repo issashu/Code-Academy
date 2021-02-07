@@ -5,19 +5,24 @@
 */
 #include <stdio.h>
 
-void itoa(int n, char s[]);
+void itob(int n, char s[], int b);
 void reverse(char s[]);
 
 
 int main(){
-    int number = 245;
+    int number = 0;
     char s[10];
-    itoa(number, s);
+    int base = 10;
+    printf("Please enter a number to convert to string:\n");
+    scanf("%d", &number);
+    printf("Please enter a base to convert to (enter 2, 10 or 16, otherwise results will be erroneous):\n");
+    scanf("%d", &base);
+    itob(number, s, base);
     reverse(s);
     printf("%s\n", s);
 }
 
-void itoa(int n, char s[]){
+void itob(int n, char s[], int b){
     char NegativeFlag ='n';
     int i=0;
 
@@ -26,9 +31,9 @@ void itoa(int n, char s[]){
     }
 
     do{
-        s[i] = n%10 +'0';
+        s[i] = n%b +'0';
         i++;
-        n/=10;
+        n/=b;
     }while(n>0);
 
     if(NegativeFlag=='y'){
