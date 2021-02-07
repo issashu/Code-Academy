@@ -12,19 +12,18 @@ void reverse(char s[]);
 int main(){
     char s[] = {"Hello"};
     reverse(s);
-    
+    printf("%s", s);
 }
 
 void reverse(char s[]){
-    char temp[100];
     char tmp=0;
-    for (int i = 0 , j = strlen(s-1); i<j; i++, j--){
+    int counter =0;
+    while (s[counter]!='\0'){
+        counter++;
+    }
+    for (int i = 0 , j = counter-1; i<j; i++, j--){
         tmp = s[i];
         s[i] = s[j];
         s[j] = tmp;
-    }
-    for (int c=0; c<strlen(s); c++){
-        printf("%c", s[c]);
-    }
-
+    }  
 }
