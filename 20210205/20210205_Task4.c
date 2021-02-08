@@ -7,13 +7,6 @@ Ako s[i] е по-голям от t[i] връща стойност по-гол�
 https://codecollab.io/@issashu/Strypes%20lessons
 
 Поради каквато и да е причина ВС Код не харесва main в кода по-долу:
-
-gcc 20210205_Task3.c
-Undefined symbols for architecture x86_64:
-  "_main", referenced from:
-     implicit entry/start for main executable
-ld: symbol(s) not found for architecture x86_64
-collect2: error: ld returned 1 exit status
 */
 
 #include <stdio.h>
