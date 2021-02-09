@@ -16,7 +16,7 @@ our_strcat(String1, String2);
 
 void our_strcat(char *s, char *t){
 char *Result;
-//Result=(char*)calloc(40000, sizeof(char));
+Result=(char*)calloc(40000, sizeof(char));
 while(*s){
     *Result = *s;
     Result++;
@@ -30,5 +30,5 @@ while(*t){
 }
 *Result ='\0';
 printf("\n%s\n", Result);
-//free(Result);
+free(Result);
 }
