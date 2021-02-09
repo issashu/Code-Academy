@@ -15,8 +15,11 @@ int main(){
     int day = 1;
 
     printf("Please enter a desired date as follows:\n");
-    printf("Year: ");
-    scanf("%d", &year);
+    do{
+        printf("Year: ");
+        scanf("%d", &year);
+    }while(year%100==0);
+    
     printf("Month: ");
     scanf("%d", &month);
     printf("Day: ");
