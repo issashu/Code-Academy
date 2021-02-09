@@ -9,11 +9,11 @@
 double Average(int *s);
 
 int main(){
-    int AverageArray[3];
+    int AverageArray[3]={1, 2, 34};
     printf("Please enter the elements of the array (total of 3):\n");
     for (int i=0;i<3;i++)
         scanf("%d", &AverageArray[i]);
-    printf("The average value of the array elements is: %lf\n", Average(AverageArray));
+    printf("The average value of the array elements is: %.2lf\n", Average(AverageArray));
 
 }
 
@@ -29,4 +29,5 @@ double Average(int *s){
 
     Result = SumOfElements/Counter;
 
+    return Result;
 }
