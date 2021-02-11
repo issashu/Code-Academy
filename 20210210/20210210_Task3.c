@@ -17,12 +17,13 @@ int main(){
     //tested qwerewq
     printf("Please enter a string (max 10 characters will be read from buffer): \n");
     scanf("%[^\n]%*c", &array);
-    
+
     /*while((counter < 10) &&  (c != '\n')){
         array[counter] = c;
         ++counter;
         c = getchar();
     }*/
+    
     end = counter;
     
     while (end > start){
