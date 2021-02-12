@@ -48,4 +48,5 @@ int main(){
     for (int i=0; Pointy[i]!='\0';i++){
         printf("%c", Pointy[i]);
     }
+    free(Pointy);
 }
