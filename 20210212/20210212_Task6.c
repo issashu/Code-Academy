@@ -24,11 +24,10 @@ int main(){
         for(int i=0; i<max; i++){
             Pointy[i] = 'q';
             if (i = max - 1) {
-            void *temp = realloc (Pointy, max+2);
-                if (!temp) {
+            Pointy = realloc (Pointy, max+2);
+                if (!Pointy) {
                     printf ("Realloc failed!!!\n");
                 }
-            Pointy = temp;
             max += 2;
             trigger++;
             }
