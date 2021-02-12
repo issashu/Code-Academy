@@ -1,9 +1,20 @@
+/*
+ Задача 3 Напишете функции, с помощта на които да реализирате динамичен масив от елементи, 
+ чиято големина може да се променя по време на изпълнение на програмата
+
+ Направих си универсален код, който да мога да копирам при нужда за други програми.
+ Може да се използва, като се следи до кой елемент попълваме и ако стигаме края, да се вика realloc и добавят още елементи.
+ Става подобно на стд::вектор от С++
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
+/* C11 stuff to study: Как да имитираме templates от C++, за да си направим универсален тип Пойнтер
+#define foo(a, b) _Generic((b), char*: foo_char_ptr, int: foo_int)(a, b)
+*/
+
 int AllocateMemory (int uSize);
 int ReallocateMemory(int *p);
-int EnterElements(int *p, int MaxElem);
 int FreeMemory(int *p);
 
 int *Pointy;
@@ -16,7 +27,6 @@ int main(){
     printf("Please enter how many elements do you need: \n");
     scanf("%d", &NrElements);
     AllocateMemory (NrElements);
-    EnterElements(Pointy, NrElements);
     ReallocateMemory(Pointy);
     FreeMemory(Pointy);
 }
@@ -46,18 +56,6 @@ int ReallocateMemory(int *p){
         printf("Array reallocated at %p up to %p\n", Pointy, (Pointy+NewMax));
         return 0;
     }
-}
-
-int EnterElements(int *p, int MaxElem){
-    printf("Please enter the desired elements of the array:\n");
-    for(int i=0; i < MaxElem; i++){
-        scanf("%d", &p[i]);
-    }
-
-    for(int i=0; i < MaxElem; i++){
-        printf("%d ", p[i]);
-    }
-
 }
 
 int FreeMemory(int *p){

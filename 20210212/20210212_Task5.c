@@ -1,9 +1,13 @@
-#include <stdio.h>
+/*
+ Задача 5 Разширяване на заделена памет с realloc
+
+  Кода е същия като при задача 3. Реално там също си правя realloc.
+*/
 #include <stdlib.h>
+#include <stdio.h>
 
 int AllocateMemory (int uSize);
 int ReallocateMemory(int *p);
-int EnterElements(int *p, int MaxElem);
 int FreeMemory(int *p);
 
 int *Pointy;
@@ -16,7 +20,6 @@ int main(){
     printf("Please enter how many elements do you need: \n");
     scanf("%d", &NrElements);
     AllocateMemory (NrElements);
-    EnterElements(Pointy, NrElements);
     ReallocateMemory(Pointy);
     FreeMemory(Pointy);
 }
@@ -46,18 +49,6 @@ int ReallocateMemory(int *p){
         printf("Array reallocated at %p up to %p\n", Pointy, (Pointy+NewMax));
         return 0;
     }
-}
-
-int EnterElements(int *p, int MaxElem){
-    printf("Please enter the desired elements of the array:\n");
-    for(int i=0; i < MaxElem; i++){
-        scanf("%d", &p[i]);
-    }
-
-    for(int i=0; i < MaxElem; i++){
-        printf("%d ", p[i]);
-    }
-
 }
 
 int FreeMemory(int *p){
