@@ -5,7 +5,7 @@
 След като въвеждането завърши, изведете списък с участниците.
 
 Тази задача е за структури (особенно за класове с полиморфизъм в С++) и би била елементарна с тях. 
-Опита по-долу е да се използват само пойнтери, които да се движат в синхрон (без структури).
+Опита по-долу е да се използват само 2D пойнтери, които да се движат в синхрон (без структури).
 
 NOT READY YET
 */
@@ -14,54 +14,52 @@ NOT READY YET
 #include <stdlib.h>
 #include <string.h>
 
-void EnterParticipant (char **Participants, int *Size);
-void IncreaseDB (char **Participants, int *Size);
-void PrintDB (char **Participants, int *Size);
+void EnterParticipant (char **Participants, int *Size, int *NameLength);
+void IncreaseDB (char **Participants, int *Size, int *NameLength);
+void PrintDB (char **Participants, int *Size, int *NameLength);
 
 int main(){
  int DBEntries = 2;
- int *Size = &DBEntries;
- char Answer = 'y';
-
+ int StrLen = 30;
+ int NrColumns = 3;
+ int *DBSize = &DBEntries;
+ int *NameLength = &StrLen;
  char **Participants = calloc(DBEntries, sizeof *Participants);
  for (int i = 0; i<DBEntries; i++){
-        Participants[i] = calloc(3, sizeof *(Participants[i]));
+        Participants[i] = calloc(NrColumns, StrLen * sizeof(char));
     }
-
- do{
-     EnterParticipant (Participants, Size);
-     printf("Do you want to add further participants? (Press y for yes, anything else for no)\n");
-     scanf(" %c", &Answer);
-    } while(Answer=='y');
-
-    PrintDB(Participants, Size);
-
+    EnterParticipant (Participants, DBSize, NameLength);
+    PrintDB(Participants, DBSize, NameLength);
     free(Participants);
 }
 
-void EnterParticipant (char **Participants, int *Size){
+void EnterParticipant (char **Participants, int *Size, int *NameLength){
     static int i = 0;
-    for(int i=0; i < *Size; i++){
+    char Answer ='y';
+    do{
         printf("Please enter the Participant Name: \n");
-        scanf("%s", &Participants[i][0]);
+        fgets(&Participants[i][0], *NameLength, stdin);
         printf("Please enter the Participant Surname: \n");
-        scanf("%s", &Participants[i][1]);
+        fgets(&Participants[i][1], *NameLength, stdin);
         printf("Please enter the Participant Age: \n");
-        scanf("%d", &Participants[i][2]);
-            /*if(i == (*Size-2)){
+        fgets(&Participants[i][2], *NameLength, stdin);
+        i++;
+            if(i == (*Size-2)){
                 *Size += *Size;
-                IncreaseDB(Participants, Size);
-            }*/
-        }
-    }
-
-void IncreaseDB (char **Participants, int *Size){
-    
+                IncreaseDB(Participants, Size, NameLength);
+            }
+        printf("Do you want to add further participants? (Press y for yes, anything else for no)\n");
+        Answer = getchar();
+    } while(Answer=='y');
 }
-void PrintDB (char **Participants, int *Size){
+
+void IncreaseDB (char **Participants, int *Size, int *NameLength){
+    Participants = realloc(Participants, *Size);
+}
+void PrintDB (char **Participants, int *Size, int *NameLength){
     for(int i=0; i<*Size; i++){
         for(int j=0; j<=3; j++){
-            printf("%c ", Participants[i][j]);
+            printf("%s ", Participants[i][j]);
         }
         printf("\n");
     }
