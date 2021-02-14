@@ -6,45 +6,40 @@
 
 Тази задача е за структури (особенно за класове с полиморфизъм в С++) и би била елементарна с тях. 
 Опита по-долу е да се използват само пойнтери, които да се движат в синхрон (без структури).
+
+NOT READY YET
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-void EnterParticipant (int *PartNumber, char *Name, char *Surname, int *Age, int *Size);
-void IncreaseDB (int *PartNumber, char *Name, char *Surname, int *Age, int *Size);
-void PrintDB (int *PartNumber, char *Name, char *Surname, int *Age, int *Size);
+void EnterParticipant (char **Participants, int *Size);
+void IncreaseDB (char **Participants, int *Size);
+void PrintDB (char **Participants, int *Size);
 
 int main(){
- int *PartNumber=NULL;
- char *Surname = NULL;
- char *Name = NULL;
- int *Age=NULL;
  int DBEntries = 10;
  int *Size = &DBEntries;
  char Answer = 'y';
 
- PartNumber = calloc(10, sizeof(int));
- Surname = calloc (20, sizeof(char));
- Name = calloc (20, sizeof(char));
- Age = calloc (10, sizeof(int));
+ char **Participants = calloc(10, sizeof *Participants);
+ for (int i = 0; i<10; i++){
+        Participants[i] = calloc(3, sizeof *(Participants[i]));
+    }
 
  do{
-     EnterParticipant (PartNumber, Name, Surname, Age, Size);
+     EnterParticipant (Participants, Size);
      printf("Do you want to add further participants? (Press y for yes, anything else for no)\n");
      scanf(" %c", &Answer);
     } while(Answer=='y');
 
-    PrintDB(PartNumber, Name, Surname, Age, Size);
+    PrintDB(Participants, Size);
 
-    free(PartNumber);
-    free(Surname);
-    free(Name);
-    free(Age);
+    free(Participants);
 }
 
-void EnterParticipant (int *PartNumber, char *Name, char *Surname, int *Age, int *Size){
+void EnterParticipant (char **Participants, int *Size){
     static int i = 0;
     for(i; i < *Size; i++){
         //Database starts from 1 to be Human-readable, not Coder-readable
@@ -61,13 +56,13 @@ void EnterParticipant (int *PartNumber, char *Name, char *Surname, int *Age, int
         }
     }
 }
-void IncreaseDB (int *PartNumber, char *Name, char *Surname, int *Age, int *Size){
+void IncreaseDB (char **Participants, int *Size){
     PartNumber = realloc (PartNumber, *Size);
     Name = realloc (Name, *Size);
     Surname = realloc (Surname, *Size);
     Age = realloc (Age, *Size);
 }
-void PrintDB (int *PartNumber, char *Name, char *Surname, int *Age, int *Size){
+void PrintDB (char **Participants, int *Size){
     for(int i=0; i<*Size; i++){
         printf("%d  ", PartNumber);
         printf("%s ", Name);
