@@ -29,7 +29,6 @@ int main(){
             /*DEBUGGER:
             Pointy[i] = 'q';
             */
-            //1 chas!!!!!!!!! debugvah, dokato se usetia, che sam pisal =, a ne == ....
             if (i == max - 1) {
             Pointy = realloc (Pointy, max+2);
                 if (!Pointy) {
