@@ -19,12 +19,12 @@ void IncreaseDB (char **Participants, int *Size);
 void PrintDB (char **Participants, int *Size);
 
 int main(){
- int DBEntries = 10;
+ int DBEntries = 2;
  int *Size = &DBEntries;
  char Answer = 'y';
 
- char **Participants = calloc(10, sizeof *Participants);
- for (int i = 0; i<10; i++){
+ char **Participants = calloc(DBEntries, sizeof *Participants);
+ for (int i = 0; i<DBEntries; i++){
         Participants[i] = calloc(3, sizeof *(Participants[i]));
     }
 
@@ -41,33 +41,28 @@ int main(){
 
 void EnterParticipant (char **Participants, int *Size){
     static int i = 0;
-    for(i; i < *Size; i++){
-        //Database starts from 1 to be Human-readable, not Coder-readable
-        PartNumber[i] = i+1;
+    for(int i=0; i < *Size; i++){
         printf("Please enter the Participant Name: \n");
-        scanf("[^\n]%s", Name[i]);
+        scanf("%s", &Participants[i][0]);
         printf("Please enter the Participant Surname: \n");
-        scanf("[^\n]%s", Surname[i]);
+        scanf("%s", &Participants[i][1]);
         printf("Please enter the Participant Age: \n");
-        scanf("%d", Age[i]);
-        if(i == (*Size-2)){
-            *Size += *Size;
-            IncreaseDB(PartNumber, Name, Surname, Age, Size);
+        scanf("%d", &Participants[i][2]);
+            /*if(i == (*Size-2)){
+                *Size += *Size;
+                IncreaseDB(Participants, Size);
+            }*/
         }
     }
-}
+
 void IncreaseDB (char **Participants, int *Size){
-    PartNumber = realloc (PartNumber, *Size);
-    Name = realloc (Name, *Size);
-    Surname = realloc (Surname, *Size);
-    Age = realloc (Age, *Size);
+    
 }
 void PrintDB (char **Participants, int *Size){
     for(int i=0; i<*Size; i++){
-        printf("%d  ", PartNumber);
-        printf("%s ", Name);
-        printf("%s ", Surname);
-        printf("%d", Age);
+        for(int j=0; j<=3; j++){
+            printf("%c ", Participants[i][j]);
+        }
         printf("\n");
     }
 }
@@ -82,17 +77,4 @@ Particvipants [malloc]  [malloc] [malloc]      [1]
                 [10]     [30]     [30]          [1]
                 [realloc] [reLLOC] [RE3ALLOC]    [1]
 
-Because own is declared as having type int *
-
-int * own;
-then own[i] is a scalar object of type int and you may not apply to it the subscript operator.
-
-You could write the following way
-
-int ( *own )[3] = calloc( mem_size, 3 * sizeof( int ) );
-The other way is the following
-
-int **own = malloc( mem_size * sizeof( int * ) );
-
-for ( i = 0; i < mem_size; i++ ) own[i] = calloc( 3, sizeof( int ) );
- */
+*/
