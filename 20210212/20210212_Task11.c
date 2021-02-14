@@ -76,3 +76,28 @@ void PrintDB (int *PartNumber, char *Name, char *Surname, int *Age, int *Size){
         printf("\n");
     }
 }
+
+
+/*
+
+int ****Participants [10]      [30]    [30]            [1];
+            por. Nr.   Ime     familia          Age
+    
+Particvipants [malloc]  [malloc] [malloc]      [1]
+                [10]     [30]     [30]          [1]
+                [realloc] [reLLOC] [RE3ALLOC]    [1]
+
+Because own is declared as having type int *
+
+int * own;
+then own[i] is a scalar object of type int and you may not apply to it the subscript operator.
+
+You could write the following way
+
+int ( *own )[3] = calloc( mem_size, 3 * sizeof( int ) );
+The other way is the following
+
+int **own = malloc( mem_size * sizeof( int * ) );
+
+for ( i = 0; i < mem_size; i++ ) own[i] = calloc( 3, sizeof( int ) );
+ */
