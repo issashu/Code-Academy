@@ -10,15 +10,18 @@
 int main(void){
     srand(time(0));
     int array [10][10][10] = {0};
-    int *p = &array;
-    int i = 0, sum = 0;
-    while (i < 1000){
-        *p = rand();
-        sum += *p;
-        printf("on pos %d is generated number: %d\n", i+1, *p);
-        p++;
-        i++;
+    int MaxCount = 1000;
+    int *Pointy = &array;
+    int Counter = 0;
+    unsigned int total = 0;
+    int average = 0;
+    while (Counter < MaxCount){
+        *Pointy = abs(rand());
+        total += *Pointy;
+        Pointy++;
+        Counter++;
     }
-    printf("The average: %d", sum/1000);
+    average = total/MaxCount;
+    printf("The average: %d", average);
     return 0;
 }
