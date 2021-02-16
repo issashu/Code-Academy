@@ -17,7 +17,7 @@ int main(){
         printf("String not found! Error! Eroor! Waaaah!");
     }
     else{
-        while(*SubPointy){
+        while(*SubPointy && *PointoPlace!='\0'){
             *SubPointy = *PointoPlace;
             *SubPointy++;
             *PointoPlace++;
