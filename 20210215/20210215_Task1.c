@@ -19,10 +19,10 @@
 char *month_name(int n);
 
 int main(){
-    int MonthNr = 0;
+    int MonthNr = 2;
     char *Pointy = NULL;
     printf("Which month are you looking for?\n");
-    scanf("%d", &MonthNr);
+    //scanf("%d", &MonthNr);
     Pointy = month_name(MonthNr);
     printf("The entered month is %s\n", *Pointy);
 
