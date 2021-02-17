@@ -30,12 +30,13 @@ int main(){
     int MaxRamAllowed = 1073741824;
     int *Stack = NULL;
 
-
+    reallocation:
     printf("How big do you need the stack?\n");
     scanf("%d", &MaxStackSize);
     Stack = realloc (Stack, MaxStackSize*sizeof(int));
     if (Stack == NULL){
         printf("Memory allocation BSoD! Restart OS and try again!\n");
+        goto reallocation;
     }
    // CreateStack(&Stack, MaxStackSize);
     
@@ -71,6 +72,8 @@ int main(){
         scanf (" %c", &Continue);
         // space before % to counter whatever retarded C buffer enter goes in....
     }
+
+    printf("\nThank you traveling with Bearlines in RAM Space! Have a nice day!\n");
 
     free (Stack);
 }
