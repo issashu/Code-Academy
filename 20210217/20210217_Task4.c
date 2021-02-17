@@ -26,28 +26,26 @@ int main(){
     int StackPosition = 0;
     int *Stack = NULL;
 
-    printf("SO: %p\n", Stack);
-    printf("SO: %d\n", MaxStackSize);
     printf("How big do you need the stack?\n");
-    scanf("%d", MaxStackSize);
-    *Stack = calloc(MaxStackSize, sizeof(int));
+    scanf("%d", &MaxStackSize);
+    Stack = realloc (Stack, MaxStackSize*sizeof(int));
     if (Stack == NULL){
         printf("Memory allocation BSoD! Restart OS and try again!\n");
     }
-    //CreateStack(&Stack, MaxStackSize);
+   // CreateStack(&Stack, MaxStackSize);
     
     printf("%p\n", Stack);
     printf("%d\n", MaxStackSize);
 }
 
-int CreateStack(int *StackPointer, int Size){
-    *StackPointer = calloc(Size, sizeof(int));
+/*int CreateStack(int *StackPointer, int Size){
+    StackPointer = realloc(StackCounter, Size*sizeof(int));
     if (StackPointer == NULL){
         printf("Memory allocation BSoD! Restart OS and try again!\n");
     }
 
     return *StackPointer;
-}
+}*/
 
 void push(int *StackPointer, int Element, int Size){
     int AddDirection = 1;
