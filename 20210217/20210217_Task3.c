@@ -24,6 +24,7 @@ int main() {
     int Num2=0;
     int Selector = 0;
     Menu(&Num1, &Num2, &Selector);
+    //Array of pointers to functions returning an int and having two int arguments
     int (*func_ptr[])(int, int) = {fnPlus, fnMinus, fnMulti, fnDiv};
     
     /*DEBUG:
@@ -31,6 +32,8 @@ int main() {
     printf("%d\n", Num2);
     printf("%d\n", Selector);
     */
+   
+   //This is used as a switch based on selection.
     printf("%d", (*func_ptr[Selector-1])(Num1, Num2));
 }
 
