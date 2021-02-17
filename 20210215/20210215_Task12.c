@@ -12,6 +12,9 @@ int main(void){
     int array [10][10][10] = {0};
     int MaxCount = 1000;
     int *Pointy = &array;
+    //Pointy = array;
+    //***Pointy = array[0][0][0];
+    //Pointy = &array;
     int Counter = 0;
     unsigned int total = 0;
     int average = 0;

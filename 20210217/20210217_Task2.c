@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
     else if ('x' == argv[1][0]) {
         pfCalc = fnMulti; 
     }
-    else if ('d' == argv[1][0]) {
+    else if ('d' == argv[1][0] && argv[3][0]!='0') {
         pfCalc = fnDiv; 
     }
     (NULL == pfCalc) ? 0 : printf("\nResult: %d\n", (*pfCalc)(atoi(argv[2]), atoi(argv[3])));
