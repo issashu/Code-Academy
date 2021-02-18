@@ -9,7 +9,7 @@ int fnDiv(int nA, int nB);
 int main(int argc, char* argv[]) {
     int ( * pfCalc ) ( int, int ) = NULL;
     if (argc < 4){
-        printf("\nUsage: %s +/- arg1 arg2\n", argv[0]);
+        printf("\nUsage: %s +/-/ x (multiplication) or d(division) arg1 arg2\n", argv[0]);
     }
     else if ('-' == argv[1][0]) { 
         pfCalc = fnMinus; 
