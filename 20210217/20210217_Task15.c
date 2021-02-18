@@ -11,8 +11,7 @@
 
 ИЗПОЛВАХ СИ КОДА ЗА СТАК
 */
-//#include <unistd.h>
-#include <windows.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -23,7 +22,8 @@ void StackCounter (int *Position, int Direction);
 
 int main(){
     int GameNr = 1;
-    int MaxStackSize = 49;
+    int MaxStackSize = 35;
+    int NumbersDrawn =  5;
     int StackPosition = 0;
     int Operation = 0;
     char Continue ='y';
@@ -31,19 +31,27 @@ int main(){
 
     GameNr = GameSelector();
     switch (GameNr){
+        case 1:
+            MaxStackSize = 35;
+            NumbersDrawn =  5;
         
+        case 2:
+            MaxStackSize = 42;
+            NumbersDrawn =  6;
+
+        case 3:
+            MaxStackSize = 42;
+            NumbersDrawn =  6;
     }
-
-
-
-    Stack = realloc (Stack, MaxStackSize*sizeof(int));
+    Stack = realloc (Stack, NumbersDrawn*sizeof(int));
     if (Stack == NULL){
         printf("Memory allocation BSoD! Restart OS and try again!\n");
         return 1;
     }
-
-    
-    printf("На печелившите - честито!");
+    for (int i = 0; i<NumbersDrawn; i++){
+        push(Stack, StackPosition, MaxStackSize);    
+    }
+    printf("Chestito na vsichki pechelivshi!");
     free (Stack);
 }
 
@@ -58,8 +66,8 @@ int main(){
 
 int GameSelector (void){
     int Answer = 1;
-    printf("Моля, изберете, в коя игра ще участвате:\n");
-    printf("1. (5 от 35), 2.(6 от 42) или 3.(6 от 49)\n");
+    printf("Molia, izberete tiraj:\n");
+    printf("1. (5 ot 35), 2.(6 ot 42) ili 3.(6 ot 49)\n");
     scanf("%d", &Answer);
     return Answer;
 }
@@ -68,19 +76,21 @@ void push(int *StackPointer, int *Position, int MaxNumber){
     srand(time(0));
     int PushDirection = 1;
     int Element = 0;
-    char Dialogs[] = {"И ето, че бе изтеглено числото", "Следващото изтеглено число е", "Бе изтеглена топка с номер", "Новото число е"};
+    char **Dialogs[4] = {"Izteglenoto chislo e:", "Sledvashtoto chislo e:", "Izteglena be topka s nomer:", "Novoto chislo e:"};
     if(Position >=0){
-        printf("Добър вечер, драги зрители!");
-        sleep(0.5);
-        printf("В колелото бяха заредени %d топки с номера от 1 до %d\n", MaxNumber, MaxNumber);
-        sleep(0.5);
-        printf("Ето те са вече в сферата и започват да се разбъркват!\n");
-        sleep(1.5);
+        printf("Dobar vecher dragi zriteli!");
+        Sleep(0.5);
+        printf("V koleloto biaha zaredeni %d topki s nomera ot 1 do %d\n", MaxNumber, MaxNumber);
+        Sleep(0.5);
+        printf("Eto te veche sa v sferata i se razbarkvat!\n");
+        Sleep(1.5);
+        Element = rand()%MaxNumber;
         StackPointer[*Position] = Element;
         StackCounter(Position, PushDirection);
-        printf("%s\n", Dialogs[rand()%4-1]);
-        sleep(0.5);
-        printf("\nИзтеглените числа до тук в играта са:\n");
+        printf("%s\n", *Dialogs[0][rand()%4-1]);
+        printf("%d\n", Element);
+        Sleep(0.5);
+        printf("\nIzteglenite chisla do tuk v igrata sa:\n");
         for(int i = 0; i<*Position; i++){
             printf("%d, ", StackPointer[i]);
         }
