@@ -20,7 +20,7 @@ void push(int *StackPointer, int *Position, int MaxNumber);
 int GameSelector (void);
 void StackCounter (int *Position, int Direction);
 
-int main(){
+int main(void){
     int GameNr = 1;
     int MaxStackSize = 35;
     int NumbersDrawn =  5;
@@ -34,24 +34,38 @@ int main(){
         case 1:
             MaxStackSize = 35;
             NumbersDrawn =  5;
+            break;
         
         case 2:
             MaxStackSize = 42;
             NumbersDrawn =  6;
+            break;
 
         case 3:
-            MaxStackSize = 42;
+            MaxStackSize = 49;
             NumbersDrawn =  6;
+            break;
     }
     Stack = realloc (Stack, NumbersDrawn*sizeof(int));
     if (Stack == NULL){
         printf("Memory allocation BSoD! Restart OS and try again!\n");
         return 1;
     }
+    printf("Dobar vecher dragi zriteli!\n");
+        sleep(2);
+        printf("V koleloto biaha zaredeni %d topki s nomera ot 1 do %d\n", MaxStackSize, MaxStackSize);
+        sleep(2);
+        printf("Eto te veche sa v sferata i se razbarkvat!\n");
+        sleep(4);
     for (int i = 0; i<NumbersDrawn; i++){
-        push(Stack, StackPosition, MaxStackSize);    
+        push(Stack, &StackPosition, MaxStackSize);    
     }
-    printf("Chestito na vsichki pechelivshi!");
+    printf("\nIzteglenite chisla do tuk v igrata sa:\n");
+        for(int i = 0; i<StackPosition; i++){
+            printf("%d ", Stack[i]);
+        }
+    sleep(1);
+    printf("\nChestito na vsichki pechelivshi!");
     free (Stack);
 }
 
@@ -76,24 +90,21 @@ void push(int *StackPointer, int *Position, int MaxNumber){
     srand(time(0));
     int PushDirection = 1;
     int Element = 0;
-    char **Dialogs[4] = {"Izteglenoto chislo e:", "Sledvashtoto chislo e:", "Izteglena be topka s nomer:", "Novoto chislo e:"};
+    int i = rand()%4;
+    char Dialogs[4][30] = {"Izteglenoto chislo e:", "Sledvashtoto chislo e:", "Izteglena be topka s nomer:", "Novoto chislo e:"};
     if(Position >=0){
-        printf("Dobar vecher dragi zriteli!");
-        Sleep(0.5);
-        printf("V koleloto biaha zaredeni %d topki s nomera ot 1 do %d\n", MaxNumber, MaxNumber);
-        Sleep(0.5);
-        printf("Eto te veche sa v sferata i se razbarkvat!\n");
-        Sleep(1.5);
+        draw:
         Element = rand()%MaxNumber;
+        for(int i=0; i<*Position; i++){
+            if(Element == StackPointer[*Position]){
+                goto draw;
+            }
+        }
         StackPointer[*Position] = Element;
         StackCounter(Position, PushDirection);
-        printf("%s\n", *Dialogs[0][rand()%4-1]);
+        printf(" %s", Dialogs[i]);
         printf("%d\n", Element);
-        Sleep(0.5);
-        printf("\nIzteglenite chisla do tuk v igrata sa:\n");
-        for(int i = 0; i<*Position; i++){
-            printf("%d, ", StackPointer[i]);
-        }
+        sleep(2);
     }
 }
 
