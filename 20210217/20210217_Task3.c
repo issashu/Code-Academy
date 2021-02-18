@@ -33,7 +33,7 @@ int main() {
     printf("%d\n", Selector);
     */
    
-   //This is used as a switch based on selection.
+   //This is used as a switch based on selection from 0 to 2.
     printf("%d", (*func_ptr[Selector-1])(Num1, Num2));
 }
 
