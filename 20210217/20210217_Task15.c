@@ -90,7 +90,7 @@ void push(int *StackPointer, int *Position, int MaxNumber){
     srand(time(0));
     int PushDirection = 1;
     int Element = 0;
-    int i = rand()%4;
+    int i =rand()%4;
     char Dialogs[4][30] = {"Izteglenoto chislo e:", "Sledvashtoto chislo e:", "Izteglena be topka s nomer:", "Novoto chislo e:"};
     if(Position >=0){
         draw:

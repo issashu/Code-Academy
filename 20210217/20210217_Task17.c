@@ -1,13 +1,11 @@
 /*
-Задача 16.
-Имаме 2 сортирани масиви А и В с по 88 елемента.
-Образувайте масив С с 2х88 елемента образуван от смесването на А и В,
-така че С да съдържа елементите на А и В, но да е подреден и да не се
-налага да го сортираме отново.
-Насоки: Проверяваме от кой масив да вземем следващия елемент за
-слагане в масива /цикъл и проверка./
+ Задача 17*.
+Имаме 2 сортирани масиви А и В с различна размерност k и l и произволни int числа.
+Образувайте масив С, образуван от смесването на А и В, така че С да съдържа елементите 
+на А и В, но да е подреден и да не се налага да го сортираме отново.
 
-Програмата си прави два масива на произволен принцип от по 88 елемента между 1 и 10. Може да се махне тоъи лимит на линия 46
+Програмата си прави два масива на произволен принцип от по 88 елемента между 1 и 10. 
+Може да се махне тоъи лимит на линия 46
 
 Повечето функции могат да се изнесат в .h и отделни .с и да се използват после
 */
@@ -19,27 +17,38 @@ void FillArray(int *array, int size);
 //Ne raboti s vanshna funktzia...printiram v main()
 //void Printer(int array[], int size);
 void SortedArrayMerge(int *array1, int *array2, int size1, int size2, int *array3);
-void SortArray(int *array);
+void SortArray(int *array, int size);
 
 int main()
 {
-    int Array1[10] = {0};
-    int Array2[10] = {0};
-    int Array3 [20] = {0};
-    int Size1 = sizeof(Array1) / sizeof(Array1[0]);
-    int Size2 = sizeof(Array2) / sizeof(Array2[0]);
-    int Size3 = sizeof(Array3) / sizeof(Array3[0]);
+    int Size1 = 10;
+    int Size2 = 10;
+    int Size3 = 10;
+    int *Array1 = NULL;
+    int *Array2 = NULL;
+    int *Array3 = NULL;
+
+    printf("Please enter a size for the first array:\n");
+    scanf("%d", &Size1);
+    printf("Please enter a size for the second array:\n");
+    scanf("%d", &Size2);
+    Size3 = Size1 + Size2;
+
+    Array1 = (int*) calloc(Size1, sizeof(int));
+    Array2 = (int*) calloc(Size2, sizeof(int));
+    Array3 = (int*) calloc(Size3, sizeof(int));
+
     void (*Setter)(int*, int) = FillArray;
     void (*MergeArrays)(int*, int*, int, int, int*) = SortedArrayMerge;
-    void(*SortAnArray)(int*) = SortArray;
+    void(*SortAnArray)(int*, int) = SortArray;
     
     Setter(Array1, Size1);
     Setter(Array2, Size2);
-    SortAnArray(Array1);
-    SortAnArray(Array2);
+    SortAnArray(Array1, Size1);
+    SortAnArray(Array2, Size2);
     MergeArrays(Array1, Array2, Size1, Size2, Array3);
 
-    printf("First array: \n");
+    printf("First array:\n");
     for (int i = 0; i<Size1; i++){
         printf("%d ", Array1[i]);
     }
@@ -86,12 +95,12 @@ void SortedArrayMerge(int *array1, int *array2, int size1, int size2, int *array
     }
 }
 
-void SortArray(int *array){
+void SortArray(int *array, int size){
     int i, j = 0;
     int tmp = 0;
     
-    for (i = 0; i < 10; ++i) {
-        for (j = i + 1; j < 10; ++j){
+    for (i = 0; i < size; ++i) {
+        for (j = i + 1; j < size; ++j){
             if (array[i] > array[j]) {
                 tmp =  array[i];
                 array[i] = array[j];
