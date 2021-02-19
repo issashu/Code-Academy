@@ -17,7 +17,7 @@ int pop() (премахва елемент от края на стека)
 
 
 
-// int CreateStack(int *StackPointer, int Size);
+void CreateStack(int **StackPointer, int Size);
 void push(int *StackPointer, int *Position);
 void StackCounter (int *Position, int Direction);
 int pop(int *StackPointer, int *Position);
@@ -33,12 +33,12 @@ int main(){
     reallocation:
     printf("How big do you need the stack?\n");
     scanf("%d", &MaxStackSize);
-    Stack = realloc (Stack, MaxStackSize*sizeof(int));
+    CreateStack(&Stack, MaxStackSize);
+   // Stack = realloc (Stack, MaxStackSize*sizeof(int));
     if (Stack == NULL){
         printf("Memory allocation BSoD! Restart OS and try again!\n");
         goto reallocation;
     }
-   // CreateStack(&Stack, MaxStackSize);
     
     printf("%p\n", Stack);
     printf("%d\n", MaxStackSize);
@@ -78,14 +78,13 @@ int main(){
     free (Stack);
 }
 
-/*int CreateStack(int *StackPointer, int Size){
-    StackPointer = realloc(StackCounter, Size*sizeof(int));
+    void CreateStack(int **StackPointer, int Size){
+    *StackPointer = (int*) realloc(*StackPointer, Size*sizeof(int));
     if (StackPointer == NULL){
         printf("Memory allocation BSoD! Restart OS and try again!\n");
     }
-
-    return *StackPointer;
-}*/
+    return StackPointer;
+}
 
 void push(int *StackPointer, int *Position){
     int PushDirection = 1;
