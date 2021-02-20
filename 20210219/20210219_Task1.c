@@ -43,7 +43,7 @@ int main(){
 }
 
 
-void Setter(int BookNr, struct tagPaper *Shelf){
+/*void Setter(int BookNr, struct tagPaper *Shelf){
     Shelf = realloc(Shelf, BookNr*sizeof(struct tagPaper));
     if(Shelf ==NULL){
         printf("IKEA furniture missing....");
@@ -51,7 +51,7 @@ void Setter(int BookNr, struct tagPaper *Shelf){
     else{
         printf("%p", Shelf);
     }
-}
+}*/
 
 void Filler (int BookNr, struct tagPaper *Shelf){
     for (int i = 0; i < BookNr; i++){
