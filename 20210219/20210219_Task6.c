@@ -23,8 +23,10 @@ int main(){
 
     Setter(Graph);
 
-    for (int i=a.x, j=a.y; i<=b.x, j<=b.y;i++, j++){
-        Graph[i][j] = '@';
+    for (int i=a.x; i<=b.x; i++){
+        for(int j = i; j<=b.x; j++){
+            Graph[i][j] = '@';
+        }
     }
     Board(Graph);
 }
