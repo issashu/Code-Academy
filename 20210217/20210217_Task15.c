@@ -69,14 +69,13 @@ int main(void){
     free (Stack);
 }
 
-/*int CreateStack(int *StackPointer, int Size){
-    StackPointer = realloc(StackCounter, Size*sizeof(int));
+int CreateStack(int *StackPointer, int Size){
+    StackPointer = realloc(StackPointer, Size*sizeof(int));
     if (StackPointer == NULL){
         printf("Memory allocation BSoD! Restart OS and try again!\n");
     }
-
     return *StackPointer;
-}*/
+}
 
 int GameSelector (void){
     int Answer = 1;
