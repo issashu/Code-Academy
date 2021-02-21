@@ -28,7 +28,6 @@ void FillArray(int *Pointer, int MaxCount){
          Counter++;
     }
     for(int i = 0; i < MaxCount; i++){
-        for
         if (Pointer[i]>=1 && Pointer[i]<=5){
             *Pointer = i;
              Pointer++;
@@ -38,7 +37,6 @@ void FillArray(int *Pointer, int MaxCount){
 }
 
 void PrintPositions(int *Pointer){
-
     for (; *Pointer; Pointer++){
         printf("%d", *Pointer);
     }
