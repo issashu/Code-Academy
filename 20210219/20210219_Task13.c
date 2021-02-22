@@ -51,6 +51,7 @@ int main(){
 void Setter(slujitel *Employee, management *Manager, short MaxEmp, short MaxMan){
     Employee = malloc(MaxEmp*sizeof(slujitel));
     Manager = malloc (MaxMan*sizeof(management));
+    
      
 }
 
