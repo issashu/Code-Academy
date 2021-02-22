@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char **argv) {
   int *array = (int*) malloc(100*sizeof(int));
@@ -7,4 +7,3 @@ int main(int argc, char **argv) {
   free (array);
   printf("%d", array[10]);
   return array[argc];  // BOOM
-}
