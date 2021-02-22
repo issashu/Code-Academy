@@ -1,36 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void fillArrayWithRand(int *arr, size_t sz, int rangeMax);
-unsigned int print2DPosOfValuesWithinRange(int *arr, size_t sz, size_t rowSz, int rangeMin, int rangeMax);
-
-int main() {
-    int array[5][5];
-
-    fillArrayWithRand((int *)array, sizeof(array)/sizeof(int), 10);
-
-    int oneToFive = print2DPosOfValuesWithinRange((int *) array, sizeof(array)/sizeof(int), 5, 1, 5);
-    printf("\nFound %d numbers 1-5", oneToFive);
-
-    return 0;
-}
-
-void fillArrayWithRand(int *arr, size_t sz, int rangeMax) {
-    while (sz--) {
-        *arr++ = rand() % rangeMax + 1;
-    }
-}
-
-unsigned int print2DPosOfValuesWithinRange(int *arr, size_t sz, size_t rowSz, int rangeMin, int rangeMax) {
-    unsigned int itemsFound = 0;
-    for (int i = 0; i < sz; i++, arr++) {
-        if (!(i % rowSz)) {
-            putchar('\n');
-        }
-        if (*arr >= rangeMin && *arr <= rangeMax) {
-            printf("[%d,%d]==%d  ", i/rowSz, i%rowSz, *arr);
-            itemsFound++;
-        }
-    }
-    return itemsFound;
+int main(int argc, char **argv) {
+  int *array = (int*) malloc(100*sizeof(int));
+  array[10] = 100;
+  free (array);
+  printf("%d", array[10]);
+  return array[argc];  // BOOM
 }
