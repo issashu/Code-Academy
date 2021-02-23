@@ -17,15 +17,13 @@ typedef struct __attribute__((__packed__)){
 } date;
 
 int main(){
-	date ContractDate;
-	date *pDateContract;
+	date ContractDate = {12, 10, 1984};
+	date ContractDate = {.Year = 1981, .Day = 12, .Month = 11};
+	date *pDateContract = &ContractDate;
 
-	ContractDate = {12, 10, 1984};
 	ContractDate.Day = 1;
 	ContractDate.Month = 9;
 	pDateContract->Year = 1987;
 
 	printf("%d.%d.%d", ContractDate.Day, ContractDate.Month, pDateContract->Year);
-
-
 }
