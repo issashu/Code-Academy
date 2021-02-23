@@ -21,38 +21,43 @@ typedef struct Employee{
     int Experience;
     int Salary;
     struct Manager *Supervisor;
-} slujitel;
+} Slujitel_t;
 
 typedef struct Manager{
     char Name[50];
     char Department[50];
-} management;
+} Management_t;
 
-void Setter(slujitel *Employee, management *Manager, short MaxEmp, short MaxMan);
+void Setter(Slujitel_t *Employee, Management_t *Manager, short MaxEmp, short MaxMan);
 void Printer();
-slujitel Getter();
+Slujitel_t Getter();
 
 int main(){
     short TotalEmp = 0;
     short TotalMan = 0;
-    slujitel *Employees = NULL;
-    management *Managers = NULL;
+    Slujitel_t *Employees = NULL;
+    Management_t *Managers = NULL;
 
     printf("How many employees do you have in the company?\n");
     scanf("%d", &TotalEmp);
     printf("How Managers  are available?");
     scanf("%d", &TotalMan);
 
+    Setter(Employees, Managers);
+
     free(Employees);
     free(Managers);
 
 }
 
-void Setter(slujitel *Employee, management *Manager, short MaxEmp, short MaxMan){
-    Employee = malloc(MaxEmp*sizeof(slujitel));
-    Manager = malloc (MaxMan*sizeof(management));
-    
-     
+void Setter(Slujitel_t *Employee, Management_t *Manager, short MaxEmp, short MaxMan){
+    Employee = malloc(MaxEmp*sizeof(Slujitel_t));
+    Manager = malloc (MaxMan*sizeof(Management_t));
+    for(int i=0; i<MaxEmp; i++){
+        printf("Please enter the Employee name:\n");
+
+
+    }     
 }
 
 void Printer(){
