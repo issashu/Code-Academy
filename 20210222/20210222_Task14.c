@@ -35,7 +35,7 @@ union calendar{
 };
 
 int main(){
-    ;
+    union calendar CalendarDate;
     int32_t Year = 0;
     int32_t Month = 0;
     int32_t Day = 0;
@@ -46,7 +46,10 @@ int main(){
     printf("Now please enter a day (1-31):\n");
     scanf("%d", &Day);
 
-    ConvertDate(Day, Month, Year);
+    CalendarDate.BinaryDate = ConvertDate(Day, Month, Year);
+
+    printf("The date you entered is:\n");
+    printf("%d.%d.%d", CalendarDate.DateFields.Year, CalendarDate.DateFields.Month, CalendarDate.DateFields.Day);
 }
 
 int32_t ConvertDate(int32_t Day, int32_t Month, int32_t Year){
@@ -61,7 +64,7 @@ int32_t ConvertDate(int32_t Day, int32_t Month, int32_t Year){
 
     Result = (((Day<<MonthShift)+Month)<<YearShift)+Year;
 
-    printf("%d", Result);
+    printf("DEBUG: %d\n", Result);
     return Result;
 }
 
