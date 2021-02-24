@@ -44,12 +44,34 @@ int main(){
     u_int32_t Month = 0;
     u_int32_t Day = 0;
     printf("Please enter an year (1900 - 2021):\n");
-    scanf("%d", &Year);
+    do{
+        scanf("%d", &Year);
+    }while(Year <1900 || Year >2021);
+    
     printf("Now please enter a month (1-12):\n");
-    scanf("%d", &Month);
-    printf("Now please enter a day (1-31):\n");
-    scanf("%d", &Day);
-
+    do{
+        scanf("%d", &Month);
+    } while( Month<1 || Month>12);
+    
+    if(Year%400 == 0 && Month==2){
+        printf("Now please enter a day (1-29):\n");
+        do{
+            scanf("%d", &Day);
+        } while( Day<1 || Day>29);    
+    }
+    else if(Year%400 != 0 && Month==2){
+         printf("Now please enter a day (1-28):\n");
+         do{
+            scanf("%d", &Day);
+        } while( Day<1 || Day>28);
+    }
+    else{
+        printf("Now please enter a day (1-31):\n");
+        do{
+            scanf("%d", &Day);
+        } while( Day<1 || Day>31);
+    }
+    
     printf("DEBUG: %d", sizeof(CalendarDate));
 
     CalendarDate.BinaryDate = ConvertDate(Day, Month, Year);
