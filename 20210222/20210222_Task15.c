@@ -44,20 +44,20 @@ int main(){
     FILE *fpt;
     fpt = fopen("20210222_Task15.csv", "w+");
     
-    team Employees;
+    team Employees[20];
     short MaxEmployees =20;
 
     for(int i=0; i<MaxEmployees;i++){
-        Employees.ID = i+1;
-        Employees.Name[10] = "John Doe";
-        Employees.Salary = 1500+(i*2354);
-        Employees.workplace = i;
+        Employees[i].ID = i+1;
+        Employees[i].Name[10] = "John";
+        Employees[i].Salary = 1500+(i*2354);
+        Employees[i].workplace = i;
     }
 
     fprintf(fpt,"ID, Name, Salary, Department\n");
 
     for(int i=0; i<MaxEmployees;i++){
-        printf(fpt,"%d, %s, %lf, %d\n", Employees.ID, Employees.Name, Employees.Salary, Employees.workplace);
+        fprintf(fpt,"%d, %s, %lf, %d\n", Employees[i].ID, Employees[i].Name, Employees[i].Salary, Employees[i].workplace);
     }
     
     fclose(fpt);
