@@ -21,14 +21,20 @@
 
 #define POWER_OF(TYPE)\
         TYPE TYPE ##_power_off(TYPE X, int Y){\
-            for(int i=0; i<Y; i++){\
-            X*=X;\
-            }\
+            return pow(X,Y);\
         }
 
 #define RAISE(TYPE)\
         TYPE to_upper (char X){\
-            return (X-32);\
+            if(X>=97 && X<=122){\
+                return (X-32);\
+            }\
+            else if(X>=65 && X<=90){\
+                return X;\
+            }\
+            else{\
+                printf("Not a letter!");\
+            }\
         }
 
 #define DISP(X){\
@@ -44,7 +50,7 @@ int main(){
     int y = 2;
     float q = 3.2;
     float z = 2.10;
-    char w = 'A';
+    char w = 'a';
 
     printf("%d\n", int_average(x, y));
     printf("%.2f\n", float_power_off(z, y));
