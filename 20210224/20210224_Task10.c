@@ -37,13 +37,15 @@
             }\
         }
 
-#define DISP(X){\
-    printf(“sqrt (%g) = %g\n”, X, sqrt(X));\
-}
+#define DISP(TYPE)\
+        TYPE SquareRt (TYPE n){\
+            printf("sqrt (%g) = %g\n", n, sqrt(n));\
+        }
 
 AVG(int)
 POWER_OF(float)
 RAISE(char)
+DISP(float)
 
 int main(){
     int x = 6;
@@ -55,4 +57,5 @@ int main(){
     printf("%d\n", int_average(x, y));
     printf("%.2f\n", float_power_off(z, y));
     printf("%c\n", to_upper(w));
+    SquareRt (z); 
 }
