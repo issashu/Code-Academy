@@ -21,7 +21,7 @@
 
 #define POWER_OF(TYPE)\
         TYPE TYPE ##_power_off(TYPE X, int Y){\
-            for(int i=0; i<(int) Y; i++){\
+            for(int i=0; i<Y; i++){\
             X*=X;\
             }\
         }
@@ -32,7 +32,7 @@
         }
 
 #define DISP(X){\
-    printf(“sqrt (%g) = %g\n”, X, sqrt(X));
+    printf(“sqrt (%g) = %g\n”, X, sqrt(X));\
 }
 
 AVG(int)

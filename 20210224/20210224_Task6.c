@@ -8,7 +8,7 @@
 
 int main(){
     int x = 90;
-    PRINTER(8);
+    PRINTER(%s,8);
 }
 
 
