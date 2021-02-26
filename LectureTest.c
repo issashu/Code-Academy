@@ -1,18 +1,12 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-#define PI 2
-#define E 3
-#define swap(t, x, y) z=x; x=y; y=z;
+int main(int argc, char **argv) {
 
-int main() {
-    int x= PI*E;
-    int y=1;
-    int z=0;
-    printf("X before swap: %d\n", x);
-    printf("Y before swap: %d\n\n", y);
-
-    swap(int, x, y);
-
-    printf("X after swap: %d\n", x);
-    printf("Y after swap: %d\n", y);
+  	int *array = (int*) malloc(100*sizeof(int));
+  	array[10] = 100;
+  	free (array);
+  	printf("%d", array[10]);
+  	return array[argc];
 }
