@@ -25,5 +25,5 @@ int main(int argc, char **argv) {
 }
 
 /*
-clang -O1 -g -fsanitize=address -fsanitize=shift -fno-omit-frame-pointer AddressSan.c
-*/
+
+*/clang -O1 -g -fsanitize=address -fsanitize=shift -fno-omit-frame-pointer AddressSan.c
