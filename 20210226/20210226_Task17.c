@@ -1,3 +1,4 @@
+  
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -10,11 +11,12 @@ typedef struct{
 }dinia;
 
 float randomize(int lower, int upper);
-float average(dinia Ptr);
+float average(dinia *Ptr);
 
 int main(){
     srand(time(0));
-
+    float vutreshnostA=0.0;
+    float vutreshnostB=0.0;
     int upper = 35;
     int lower = 5;
     int count = 3;
@@ -33,11 +35,26 @@ int main(){
     for (int i=0 ; i<BroiDini; i++){
         printf("A Diametar: %.1f\n", A[i].Diametar);
         printf("B Diametar: %.1f\n", B[i].Diametar);
-
         printf("A Kora: %.1f\n", A[i].Kora);
         printf("B Kora: %.1f\n", B[i].Kora);
     }
-    */
+    
+   printf("%.1f\n",average(A));
+   printf("%.1f\n",average(B));*/
+   vutreshnostA=average(A);
+   vutreshnostB=average(B);
+    if(vutreshnostA>vutreshnostB){
+        printf("its better to buy melon from sort A with average ripe interior of %.1f cm\n",vutreshnostA);
+    }
+    else if (vutreshnostA<vutreshnostB){
+        printf("its better to buy melon from sort B with average ripe interior of %.1f cm\n",vutreshnostB);
+    }
+    else {
+        printf("They are equal\n");
+    }
+    
+
+    return 0;
 }
 
 float randomize(int lower, int upper){
@@ -46,12 +63,23 @@ float randomize(int lower, int upper){
     return num;
 }
 
-float average(dinia Ptr[]){
+float average(dinia *Ptr){
     float Average = 0.00;
     float Suma = 0.00;
+    float Average1 = 0.00;
+    float Suma1 = 0.00;
 
     for (int i =0; i<BroiDini; i++){
-        Suma += Ptr[i].Diametar;
+        Suma += Ptr[i].Kora;
     }
-    Average = Ptr.Kora
-}
+
+    Average = Suma/BroiDini;
+
+    for (int i =0; i<BroiDini; i++){
+        Suma1 += Ptr[i].Diametar;
+    }
+
+    Average1 = Suma1/BroiDini;
+
+    return Average1-Average;
+};
