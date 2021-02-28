@@ -1,63 +1,87 @@
-/*
-
-*/
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 
-typedef struct Employee{
-    int EmpID;
-    char Surname[50];
-    char FamilyName[50];
-    char MiddleName[50];
-    char Position[50];
-    char Department[50];
-    int Experience;
-    int Salary;
-    struct Manager *Supervisor;
-} Slujitel_t;
+#define listSize 1
 
-typedef struct Manager{
-    char Name[50];
-    char Department[50];
-} Management_t;
+typedef struct information{
+    int number;
+    char *firstName;
+    char *secondName;
+    char *thirdName;
+    char *position;
+    int exp;
+    float salary;
+    
 
-void Setter(Slujitel_t *Employee, Management_t *Manager, short MaxEmp, short MaxMan);
-void Printer();
-Slujitel_t Getter();
+
+}information;
+
+
+void enterInformation(information *array)
+{
+    for(int index=0;index<listSize;index++ ){
+    printf("Employee Informattion\n");
+    printf("Enter employee number: ");
+    scanf(" %d", &array[index].number);
+    printf("Enter employee first name:");
+    scanf("%s", &array[index].firstName);
+    printf("Enter employee secomd:");
+    scanf("%s", &array[index].secondName);
+    printf("Enter employee third name:");
+    scanf("%s", &array[index].thirdName);
+    printf("Enter employee position:");
+    scanf("%s", &array[index].position);
+    printf("Enter employee work experience:");
+    scanf("%d", &array[index].exp);
+    printf("Enter employee salary:");
+    scanf("%float", &array[index].salary);
+    }
+
+};
+void printList(information *array,information *manager)
+{
+    for (int i = 0; i < listSize; i++)
+    {
+        printf("=============================\n");
+        printf("------Employee Details-------\n");
+        printf("Employee number: %d\n", array[i].number);
+        printf("Employee full name: %s %s %s\n", &array[i].firstName, &array[i].secondName, &array[i].thirdName);
+        printf("Employee position: %s\n", &array[i].position);
+        printf("Employee work experience: %d\n", array[i].exp);
+        printf("Employee salary: %.2f\n", array[i].salary);
+        printf("      Manager Details       \n");
+        printf("Manager number: %d\n",manager->number);
+        printf("Manager full name: %s %s %s\n", manager->firstName, manager->secondName, manager->thirdName);
+        printf("Manager position: %s\n", manager->position);
+        printf("Manager work experience: %d\n", manager->exp);
+        printf("Manager salary: %.2f\n", manager->salary);
+        
+    }
+};
+
 
 int main(){
-    short TotalEmp = 0;
-    short TotalMan = 0;
-    Slujitel_t *Employees = NULL;
-    Management_t *Managers = NULL;
 
-    printf("How many employees do you have in the company?\n");
-    scanf("%d", &TotalEmp);
-    printf("How Managers  are available?");
-    scanf("%d", &TotalMan);
+    
+    information *array,*manager;
+    array=manager=NULL;
+    array=malloc(listSize*sizeof(information));
+    manager=malloc(sizeof(information));
+    manager->number=1;
+    manager->firstName="Ivan";
+    manager->secondName="Ivanov";
+    manager->thirdName="Ivanov";
+    manager->position="ceo";
+    manager->salary=2500;
+    manager->exp=25;
 
-    Setter(Employees, Managers);
+    
+    
+    enterInformation(array);
+    printList(array,manager);
+    
+    free(array);
+    free(manager);
 
-    free(Employees);
-    free(Managers);
-
-}
-
-void Setter(Slujitel_t *Employee, Management_t *Manager, short MaxEmp, short MaxMan){
-    Employee = malloc(MaxEmp*sizeof(Slujitel_t));
-    Manager = malloc (MaxMan*sizeof(Management_t));
-    for(int i=0; i<MaxEmp; i++){
-        printf("Please enter the Employee name:\n");
-
-
-    }     
-}
-
-void Printer(){
-
-}
-
-slujitel Getter(){
-
+    
 }
