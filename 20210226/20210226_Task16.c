@@ -10,6 +10,7 @@ BUGS:
 3. Need to implement only 3 saves
 Optional: 4. Need to add music
 Optional: 5. Save to file
+6. Index is bugged in Move function
 */
 
 #include <stdio.h>
