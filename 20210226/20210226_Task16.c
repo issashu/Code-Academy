@@ -77,6 +77,8 @@ int main(){
         }
         Continue = ContinueGame(Continue);
         if(Continue=='n'|| Continue=='N'){
+            free(MainBoard);
+            free(SaveBoard);
             break;
         }
     }
@@ -245,7 +247,8 @@ void MovePiece(char Piece, char Direction, gameboard *MainBoard){
             printf("Illegal move selected! You can hop only over a non-empty position and land on an empty one!");
         }
         break;
-    }        
+    }
+    free(AllowedMovement);
 }
     
 
