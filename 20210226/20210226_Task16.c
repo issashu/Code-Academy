@@ -311,7 +311,7 @@ gameboard* SetupGame(gameboard *Board){
 
     for(int i=0; i<BoardSize; i++){
         Board->Row1[i] = '-';
-        Board->Row2[i] = 9+i;
+        Board->Row2[i] = 97+i;
         Board->Row3[i] = 49+i;
     }
     return Board;
@@ -381,7 +381,7 @@ void PrintBoard(gameboard *MainBoard){
             printf("%2c\t", MainBoard->Row2[i]);    
         }
         else{
-            printf("%2d\t", MainBoard->Row2[i]);
+            printf("%2c\t", MainBoard->Row2[i]);
         }
     }
     printf("\n");
