@@ -75,8 +75,7 @@ int main(){
             printf("Frodo moves ever so close to mount Doom:\n- Curse us and crush us, my precious is lost!\n\n");
         }
         Continue = ContinueGame(Continue);
-        if(Continue=='n'){
-            printf("Farewell, King under the Mountain! This is a bitter adventure, if it must end so!\n");
+        if(Continue=='n'|| Continue=='N'){
             break;
         }
     }
@@ -347,8 +346,12 @@ char ContinueGame (char Continue){
     printf("Frodo wouldn't have got far without Sam, would he, dad? (Continue: y/n)\n");
     scanf(" %c", &Continue);
     
-    if (Continue == 'y' || Continue =='n'){
+    if (Continue == 'y' || Continue =='Y'){
         printf("Now, Mr. Frodo, you shouldn't make fun. I was serious.\n");
+        return Continue;
+    }
+    else if(Continue == 'n' || Continue =='N'){
+        printf("Farewell, King under the Mountain! This is a bitter adventure, if it must end so!\n");
         return Continue;
     }
     else{
