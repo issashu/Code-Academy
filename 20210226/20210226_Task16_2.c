@@ -3,13 +3,13 @@
 
 int main(){
 int choice;
-int  choice1;
+int choice1;
 
 int i,j;
 int SOLITARE[3][8]={{45,45,45,45,45,45,45,45},
-                {9,10,11,12,13,14,15,16},
-                {1, 2, 3, 4, 5, 6, 7 , 8,}
-                };
+                    {9,10,11,12,13,14,15,16},
+                    {1, 2, 3, 4, 5, 6, 7 , 8,}
+                   };
 for(i=0;i<3;i++){
     for(j=0;j<8;j++){
     printf("\t%d ",SOLITARE[i][j]);
@@ -38,10 +38,7 @@ scanf(" %d",&choice1);
 
 switch (choice1)
 {
-
-
-case 1:/*nadqsno*/
-   
+   case 1:/*nadqsno*/
    printf("arr[%d][%d]\n",i,j);
     j--;
     SOLITARE[i][j+2]=SOLITARE[i][j];
@@ -69,4 +66,3 @@ for( i=0;i<3;i++){
 
 
 }
-© 2021 GitHub, Inc.

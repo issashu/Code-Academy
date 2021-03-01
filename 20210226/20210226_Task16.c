@@ -10,7 +10,10 @@ BUGS:
 3. Need to implement only 3 saves
 Optional: 4. Need to add music
 Optional: 5. Save to file
-6. Index is bugged in Move function
+
+Message for Someone D:
+Tparv fvb hyl hu hzzovsl - Khujov
+
 */
 
 #include <stdio.h>
@@ -38,7 +41,7 @@ typedef struct{
 gameboard* SetupGame(gameboard *Board);
 gameboard* SaveGame(gameboard *MainBoard, gameboard *SaveBoard);
 gameboard* LoadGame(gameboard *MainBoard, gameboard *SaveBoard);
-int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece);
+int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int Index);
 char ContinueGame (char Continue);
 void MovePiece(char Piece, char Direction, gameboard *MainBoard);
 void PrintBoard(gameboard *MainBoard);
@@ -84,9 +87,8 @@ int main(){
     }
 }
 
-int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
+int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int Index){
     /*Locate the chose number as position in the arrays*/
-    int i = 0;
     for (int i=0; i<BoardSize; i++){
         if(MainBoard->Row1[i] == Piece && (i>0&&i<BoardSize)){
             Directions->North = false;
@@ -96,6 +98,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions->Row1 = true;
             Directions->Row2 = false;
             Directions->Row3 = false;
+            Index = i;
         }
         else if(MainBoard->Row1[i] == Piece && i==0){
             Directions->North = false;
@@ -105,6 +108,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions->Row1 = true;
             Directions->Row2 = false;
             Directions->Row3 = false;
+            Index = i;
         }
         else if(MainBoard->Row1[i] == Piece && i==BoardSize){
             Directions->North = false;
@@ -114,6 +118,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions->Row1 = true;
             Directions->Row2 = false;
             Directions->Row3 = false;
+            Index = i;
         }
         else if(MainBoard->Row2[i] == Piece && (i>0&&i<BoardSize)){
             Directions->North = true;
@@ -123,6 +128,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions->Row1 = false;
             Directions->Row2 = true;
             Directions->Row3 = false;
+            Index = i;
         }
         else if(MainBoard->Row2[i] == Piece && i==0){
             Directions->North = true;
@@ -132,6 +138,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions->Row1 = false;
             Directions->Row2 = true;
             Directions->Row3 = false;
+            Index = i;
         }
         else if(MainBoard->Row2[i] == Piece && i==BoardSize){
             Directions->North = true;
@@ -141,6 +148,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions->Row1 = false;
             Directions->Row2 = true;
             Directions->Row3 = false;
+            Index = i;
         }
         else if(MainBoard->Row3[i] == Piece && (i>0&&i<BoardSize)){
             Directions->North = true;
@@ -150,6 +158,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions->Row1 = false;
             Directions->Row2 = false;
             Directions->Row3 = true;
+            Index = i;
         }
         else if(MainBoard->Row3[i] == Piece && i==0){
             Directions->North = true;
@@ -159,6 +168,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions->Row1 = false;
             Directions->Row2 = false;
             Directions->Row3 = true;
+            Index = i;
         }
         else if(MainBoard->Row3[i] == Piece && i==BoardSize){
             Directions->North = true;
@@ -168,13 +178,24 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions->Row1 = false;
             Directions->Row2 = false;
             Directions->Row3 = true;
+            Index = i;
+        }
+        else{
+            Directions->North = false;
+            Directions->South = false;
+            Directions->West = false;
+            Directions->East = false;
+            Directions->Row1 = false;
+            Directions->Row2 = false;
+            Directions->Row3 = false;
+            Index = 8;
         }
     }
-    /*DEBUG: */
+    /*DEBUG:
     printf("Allowed moves\nN:%d S:%d E:%d W:%d\n", Directions->North, Directions->South, Directions->East, Directions->West); 
     printf("Allowed Rows: Row1:%d Row2:%d Row3:%d\n", Directions->Row1, Directions->Row2, Directions->Row3);
-   
-    return i;
+   */
+    return Index;
 }
 
 void MovePiece(char Piece, char Direction, gameboard *MainBoard){
@@ -183,7 +204,7 @@ void MovePiece(char Piece, char Direction, gameboard *MainBoard){
     allowed *AllowedMovement = calloc(1, sizeof(allowed));
     scanf(" %c", &Piece);
     scanf(" %c", &Direction);
-    Index = ValidateMovement(AllowedMovement, MainBoard, Piece);
+    Index = ValidateMovement(AllowedMovement, MainBoard, Piece, Index);
     
     //add directon small caps only
     //validate that second row can not be moved
@@ -193,6 +214,7 @@ void MovePiece(char Piece, char Direction, gameboard *MainBoard){
             if(MainBoard->Row1[Index]=='-'){
                 MainBoard->Row1[Index] = MainBoard->Row3[Index];
                 MainBoard->Row3[Index] = '-';
+                MainBoard->Row2[Index] = '-';
             }
             else{
                 printf("Illegal move selected! You can hop only over a non-empty position and land on an empty one!\n\n");
@@ -205,6 +227,7 @@ void MovePiece(char Piece, char Direction, gameboard *MainBoard){
             if(MainBoard->Row3[Index]=='-'){
                 MainBoard->Row3[Index] = MainBoard->Row1[Index];
                 MainBoard->Row1[Index] = '-';
+                MainBoard->Row2[Index] = '-';
             }
             else{
                 printf("Illegal move selected! You can hop only over a non-empty position and land on an empty one!");
@@ -217,12 +240,14 @@ void MovePiece(char Piece, char Direction, gameboard *MainBoard){
             if(MainBoard->Row1[Index-2]=='-'){
                 MainBoard->Row1[Index-2] = MainBoard->Row1[Index];
                 MainBoard->Row1[Index] = '-';
+                MainBoard->Row1[Index-1] = '-';
             }
         }
         else if (AllowedMovement->East==true && AllowedMovement->Row3==true){
             if(MainBoard->Row3[Index-2]=='-'){
                 MainBoard->Row3[Index-2] = MainBoard->Row3[Index];
                 MainBoard->Row3[Index] = '-';
+                MainBoard->Row3[Index-1] = '-';
             }
         }
         else{
@@ -235,12 +260,14 @@ void MovePiece(char Piece, char Direction, gameboard *MainBoard){
             if(MainBoard->Row1[Index+2]=='-'){
                 MainBoard->Row1[Index+2] = MainBoard->Row1[Index];
                 MainBoard->Row1[Index] = '-';
+                MainBoard->Row1[Index+1] = '-';
             }
         }
         else if (AllowedMovement->West==true && AllowedMovement->Row3==true){
             if(MainBoard->Row3[Index+2]=='-'){
                 MainBoard->Row3[Index+2] = MainBoard->Row3[Index];
                 MainBoard->Row3[Index] = '-';
+                MainBoard->Row3[Index+1] = '-';
             }
         }
         else{
