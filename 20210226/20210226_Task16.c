@@ -1,4 +1,17 @@
-/*Task uses Parallel Array technique in a struct, which is there just for code convenience.
+/*
+Да се състави програма, с помощта на която играч може да
+играе (с право на връщане на ходовете) следната игра СОЛИТЕР:
+На игралното поле са поставени 16 номерирани пулове и три реда
+с по осем позиции. Целта е да се извадят от игра всички пулове с
+изключение на номер 1. Може да се прескача през някой пул на
+свободна клетка, но не се разрешава движение по диагонал.
+Например възможни са ходове 1-9; 2-10; 1-2 и т.н. По тази схема 1
+прескача 9 и 9х излиза от игра – отстранява се от полето, след
+това 2 прескача 10 и 10 отпада от играта; по-нататък 1 прескача 2 и
+2 излиза от игра.
+
+
+Task uses Parallel Array technique in a struct, which is there just for code convenience.
 Can be done with 3 independent atrrays.
 Using linear search to move through the arrays
 
@@ -18,7 +31,6 @@ Tparv fvb hyl hu hzzovsl - Khujov
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <>
 
 static const int BoardSize = 8;
 typedef struct{
@@ -351,7 +363,7 @@ j J         /-;-A'-'|'--'-j\
 void Printer(){
     printf("Who do you want to move (Frodo - figure 1 or any enemy - other numbers?\n");
     printf("Do hurry! The Nine have left Minas Morgul!\n");
-    printf("Choose one number and thern a direction (N/S/E/W)\n");
+    printf("Choose one number and then a direction in lowercase. Allowed directions: n/s/e/w\n");
 }
 
 void PrintBoard(gameboard *MainBoard){
@@ -361,7 +373,12 @@ void PrintBoard(gameboard *MainBoard){
     printf("\n");
 
     for (int i=0; i<BoardSize; i++){
-        printf("%2d\t", MainBoard->Row2[i]);
+        if(MainBoard->Row2[i] == 45){
+            printf("%2c\t", MainBoard->Row2[i]);    
+        }
+        else{
+            printf("%2d\t", MainBoard->Row2[i]);
+        }
     }
     printf("\n");
 
