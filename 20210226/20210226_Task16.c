@@ -3,6 +3,13 @@ Can be done with 3 independent atrrays.
 Using linear search to move through the arrays
 
 Detailed rules of movement: https://sites.google.com/site/boardandpieces/list-of-games/checker-solitaire 
+
+BUGS:
+1. End-game condition missing
+2. Save and load game pointers are equal
+3. Need to implement only 3 saves
+Optional: 4. Need to add music
+Optional: 5. Save to file
 */
 
 #include <stdio.h>
@@ -86,7 +93,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions ->East = true;
             Directions->Row1 = true;
             Directions->Row2 = false;
-            Directions->Row3 = true;
+            Directions->Row3 = false;
         }
         else if(MainBoard->Row1[i] == Piece && i==0){
             Directions->North = false;
@@ -95,7 +102,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions ->East = false;
             Directions->Row1 = true;
             Directions->Row2 = false;
-            Directions->Row3 = true;
+            Directions->Row3 = false;
         }
         else if(MainBoard->Row1[i] == Piece && i==BoardSize){
             Directions->North = false;
@@ -104,41 +111,41 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions ->East = true;
             Directions->Row1 = true;
             Directions->Row2 = false;
-            Directions->Row3 = true;
+            Directions->Row3 = false;
         }
         else if(MainBoard->Row2[i] == Piece && (i>0&&i<BoardSize)){
             Directions->North = true;
             Directions->South = true;
             Directions->West = true;
             Directions ->East = true;
-            Directions->Row1 = true;
+            Directions->Row1 = false;
             Directions->Row2 = true;
-            Directions->Row3 = true;
+            Directions->Row3 = false;
         }
         else if(MainBoard->Row2[i] == Piece && i==0){
             Directions->North = true;
             Directions->South = true;
             Directions->West = true;
             Directions ->East = false;
-            Directions->Row1 = true;
+            Directions->Row1 = false;
             Directions->Row2 = true;
-            Directions->Row3 = true;
+            Directions->Row3 = false;
         }
         else if(MainBoard->Row2[i] == Piece && i==BoardSize){
             Directions->North = true;
             Directions->South = true;
             Directions->West = false;
             Directions ->East = true;
-            Directions->Row1 = true;
+            Directions->Row1 = false;
             Directions->Row2 = true;
-            Directions->Row3 = true;
+            Directions->Row3 = false;
         }
         else if(MainBoard->Row3[i] == Piece && (i>0&&i<BoardSize)){
             Directions->North = true;
             Directions->South = false;
             Directions->West = true;
             Directions ->East = true;
-            Directions->Row1 = true;
+            Directions->Row1 = false;
             Directions->Row2 = false;
             Directions->Row3 = true;
         }
@@ -147,7 +154,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions->South = false;
             Directions->West = true;
             Directions ->East = false;
-            Directions->Row1 = true;
+            Directions->Row1 = false;
             Directions->Row2 = false;
             Directions->Row3 = true;
         }
@@ -156,15 +163,15 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece){
             Directions->South = false;
             Directions->West = false;
             Directions ->East = true;
-            Directions->Row1 = true;
+            Directions->Row1 = false;
             Directions->Row2 = false;
             Directions->Row3 = true;
         }
     }
-    /*DEBUG:*/
+    /*DEBUG: */
     printf("Allowed moves\nN:%d S:%d E:%d W:%d\n", Directions->North, Directions->South, Directions->East, Directions->West); 
     printf("Allowed Rows: Row1:%d Row2:%d Row3:%d\n", Directions->Row1, Directions->Row2, Directions->Row3);
-    
+   
     return i;
 }
 
@@ -181,9 +188,9 @@ void MovePiece(char Piece, char Direction, gameboard *MainBoard){
     switch(Direction){
         case 'n':
         if (AllowedMovement->North==true){
-            if(MainBoard->Row3[Index]=='-'){
-                MainBoard->Row3[Index] = MainBoard->Row1[Index];
-                MainBoard->Row1[Index] = '-';
+            if(MainBoard->Row1[Index]=='-'){
+                MainBoard->Row1[Index] = MainBoard->Row3[Index];
+                MainBoard->Row3[Index] = '-';
             }
             else{
                 printf("Illegal move selected! You can hop only over a non-empty position and land on an empty one!\n\n");
@@ -193,9 +200,9 @@ void MovePiece(char Piece, char Direction, gameboard *MainBoard){
 
         case 's':
         if (AllowedMovement->South==true){
-            if(MainBoard->Row1[Index]=='-'){
-                MainBoard->Row1[Index] = MainBoard->Row3[Index];
-                MainBoard->Row3[Index] = '-';
+            if(MainBoard->Row3[Index]=='-'){
+                MainBoard->Row3[Index] = MainBoard->Row1[Index];
+                MainBoard->Row1[Index] = '-';
             }
             else{
                 printf("Illegal move selected! You can hop only over a non-empty position and land on an empty one!");
