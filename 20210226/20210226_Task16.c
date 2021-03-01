@@ -11,7 +11,6 @@ BUGS:
 Optional: 4. Need to add music
 Optional: 5. Save to file
 
-Message for Someone D:
 Tparv fvb hyl hu hzzovsl - Khujov
 
 */
@@ -19,6 +18,7 @@ Tparv fvb hyl hu hzzovsl - Khujov
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <>
 
 static const int BoardSize = 8;
 typedef struct{

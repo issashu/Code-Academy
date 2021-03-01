@@ -1,68 +1,137 @@
 #include <stdio.h>
 
 
-int main(){
-int choice;
-int choice1;
-
-int i,j;
-int SOLITARE[3][8]={{45,45,45,45,45,45,45,45},
-                    {9,10,11,12,13,14,15,16},
-                    {1, 2, 3, 4, 5, 6, 7 , 8,}
-                   };
-for(i=0;i<3;i++){
-    for(j=0;j<8;j++){
-    printf("\t%d ",SOLITARE[i][j]);
+void testFunP(int SOLITARE[][8]){
+    
+for( int p=0;p<3;p++){
+    for(int k=0;k<8;k++){
+    printf("\t%d ",SOLITARE[p][k]);
     }
     printf("\n");
 }
-while(1){
+};
 
+
+void testFun(int SOLITARE[][8]){
+ int indexI, indexJ;
+ static int backUp[3][8];
+int choice;
+int choice1;
+for(int i=0;i<3;i++){
+       for(int j=0;j<8;j++){
+         backUp[i][j]=SOLITARE[i][j];
+       }
+   }
 printf("chose a number from 1 to 16 to move\n");
 scanf(" %d",&choice);
 
 
-for(i=0;i<3;i++){
 
-    for(j=0;j<8;j++){
+for(int i=0;i<3;i++){
+
+    for(int j=0;j<8;j++){
         if(SOLITARE[i][j]==choice){
-           
+            indexI=i;
+            indexJ=j;
+            
             break;
         }
         
     }
    
    }
-printf("arr[%d][%d]\n",i,j);
+   
+
 scanf(" %d",&choice1);
 
 switch (choice1)
 {
-   case 1:/*nadqsno*/
-   printf("arr[%d][%d]\n",i,j);
-    j--;
-    SOLITARE[i][j+2]=SOLITARE[i][j];
-    SOLITARE[i][j]=45;
-    SOLITARE[i][j+1]=45;
+
+
+case 1:/*nadqsno*/
+   
+  
+    if(indexJ+2>7 || SOLITARE[indexI][indexJ+2]!=45 || SOLITARE[indexI][indexJ+1]==45 ){
+        printf("chose different path\n");
+
+    }
+    else{
+    SOLITARE[indexI][indexJ+2]=SOLITARE[indexI][indexJ];
+    SOLITARE[indexI][indexJ]=45;
+    SOLITARE[indexI][indexJ+1]=45;};
     break;
 
     case 2:/*nagore*/
-    i--;
-    printf("arr[%d][%d]\n",i,j);
-    SOLITARE[i-2][j]=SOLITARE[i][j];
-    SOLITARE[i-1][j]=45;   
-    SOLITARE[i][j]=45;
+    
+    if(indexI-2<0 || SOLITARE[indexI-2][indexJ]!=45 || SOLITARE[indexI-1][indexJ]==45){
+        printf("chose different path\n");
+
+    }
+    else{
+
+    SOLITARE[indexI-2][indexJ]=SOLITARE[indexI][indexJ];
+    SOLITARE[indexI-1][indexJ]=45;   
+    SOLITARE[indexI][indexJ]=45;
+    };
     
     break;
+    case 3:/*nadolu*/
+    if(indexI+2>2 || SOLITARE[indexI+2][indexJ]!=45 || SOLITARE[indexI+1][indexJ]==45){
+        printf("chose different path\n");
 
-}
-for( i=0;i<3;i++){
-    for(j=0;j<8;j++){
-    printf("\t%d ",SOLITARE[i][j]);
     }
-    printf("\n");
+    else{
+    
+    SOLITARE[indexI+2][indexJ]=SOLITARE[indexI][indexJ];
+    SOLITARE[indexI+1][indexJ]=45;   
+    SOLITARE[indexI][indexJ]=45;};
+    break;
+
+    case 4: /*nalqvo*/
+    if(indexJ-2<0||SOLITARE[indexI][indexJ-2]!=45 || SOLITARE[indexI][indexJ-1]==45 ){
+        printf("chose different path\n");
+    }
+    else{
+    SOLITARE[indexI][indexJ-2]=SOLITARE[indexI][indexJ];
+    SOLITARE[indexI][indexJ]=45;
+    SOLITARE[indexI][indexJ-1]=45;};
+    break;
+
+    /*case 5:/*rewind
+    for(int i=0;i<3;i++){
+       for(int j=0;j<8;j++){
+        SOLITARE[i][j]=backUp[i][j];
+       }
+   }
+   break;
+    */
 }
+testFunP(SOLITARE);
+printf("do you want to rewind your board\n");
+scanf(" %d",&choice1);
+if(choice1==5){
+for(int i=0;i<3;i++){
+       for(int j=0;j<8;j++){
+         SOLITARE[i][j]=backUp[i][j];
+       }
+   }
+   testFunP(SOLITARE);
 }
 
 
 }
+
+
+int main(){
+
+int SOLITARE [3][8]={{45,45,45,45,45,45,45,45},
+                {9,10,11,12,13,14,15,16},
+                {1, 2, 3, 4, 5, 6, 7 , 8,}
+                };
+testFunP(SOLITARE);
+
+while(1){
+
+testFun(SOLITARE);
+}
+};
