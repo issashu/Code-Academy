@@ -11,68 +11,75 @@ typedef struct participant{
  int age;
 }participant;
 
-void Sort(participant* participant0);
-
+void addPart(participant* participant0);
+void Sort(participant* participant0,int count);
+void myPrint(participant* participant0,int count);
 
 int main(){
  participant *participant0;
- 
  participant0=malloc(listSize*sizeof(participant));
+ addPart(participant0);
+ free(participant0);
+}
 
- int i;
+void addPart(participant* participant0){
+    int i;
  int count=0;
  char choice='1';
  for(i=0;choice!='0';i++){
-    printf("Enter the participant number\n");
+    printf("Enter the participant number: ");
     scanf(" %d",&participant0[i].numOfPart);
-    printf("Enter  the participant name: \n");
+    printf("Enter  the participant name: ");
     participant0[i].firstName=malloc(20);
     scanf("%s",&participant0[i].firstName);
-    printf("Enter the participant second name: \n");
+    printf("Enter the participant family: ");
     participant0[i].secondName=malloc(20);
     scanf("%s",&participant0[i].secondName);
-    printf("Enter the participant age: \n");
+    printf("Enter the participant age: ");
     scanf(" %d",&participant0[i].age);
     count++;
-    printf("Do you have another participant to add. Press 1 to add or press 0 to quit. \n");
+    printf("Do you have another participant to add?\nPress 1 to enter new participant or 0 to print a list of participants.\n");
     scanf(" %c",&choice);
+   
+ }
+    Sort(participant0,count);
+
+    myPrint(participant0,count);
 }
 
-Sort(participant0);
-
-for(i=0;i<count;i++){
-    printf("Num of part:%d\n",participant0[i].numOfPart);
-    printf("First name:%s\n",&participant0[i].firstName);
-    printf("Second name:%s\n",&participant0[i].secondName);
-    printf("age : %d\n",participant0[i].age);
+void myPrint(participant* participant0,int count){
+    for(int i=0;i<count;i++){
+        printf("=================\n"),
+        printf("Number of part.: %d\n",participant0[i].numOfPart);
+        printf("First name: %s\n",&participant0[i].firstName);
+        printf("Second name: %s\n",&participant0[i].secondName);
+        printf("Age: %d\n",participant0[i].age);
+    }
 }
-
- free(participant0);
-}
-void Sort(participant* participant0){
-    participant *temp = malloc(listSize*sizeof(participant));
+void Sort(participant* participant0,int count){
+    char *temp = NULL;
     int Number, i, j;
 
-    for(i = 0; i < listSize; i++){
-        for(j = i + 1; j < listSize; j++){
+    for(i = 0; i < count; i++){
+        for(j = i + 1; j < count; j++){
 
             if(strncmp(&participant0[i].firstName, &participant0[j].firstName, 1) > 0){
                 
-                temp->firstName = participant0[j].firstName;
+                temp = participant0[j].firstName;
                 participant0[j].firstName = participant0[i].firstName;
-                participant0[i].firstName = temp->firstName;
+                participant0[i].firstName = temp;
 
-                temp->secondName = participant0[j].secondName;
+                temp = participant0[j].secondName;
                 participant0[j].secondName = participant0[i].secondName;
-                participant0[i].secondName = temp->secondName;
+                participant0[i].secondName = temp;
 
-                temp->numOfPart = participant0[j].numOfPart;
+                temp = participant0[j].numOfPart;
                 participant0[j].numOfPart = participant0[i].numOfPart;
-                participant0[i].numOfPart = temp->numOfPart;
+                participant0[i].numOfPart = temp;
 
-                temp->age = participant0[j].age;
+                temp = participant0[j].age;
                 participant0[j].age = participant0[i].age;
-                participant0[i].age= temp->age;
+                participant0[i].age= temp;
             }
         }
     }
