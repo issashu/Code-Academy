@@ -1,6 +1,6 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 #define listSize 3
 
 typedef struct participant{
@@ -23,18 +23,18 @@ int main(){
  int count=0;
  char choice='1';
  for(i=0;choice!='0';i++){
-    printf("enter the participant number\n");
+    printf("Enter the participant number\n");
     scanf(" %d",&participant0[i].numOfPart);
-    printf("enter  the participant name : \n");
-    participant0[i].firstName=malloc(20);
+    printf("Enter  the participant name: \n");
+    participant0[i].firstName=malloc(50);
     scanf("%s",&participant0[i].firstName);
-    printf("enter the participant second name : \n");
-    participant0[i].secondName=malloc(20);
+    printf("Enter the participant second name: \n");
+    participant0[i].secondName=malloc(50);
     scanf("%s",&participant0[i].secondName);
-    printf("enter the participant age : \n");
+    printf("Enter the participant age: \n");
     scanf(" %d",&participant0[i].age);
     count++;
-    printf("do you have another participant to add.Press 1 or pres 0 for exit. \n");
+    printf("Do you have another participant to add.Press 1 or press 0 to exit. \n");
     scanf(" %c",&choice);
 }
 
@@ -54,9 +54,9 @@ void Sort(participant* participant0){
     int Number, i, j;
 
     for(i = 0; i < listSize; i++){
-        for(j = i + 1; j < listSize-1; j++){
+        for(j = i + 1; j < listSize; j++){
 
-            if(strncmp(participant0[i].firstName, participant0[j].firstName, 1) > 0){
+            if(strncmp(&participant0[i].firstName, &participant0[j].firstName, 1) > 0){
                 
                 temp = participant0[j].firstName;
                 participant0[j].firstName = participant0[i].firstName;

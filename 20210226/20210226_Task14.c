@@ -23,18 +23,18 @@ int main(){
  int count=0;
  char choice='1';
  for(i=0;choice!='0';i++){
-    printf("enter the participant number\n");
+    printf("Enter the participant number\n");
     scanf(" %d",&participant0[i].numOfPart);
-    printf("enter  the participant name: \n");
+    printf("Enter  the participant name: \n");
     participant0[i].firstName=malloc(20);
     scanf("%s",&participant0[i].firstName);
-    printf("enter the participant second name: \n");
+    printf("Enter the participant second name: \n");
     participant0[i].secondName=malloc(20);
     scanf("%s",&participant0[i].secondName);
-    printf("enter the participant age: \n");
+    printf("Enter the participant age: \n");
     scanf(" %d",&participant0[i].age);
     count++;
-    printf("do you have another participant to add.Press 1 or pres 0 for exit. \n");
+    printf("Do you have another participant to add. Press 1 to add or press 0 to quit. \n");
     scanf(" %c",&choice);
 }
 
@@ -50,29 +50,29 @@ for(i=0;i<count;i++){
  free(participant0);
 }
 void Sort(participant* participant0){
-    char *temp = NULL;
+    participant *temp = malloc(listSize*sizeof(participant));
     int Number, i, j;
 
-    for(i = 0; i < listSize-1; i++){
+    for(i = 0; i < listSize; i++){
         for(j = i + 1; j < listSize; j++){
 
             if(strncmp(&participant0[i].firstName, &participant0[j].firstName, 1) > 0){
                 
-                temp = participant0[j].firstName;
+                temp->firstName = participant0[j].firstName;
                 participant0[j].firstName = participant0[i].firstName;
-                participant0[i].firstName = temp;
+                participant0[i].firstName = temp->firstName;
 
-                temp = participant0[j].secondName;
+                temp->secondName = participant0[j].secondName;
                 participant0[j].secondName = participant0[i].secondName;
-                participant0[i].secondName = temp;
+                participant0[i].secondName = temp->secondName;
 
-                temp = participant0[j].numOfPart;
+                temp->numOfPart = participant0[j].numOfPart;
                 participant0[j].numOfPart = participant0[i].numOfPart;
-                participant0[i].numOfPart = temp;
+                participant0[i].numOfPart = temp->numOfPart;
 
-                temp = participant0[j].age;
+                temp->age = participant0[j].age;
                 participant0[j].age = participant0[i].age;
-                participant0[i].age= temp;
+                participant0[i].age= temp->age;
             }
         }
     }
