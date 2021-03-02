@@ -46,10 +46,10 @@ int main(){
    vutreshnostA=average(A);
    vutreshnostB=average(B);
     if(vutreshnostA>vutreshnostB){
-        printf("its better to buy melon from sort A with average ripe interior of %.1f cm\n",vutreshnostA);
+        printf("Its better to buy melon from sort A with average ripe interior of %.1f cm\n",vutreshnostA);
     }
     else if (vutreshnostA<vutreshnostB){
-        printf("its better to buy melon from sort B with average ripe interior of %.1f cm\n",vutreshnostB);
+        printf("Its better to buy melon from sort B with average ripe interior of %.1f cm\n",vutreshnostB);
     }
     else {
         printf("They are equal\n");

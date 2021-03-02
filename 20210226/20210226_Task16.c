@@ -1,4 +1,9 @@
 /*
+
+Code designer Iordan
+Proofreading and optimization: George
+
+
 Да се състави програма, с помощта на която играч може да
 играе (с право на връщане на ходовете) следната игра СОЛИТЕР:
 На игралното поле са поставени 16 номерирани пулове и три реда
@@ -53,11 +58,11 @@ typedef struct{
 } allowed;
 
 gameboard* SetupGame(gameboard *Board);
-gameboard* SaveGame(gameboard *MainBoard, gameboard *SaveBoard);
-gameboard* LoadGame(gameboard *MainBoard, gameboard *SaveBoard);
-int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int Index);
+void SaveGame(gameboard *MainBoard, gameboard *SaveBoard);
+void LoadGame(gameboard *MainBoard, gameboard *SaveBoard);
+int ValidateMovement(allowed *Directions, gameboard *MainBoard, int Piece, int Index);
 char ContinueGame (char Continue);
-void MovePiece(char Piece, char Direction, gameboard *MainBoard);
+void MovePiece(int Piece, char Direction, gameboard *MainBoard);
 void PrintBoard(gameboard *MainBoard);
 
 void Rules();
@@ -78,7 +83,7 @@ int main(){
     /* Main Game Loop*/
     while(1){
         /*We save the state, in case the user wants to go back. After we execute commands for movement of the pieces.*/
-        SaveBoard = SaveGame(MainBoard, SaveBoard);
+        SaveGame(MainBoard, SaveBoard);
         PrintBoard(MainBoard);
         Printer();
         MovePiece(Piece, Direction, MainBoard);
@@ -87,7 +92,7 @@ int main(){
         scanf(" %c", &LoadVar);
         if(LoadVar == 'y' || LoadVar =='Y'){
             printf("The wind whispers \"Rinn-\" and the world shifts around you!\n\n");
-            MainBoard = LoadGame(MainBoard, SaveBoard);
+            LoadGame(MainBoard, SaveBoard);
         }
         else{
             printf("Frodo moves ever so close to mount Doom:\n- Curse us and crush us, my precious is lost!\n\n");
@@ -101,7 +106,7 @@ int main(){
     }
 }
 
-int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int Index){
+int ValidateMovement(allowed *Directions, gameboard *MainBoard, int Piece, int Index){
     /*Locate the chose number as position in the arrays*/
     for (int i=0; i<BoardSize; i++){
         if(MainBoard->Row1[i] == Piece && (i>0&&i<BoardSize)){
@@ -211,11 +216,11 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int 
     return Index;
 }
 
-void MovePiece(char Piece, char Direction, gameboard *MainBoard){
-    char PieceMoved = '1';
+void MovePiece(int Piece, char Direction, gameboard *MainBoard){
+    //char PieceMoved = '1';
     int Index = 0;
     allowed *AllowedMovement = calloc(1, sizeof(allowed));
-    scanf(" %c", &Piece);
+    scanf(" %d", &Piece);
     scanf(" %c", &Direction);
     Index = ValidateMovement(AllowedMovement, MainBoard, Piece, Index);
     
@@ -306,14 +311,21 @@ void MovePiece(char Piece, char Direction, gameboard *MainBoard){
 }
     
 
-gameboard* SaveGame(gameboard *MainBoard, gameboard *SaveBoard){
-    SaveBoard = MainBoard;
-    return SaveBoard;
+void SaveGame(gameboard *MainBoard, gameboard *SaveBoard){
+    for(int i=0;i<BoardSize;i++){
+        SaveBoard->Row1[i] = MainBoard->Row1[i];
+        SaveBoard->Row2[i] = MainBoard->Row2[i];
+        SaveBoard->Row3[i] = MainBoard->Row3[i];
+    }
 }
 
-gameboard* LoadGame(gameboard *MainBoard, gameboard *SaveBoard){
-    MainBoard = SaveBoard;
-    return MainBoard;
+void LoadGame(gameboard *MainBoard, gameboard *SaveBoard){
+    for (int i=0; i<BoardSize; i++){
+        MainBoard->Row1[i] = SaveBoard->Row1[i];
+        MainBoard->Row2[i] = SaveBoard->Row2[i];
+        MainBoard->Row3[i] = SaveBoard->Row3[i];
+    }
+    
 }
 
 gameboard* SetupGame(gameboard *Board){
@@ -321,9 +333,9 @@ gameboard* SetupGame(gameboard *Board){
     Board = calloc(3, sizeof(gameboard));
 
     for(int i=0; i<BoardSize; i++){
-        Board->Row1[i] = '-';
-        Board->Row2[i] = 97+i;
-        Board->Row3[i] = 49+i;
+        Board->Row1[i] =   45;
+        Board->Row2[i] =  9+i;
+        Board->Row3[i] =  1+i;
     }
     return Board;
 }
@@ -342,7 +354,7 @@ void Rules(){
 
     /* Using print raw string literall printf (R"()") is a c11 feature*/
     printf(R"(
-                              \ : /
+                       \ : /
                     '-: __ :-'
                     -:  )(_ :--
                     -' |r-_i'-
@@ -386,7 +398,12 @@ void Printer(){
 
 void PrintBoard(gameboard *MainBoard){
     for (int i=0; i<BoardSize; i++){
-        printf("%2c\t", MainBoard->Row1[i]);
+        if(MainBoard->Row1[i] == 45){
+            printf("%2c\t", MainBoard->Row1[i]);    
+        }
+        else{
+            printf("%2d\t", MainBoard->Row1[i]);
+        }
     }
     printf("\n");
 
@@ -395,13 +412,18 @@ void PrintBoard(gameboard *MainBoard){
             printf("%2c\t", MainBoard->Row2[i]);    
         }
         else{
-            printf("%2c\t", MainBoard->Row2[i]);
+            printf("%2d\t", MainBoard->Row2[i]);
         }
     }
     printf("\n");
 
     for (int i=0; i<BoardSize; i++){
-        printf("%2c\t", MainBoard->Row3[i]);
+        if(MainBoard->Row3[i] == 45){
+            printf("%2c\t", MainBoard->Row3[i]);    
+        }
+        else{
+            printf("%2d\t", MainBoard->Row3[i]);
+        }
     }
     printf("\n");
 }
