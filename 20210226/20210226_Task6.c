@@ -10,5 +10,4 @@ int main(){
 
     PassKey.var1 = 200;
     printf("%d", PassKey.var1);
-
 }

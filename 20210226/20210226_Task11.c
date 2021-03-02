@@ -1,13 +1,17 @@
+/*
+Задача 11. тайпдефната структура node, съдържаща един член от
+тип инт и един пойнтер към тип самата структура. Заделете динамично
+памет за тази структура с malloc по описания по-горе начин.
+
+*/
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct *t_PointStr;
-
 typedef struct node{
-    int va1 =0;
-    t_PointStr PointerStruct;
-}node;
+    int PointA;
+    struct node *Pointer;
+} node;
 
 int main(){
-    t_PointStr Pointer = (*t_PointStr) malloc(sizeof(*t_PointStr));
+    node *Struktura =(node*)malloc(sizeof(node));
 }

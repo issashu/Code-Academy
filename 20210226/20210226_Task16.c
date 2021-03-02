@@ -1,9 +1,9 @@
 /*
 
-Code designer Iordan
-Proofreading and optimization: George
+Code designer: Iordan
+Proofreading and optimization: George;
 
-
+1
 Да се състави програма, с помощта на която играч може да
 играе (с право на връщане на ходовете) следната игра СОЛИТЕР:
 На игралното поле са поставени 16 номерирани пулове и три реда
@@ -26,13 +26,9 @@ Music: http://code4k.blogspot.com/2010/05/playing-mp3-in-c-using-plain-windows.h
 
 BUGS:
 1. End-game condition missing
-2. Save and load game pointers are equal
-3. Need to implement only 3 saves
+2. Need to implement only 3 saves
 Optional: 4. Need to add music
 Optional: 5. Save to file
-
-Tparv fvb hyl hu hzzovsl - Khujov
-
 */
 
 #include <stdio.h>

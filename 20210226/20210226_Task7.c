@@ -5,7 +5,6 @@ key_t, която съдържа символен низ и число. Иниц
 всички ключови думи на С.
 
 https://www.programiz.com/c-programming/list-all-keywords-c-language
-
 */
 
 #include <stdio.h>
@@ -18,17 +17,59 @@ typedef struct{
     int var1;
 }key_t;
 
-enum keyword = {auto, break, case, char, const, continue, default, do, double, else, enum, extern, float, for, goto, if, int, long,	register, return, short, signed, sizeof, static, struct, switch, typedef, union, unsigned, void, volatile, while};
+typedef enum keyword {
+    auto = 0, 
+    break, 
+    case, 
+    char, 
+    const, 
+    continue, 
+    default, 
+    do, 
+    double, 
+    else, 
+    enum, 
+    extern, 
+    float, 
+    for, 
+    goto, 
+    if, 
+    int, 
+    long,
+    register, 
+    return, 
+    short, 
+    signed, 
+    sizeof, 
+    static, 
+    struct, 
+    switch, 
+    typedef, 
+    union, 
+    unsigned, 
+    void, 
+    volatile, 
+    while} word;
 
-void Setter(key_t *Struct, enum List);
+void Setter(key_t *Struct);
+void Printer (key_t *Struct);
 
 int main(){
     key_t *Cwords = calloc(32, sizeof(key_t));
-    Setter(Cwords, MaxKeyWords);
+    Setter(Cwords);
+    Printer(Cwords);
 }
 
-void Setter(key_t *Struct, enum List){
+void Setter(key_t *Struct){
     for (int i = 0; i<MaxKeyWords; i++){
-        &Struct[i]->string = 
+        word = i;
+        Struct->string[i] = word;
+        Struct->var1[i] = word;
+    }
+}
+
+void Printer (key_t *Struct){
+    for (int i = 0; i<MaxKeyWords; i++){
+        printf("%c", Struct->string[i]);
     }
 }
