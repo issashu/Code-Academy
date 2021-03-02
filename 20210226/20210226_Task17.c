@@ -39,8 +39,10 @@ int main(){
         printf("B Kora: %.1f\n", B[i].Kora);
     }
     
-   printf("%.1f\n",average(A));
-   printf("%.1f\n",average(B));*/
+    printf("%.1f\n",average(A));
+    printf("%.1f\n",average(B));
+    */
+
    vutreshnostA=average(A);
    vutreshnostB=average(B);
     if(vutreshnostA>vutreshnostB){
@@ -52,7 +54,6 @@ int main(){
     else {
         printf("They are equal\n");
     }
-    
 
     return 0;
 }
@@ -82,4 +83,4 @@ float average(dinia *Ptr){
     Average1 = Suma1/BroiDini;
 
     return Average1-Average;
-};
+}
