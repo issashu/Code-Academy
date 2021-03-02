@@ -17,7 +17,7 @@ typedef struct{
     int var1;
 }key_t;
 
-typedef enum keyword {
+const enum keyword[] {
     auto = 0, 
     break, 
     case, 
@@ -49,7 +49,7 @@ typedef enum keyword {
     unsigned, 
     void, 
     volatile, 
-    while} word;
+    while};
 
 void Setter(key_t *Struct);
 void Printer (key_t *Struct);
@@ -62,9 +62,8 @@ int main(){
 
 void Setter(key_t *Struct){
     for (int i = 0; i<MaxKeyWords; i++){
-        word = i;
-        Struct->string[i] = word;
-        Struct->var1[i] = word;
+        Struct->string[i] = keyword[i];
+        Struct->var1[i] = keyword[i];
     }
 }
 
