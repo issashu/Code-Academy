@@ -17,6 +17,8 @@ Using linear search to move through the arrays
 
 Detailed rules of movement: https://sites.google.com/site/boardandpieces/list-of-games/checker-solitaire 
 
+Music: http://code4k.blogspot.com/2010/05/playing-mp3-in-c-using-plain-windows.html
+
 BUGS:
 1. End-game condition missing
 2. Save and load game pointers are equal
@@ -31,6 +33,10 @@ Tparv fvb hyl hu hzzovsl - Khujov
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <windows.h>
+#include <mmsystem.h>
+
+#pragma comment(lib, "Winmm.lib")
 
 static const int BoardSize = 8;
 typedef struct{
@@ -251,14 +257,14 @@ void MovePiece(char Piece, char Direction, gameboard *MainBoard){
                 MainBoard->Row3[Index] = '-';
                 MainBoard->Row3[Index-1] = '-';
             }
+        }
         else if (AllowedMovement->East==true && AllowedMovement->Row2==true){
             if(MainBoard->Row2[Index-2]=='-'){
-                MainBoard->Row2[Index-2] = MainBoard->Row3[Index];
+                MainBoard->Row2[Index-2] = MainBoard->Row2[Index];
                 MainBoard->Row2[Index] = '-';
                 MainBoard->Row2[Index-1] = '-';
                 }
-            }
-        }   
+            }   
         else{
             printf("Illegal move selected! You can hop only over a non-empty position and land on an empty one!");
         }
@@ -279,9 +285,9 @@ void MovePiece(char Piece, char Direction, gameboard *MainBoard){
                 MainBoard->Row3[Index+1] = '-';
             }
         }
-        else if (AllowedMovement->West==true && AllowedMovement->Row3==true){
+        else if (AllowedMovement->West==true && AllowedMovement->Row2==true){
             if(MainBoard->Row2[Index+2]=='-'){
-                MainBoard->Row2[Index+2] = MainBoard->Row3[Index];
+                MainBoard->Row2[Index+2] = MainBoard->Row2[Index];
                 MainBoard->Row2[Index] = '-';
                 MainBoard->Row2[Index+1] = '-';
             }
