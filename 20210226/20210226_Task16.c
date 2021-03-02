@@ -117,6 +117,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int 
             Directions->Row2 = false;
             Directions->Row3 = false;
             Index = i;
+            break;
         }
         else if(MainBoard->Row1[i] == Piece && i==0){
             Directions->North = false;
@@ -127,6 +128,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int 
             Directions->Row2 = false;
             Directions->Row3 = false;
             Index = i;
+            break;
         }
         else if(MainBoard->Row1[i] == Piece && i==BoardSize){
             Directions->North = false;
@@ -137,6 +139,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int 
             Directions->Row2 = false;
             Directions->Row3 = false;
             Index = i;
+            break;
         }
         else if(MainBoard->Row2[i] == Piece && (i>0&&i<BoardSize)){
             Directions->North = false;
@@ -147,6 +150,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int 
             Directions->Row2 = true;
             Directions->Row3 = false;
             Index = i;
+            break;
         }
         else if(MainBoard->Row2[i] == Piece && i==0){
             Directions->North = false;
@@ -157,6 +161,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int 
             Directions->Row2 = true;
             Directions->Row3 = false;
             Index = i;
+            break;
         }
         else if(MainBoard->Row2[i] == Piece && i==BoardSize){
             Directions->North = false;
@@ -167,6 +172,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int 
             Directions->Row2 = true;
             Directions->Row3 = false;
             Index = i;
+            break;
         }
         else if(MainBoard->Row3[i] == Piece && (i>0&&i<BoardSize)){
             Directions->North = true;
@@ -177,6 +183,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int 
             Directions->Row2 = false;
             Directions->Row3 = true;
             Index = i;
+            break;
         }
         else if(MainBoard->Row3[i] == Piece && i==0){
             Directions->North = true;
@@ -187,6 +194,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int 
             Directions->Row2 = false;
             Directions->Row3 = true;
             Index = i;
+            break;
         }
         else if(MainBoard->Row3[i] == Piece && i==BoardSize){
             Directions->North = true;
@@ -197,6 +205,7 @@ int ValidateMovement(allowed *Directions, gameboard *MainBoard, char Piece, int 
             Directions->Row2 = false;
             Directions->Row3 = true;
             Index = i;
+            break;
         }
     }
     /*DEBUG:
