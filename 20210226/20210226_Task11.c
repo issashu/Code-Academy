@@ -13,5 +13,6 @@ typedef struct node{
 } node;
 
 int main(){
-    node *Struktura =(node*)malloc(sizeof(node));
+    node *Struktura = (node*)calloc(1,sizeof(node));
+    printf("The struct node has been created and its size is: %d\n", sizeof(Struktura));
 }

@@ -55,6 +55,8 @@ int main(){
         printf("They are equal\n");
     }
 
+    free(A);
+    free(B);
     return 0;
 }
 
