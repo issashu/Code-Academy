@@ -4,49 +4,45 @@
 
 void testFunP(int SOLITARE[][8]){
     
-for( int p=0;p<3;p++){
-    for(int k=0;k<8;k++){
-        if(SOLITARE[p][k]==45){
-            printf("\t%c",SOLITARE[p][k]);
+    for( int p=0;p<3;p++){
+        for(int k=0;k<8;k++){
+            if(SOLITARE[p][k]==45){
+                printf("\t%c",SOLITARE[p][k]);
+                }
+            else{
+            printf("\t%d ",SOLITARE[p][k]);
+            }
         }
-        else{
-    printf("\t%d ",SOLITARE[p][k]);}
-    }
     printf("\n");
+    }
 }
-};
 
 
 void testFun(int SOLITARE[][8]){
- int indexI, indexJ;
- static int backUp[3][8];
-int choice;
-int choice1;
-for(int i=0;i<3;i++){
-       for(int j=0;j<8;j++){
-         backUp[i][j]=SOLITARE[i][j];
+    int indexI, indexJ;
+    static int backUp[3][8];
+    int choice;
+    int choice1;
+    for(int i=0;i<3;i++){
+        for(int j=0;j<8;j++){
+            backUp[i][j]=SOLITARE[i][j];
        }
-   }
-printf("chose a number from 1 to 16 to move\n");
-scanf(" %d",&choice);
-if(isalpha(choice1) == 0){
-
-for(int i=0;i<3;i++){
-
-    for(int j=0;j<8;j++){
-        if(SOLITARE[i][j]==choice){
-            indexI=i;
-            indexJ=j;
-            
-            break;
-        }
-        
     }
-   
-   }
-   
+printf("Chose a number from 1 to 16 to move\n");
+scanf(" %d",&choice);
 
-scanf(" %d",&choice1);
+if(isalpha(choice1) == 0){
+    for(int i=0;i<3;i++){
+        for(int j=0;j<8;j++){
+            if(SOLITARE[i][j]==choice){
+                indexI=i;
+                indexJ=j;
+                break;
+            }    
+        }
+   }
+
+    scanf(" %d",&choice1);
 
 switch (choice1)
 {
