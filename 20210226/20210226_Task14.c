@@ -25,13 +25,13 @@ int main(){
  for(i=0;choice!='0';i++){
     printf("enter the participant number\n");
     scanf(" %d",&participant0[i].numOfPart);
-    printf("enter  the participant name : \n");
+    printf("enter  the participant name: \n");
     participant0[i].firstName=malloc(20);
     scanf("%s",&participant0[i].firstName);
-    printf("enter the participant second name : \n");
+    printf("enter the participant second name: \n");
     participant0[i].secondName=malloc(20);
     scanf("%s",&participant0[i].secondName);
-    printf("enter the participant age : \n");
+    printf("enter the participant age: \n");
     scanf(" %d",&participant0[i].age);
     count++;
     printf("do you have another participant to add.Press 1 or pres 0 for exit. \n");
