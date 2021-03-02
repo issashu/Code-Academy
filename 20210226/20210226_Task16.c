@@ -33,10 +33,6 @@ Tparv fvb hyl hu hzzovsl - Khujov
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <windows.h>
-#include <mmsystem.h>
-
-#pragma comment(lib, "Winmm.lib")
 
 static const int BoardSize = 8;
 typedef struct{
@@ -340,6 +336,9 @@ void Rules(){
     printf("-Frodo's friends can help him by displacing enemy forces, following the same movement rules as himself, so that Frodo can take them by surprise.\n");
     printf("-And don't forget: Frodo can use the one ring to turn back time to his previous move, but only three times!\n\n\n");
     printf("o=|==============>   One ring to rule them all and into darkness bind them   <==============|=o\n\n\n");
+
+    printf("Press \"any key\" to continue:");
+    getchar();
 
     /* Using print raw string literall printf (R"()") is a c11 feature*/
     printf(R"(
