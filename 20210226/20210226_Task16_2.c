@@ -1,4 +1,5 @@
 /*
+Задача16:
 Code designer: George
 Proofreading and optimization: Iordan & George
 

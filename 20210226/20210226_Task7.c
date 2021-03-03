@@ -13,57 +13,59 @@ https://www.programiz.com/c-programming/list-all-keywords-c-language
 static const short MaxKeyWords = 32;
 
 typedef struct{
-    char string[20];
-    int var1;
+    char string[32];
+    int var1[32];
 }key_t;
 
-const enum keyword[] {
-    auto = 0, 
-    break, 
-    case, 
-    char, 
-    const, 
-    continue, 
-    default, 
-    do, 
-    double, 
-    else, 
-    enum, 
-    extern, 
-    float, 
-    for, 
-    goto, 
-    if, 
-    int, 
-    long,
-    register, 
-    return, 
-    short, 
-    signed, 
-    sizeof, 
-    static, 
-    struct, 
-    switch, 
-    typedef, 
-    union, 
-    unsigned, 
-    void, 
-    volatile, 
-    while};
+const enum keyword{
+    k_auto = 0, 
+    k_break, 
+    k_case, 
+    k_char, 
+    k_const, 
+    k_continue, 
+    k_default, 
+    k_do, 
+    k_double, 
+    k_else, 
+    k_enum, 
+    k_extern, 
+    k_float, 
+    k_for, 
+    k_goto, 
+    k_if, 
+    k_int, 
+    k_long,
+    k_register, 
+    k_return, 
+    k_short, 
+    k_signed, 
+    k_sizeof, 
+    k_static, 
+    k_struct, 
+    k_switch, 
+    k_typedef, 
+    k_union, 
+    k_unsigned, 
+    k_void, 
+    k_volatile, 
+    k_while,
+};
 
 void Setter(key_t *Struct);
 void Printer (key_t *Struct);
 
 int main(){
-    key_t *Cwords = calloc(32, sizeof(key_t));
+    key_t *Cwords = calloc(MaxKeyWords, sizeof(key_t));
     Setter(Cwords);
     Printer(Cwords);
 }
 
 void Setter(key_t *Struct){
+    enum keyword Words;
     for (int i = 0; i<MaxKeyWords; i++){
-        Struct->string[i] = keyword[i];
-        Struct->var1[i] = keyword[i];
+        Struct->string[i] = Words +i;
+        Struct->var1[i] = Words +i;
     }
 }
 

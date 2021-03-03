@@ -1,7 +1,7 @@
 /*
-
+Задача16:
 Code designer: Iordan
-Proofreading and optimization: George;
+Proofreading and optimization: Iordan & George;
 
 1
 Да се състави програма, с помощта на която играч може да
