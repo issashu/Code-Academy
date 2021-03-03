@@ -13,5 +13,11 @@ int main(int argc, char *argv[])
 	printErrord(8);
 }
 
+/*
+int (*Matrix)[2] - passing pointers to 2D arrays
+for(int i=0; i<MaxEmployees;i++){
+        Employees[i].ID = i+1;
+        strcpy(Employees[i].Name,"John Doe"); - fotr strings copy
+*/
 
 #endif /* MACROS */

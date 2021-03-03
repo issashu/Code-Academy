@@ -1,15 +1,3 @@
-/*
-Задача 15.
-Дефинирайте структура с 4 полета (int. char[10], double, enum),
-направете масив от 20 структури и ги попълнете. Изведете масива
-от структури на стандартния изход в CSV формат (
-https://en.wikipedia.org/wiki/Comma-separated_values ). Пример:
-prog1 > structs20.cvs
-
-https://austinrepp.com/how-to-write-to-a-csv-file-in-c/
-
-*/
-
 #include <stdio.h>
 #include <string.h>
 
@@ -55,11 +43,12 @@ int main(){
         Employees[i].workplace = i;
     }
 
-    fprintf(fpt,"ID, Name, Salary, Department\n");
-
     for(int i=0; i<MaxEmployees;i++){
-        fprintf(fpt,"%d, %s, %.2lf, %d\n", Employees[i].ID, Employees[i].Name, Employees[i].Salary, Employees[i].workplace);
+        fscanf(fpt,"%d, %s, %.2lf, %d\n", Employees[i].ID, Employees[i].Name, Employees[i].Salary, Employees[i].workplace);
     }
+
+   for(int i=0; i<MaxEmployees;i++)
+    printf("%d, %s, %.2lf, %d\n", Employees[i].ID, Employees[i].Name, Employees[i].Salary, Employees[i].workplace);
     
     fclose(fpt);
 }
