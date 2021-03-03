@@ -26,9 +26,9 @@ Music: http://code4k.blogspot.com/2010/05/playing-mp3-in-c-using-plain-windows.h
 
 BUGS:
 1. End-game condition missing
-2. Need to implement only 3 saves
-Optional: 4. Need to add music
-Optional: 5. Save to file
+Optional: 2. Need to implement only 3 saves
+Optional: 3. Need to add music
+Optional: 4. Save to file
 */
 
 #include <stdio.h>
