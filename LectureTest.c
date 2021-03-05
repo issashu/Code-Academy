@@ -25,11 +25,13 @@ int main(int argc, char **argv) {
 
     a = int_max(2,3);
     b = float_max(2.3, 4.56);
+    /*Empty comment space
+    
 	free (array);
     c = char_max('c', 'u');
 	d = array[10];
 
-	printf(" a is: %d\n b is: %f\n c is: %c\n d is: %d\n", a, b, c, d);
+	printf(" a is: %d\n b is: %.2f\n c is: %c\n d is: %d\n", a, b, c, d);
   	
 	return array[argc];
 }

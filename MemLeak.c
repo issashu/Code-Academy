@@ -1,7 +1,4 @@
-
 #include <stdlib.h>
-#include <stdio.h>
-
 void *p;
 int main() {
   p = malloc(7);
@@ -10,5 +7,5 @@ int main() {
 }
 
 /*
-clang -fsanitize=address -g Memsan.c ; ASAN_OPTIONS=detect_leaks=1 ./a.out
+clang -fsanitize=address -g MemLeak.c ; ASAN_OPTIONS=detect_leaks=1 ./a.out
 */
