@@ -24,5 +24,5 @@ Direct leak of 7 byte(s) in 1 object(s) allocated from:
     #2 0x7f3658d480b2 in __libc_start_main /build/glibc-eX1tMB/glibc-2.31/csu/../csu/libc-start.c:308:16
 
 SUMMARY: AddressSanitizer: 7 byte(s) leaked in 1 allocation(s).
-issashu@AsusG20:/mnt/f/CodeRepos/Code-Academy$
+issashu@AsusG20:/mnt/f/CodeRepos/Code-Academy$ gcc -fsanitize=leak Memsan.c  -llsan
 */

@@ -48,7 +48,7 @@ int main(){
         B[i].Kora = (float) randomize (3, 9)/10;
     }
 
-    A=NULL;
+    //A=NULL;
     vutreshnostA=average(A);
     vutreshnostB=average(B);
     if(vutreshnostA>vutreshnostB){

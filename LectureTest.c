@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
 
     a = int_max(2,3);
     b = float_max(2.3, 4.56);
-    /*Empty comment space
+    /*Empty comment space*/
     
 	free (array);
     c = char_max('c', 'u');
@@ -35,6 +35,5 @@ int main(int argc, char **argv) {
   	
 	return array[argc];
 }
-/*
-clang -O1 -g -fsanitize=address -fno-omit-frame-pointer LectureTest.c 
-*/
+
+// clang -O1 -g -fsanitize=address -fno-omit-frame-pointer LectureTest.c 

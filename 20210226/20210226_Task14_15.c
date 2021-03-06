@@ -23,6 +23,7 @@ typedef struct participant{
 void addPart(participant* participant0);
 void Sort(participant* participant0,int count);
 void myPrint(participant* participant0,int count);
+void myFree(participant* participant0);
 
 int main(){
  participant *participant0;
@@ -54,6 +55,18 @@ void addPart(participant* participant0){
     Sort(participant0,count);
 
     myPrint(participant0,count);
+
+    myFree(participant0);
+
+    myPrint(participant0,count);
+
+}
+
+void myFree(participant* participant0){
+    for(int i=0;i<listSize;i++){
+        free(participant0[i].firstName);
+        free(participant0[i].secondName);
+    }
 }
 
 void myPrint(participant* participant0,int count){
