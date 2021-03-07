@@ -74,7 +74,7 @@ carpenter_t* CarpenterSetup (carpenter_t* Furniture, short Selector){
             Furniture->ShortBoards = 8;
             Furniture->LargeClamp = 4;
             Furniture->SmallClamp = 9;
-            Furniture->Bolts = 24;
+            Furniture->Bolts = 110;
         break;
     }   
     return Furniture;

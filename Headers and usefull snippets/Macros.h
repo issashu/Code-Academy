@@ -1,6 +1,11 @@
 #ifndef MACROS.H
 #define  MACROS
 /*CODE STARTS HERE*/
+
+//Use this to find a minimum between two values. Works just like in Excel with function in function.
+#define min(x,y) (x) < (y) ? (x) : (y)
+
+
 #define printErrord(errorCode)  //printError(errorCode, "No message")
         void printError(int errorCode, char *msg)
 {

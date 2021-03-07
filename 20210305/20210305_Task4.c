@@ -33,9 +33,6 @@ int main(void){
     game(A, array);
     printf("Player 2 started the game.\n");
     game(B, array);
-
-    
-    
     
     free(A);
     free(B);
