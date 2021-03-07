@@ -16,7 +16,7 @@ typedef struct{
 #define COLUMNS 7
 #define F 70
 short menu();
-void game(player* A, int array[][COLUMNS]);
+void game(player* A, int array[ROWS][COLUMNS]);
 int main(void){
     int result;
     int array[ROWS][COLUMNS] =     {{3, 3, 2, 4, 3, 1, 2},
@@ -44,7 +44,7 @@ short menu(){
     scanf("%hd", &choice);
     return choice;
 }
-void game(player* A, int array[][COLUMNS]){
+void game(player* A, int array[ROWS][COLUMNS]){
     int result = 0;
     A->x = 0;
     A->y = 0;
@@ -62,7 +62,7 @@ void game(player* A, int array[][COLUMNS]){
     }
     while(1){
         result = menu();
-        printf("%d %d\n", backup_x, backup_y);
+      //printf("%d %d\n", backup_x, backup_y);
         switch(result){
             case 1:
             backup_x = A->x;
@@ -94,7 +94,8 @@ void game(player* A, int array[][COLUMNS]){
             case 4:
             backup_x = A->x;
             backup_y = A->y;
-            if(A->x + array[A->x][A->y] > 7)
+            //printf("%d", array[A->x][A->y]);
+            if((A->x + array[A->x][A->y]) > 7)
                 printf("Invalid move.\n");
             else
                 A->x += array[A->x][A->y];
