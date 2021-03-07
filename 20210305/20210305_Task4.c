@@ -85,7 +85,7 @@ void game(player* A, int array[ROWS][COLUMNS]){
             case 3:
             backup_x = A->x;
             backup_y = A->y;
-            if(A->y + array[A->x][A->y] > 7)
+            if(A->y + array[A->x][A->y] > 6)
                 printf("Invalid move.\n");
             else
                 A->y += array[A->x][A->y];
@@ -95,7 +95,7 @@ void game(player* A, int array[ROWS][COLUMNS]){
             backup_x = A->x;
             backup_y = A->y;
             //printf("%d", array[A->x][A->y]);
-            if((A->x + array[A->x][A->y]) > 7)
+            if((A->x + array[A->x][A->y]) > 6)
                 printf("Invalid move.\n");
             else
                 A->x += array[A->x][A->y];
@@ -117,12 +117,14 @@ void game(player* A, int array[ROWS][COLUMNS]){
         for(i=0 ; i < ROWS; i++){     
             for(j=0; j< COLUMNS; j++){
                 if(A->x == i && A->y == j){
-                    printf(".");
+                    printf("X ");
                 }
-                else if(array[i][j] == F)
-                    printf("F");
-                else
-                    printf("%d ", array[i][j]);          
+                else if(array[i][j] == F){
+                    printf("F ");
+                }
+                else{
+                    printf("%d ", array[i][j]);
+                }           
             }
             printf("\n");
         }
