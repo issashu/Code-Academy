@@ -128,8 +128,5 @@ void game(player* A, int array[][COLUMNS]){
             }
             printf("\n");
         }
-
-        
-
     }
 }
