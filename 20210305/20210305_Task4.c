@@ -1,3 +1,8 @@
+/*
+NOT MY SOLUTION! All credit to Kiril Ivanov!
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
