@@ -14,7 +14,8 @@ int main(){
     FILE *pfile = NULL;
     char *filename = "Task2.txt";
 
-    fopen_s (&pfile, filename, "r");
+//  fopen_s (&pfile, filename, "r");
+    pfile = fopen(filename, "r");
 
     if(pfile==NULL){
         printf("Failed to open %s.\n", filename);
@@ -26,7 +27,7 @@ int main(){
             c = fgetc(pfile); 
         }
     }
-    fclose(pfile); 
+    
+    fclose(pfile);
+    pfile = NULL;
 }   
-
-
