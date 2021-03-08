@@ -16,7 +16,8 @@ int main(){
     char *filename = "Task8.txt";
     char StrWrt[] = "This is a test string to write";
 
-    fopen_s (&pfile, filename, "w");
+    /*w+ means the file is in both read and write mode at the same time*/
+    fopen_s (&pfile, filename, "w+");
 
     if(pfile==NULL){
         printf("Failed to open %s.\n", filename);
