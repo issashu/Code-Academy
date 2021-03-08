@@ -17,7 +17,7 @@ int main(){
     FILE *pfile = NULL;
     int fpos = 0;
     fpos_t position;
-    char *filename = "Task8.txt";
+    char *filename = "Task10.txt";
     char StrWrt[] = "This is a test string to write";
 
     fopen_s (&pfile, filename, "w");
