@@ -21,11 +21,15 @@ ftell()
 
 int main(){
     FILE *pfile = NULL;
-    int fpos = 0;
-    fpos_t position;
-    char *filename = "Task11.txt";
+    char *filename = "Task12.txt";
+    fopen_s (&pfile, filename, "w+");
+
     char StrWrt[] = "This is the string to overwrite them all!";
+    char StrRds[800];
+    fputs(StrWrt, pfile);
 
+    fseek(pfile, 7, SEEK_SET);
+    fscanf(pfile,"%[^\n]", StrRds);
     
-
+    printf("%s", StrRds);
 }

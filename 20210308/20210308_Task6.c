@@ -55,7 +55,9 @@ void addPart(participant* participant0){
     for (i=0;i<4;i++){
         printf(PARTICIPANT_FORMAT_OUT,participant0[i].numOfPart, participant0[i].firstName, participant0[i].secondName, participant0[i].age);
     }
-  /*This is for printing the elements to a file: 
-    fprintf(FilePointer, PARTICIPANT_FORMAT_OUT, participant0->numOfPart, participant0->firstName, participant0->secondName, participant0->age);*/
+
     fclose(FilePointer);
+  /*fseek(FilePointer,0,SEEK_SET);
+  This is for printing the elements to a file: 
+    fprintf(FilePointer, PARTICIPANT_FORMAT_OUT, participant0->numOfPart, participant0->firstName, participant0->secondName, participant0->age);*/
 }

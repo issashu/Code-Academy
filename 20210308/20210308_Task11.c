@@ -30,10 +30,10 @@ int main(){
         fprintf(pfile, "\n\n%s %s %s", "This is", "a test to write", "bez da ni boli sartzeto ;)");   
     }
 
-   // fpos = ftell(pfile);
+ // fpos = ftell(pfile);
     fgetpos(pfile, &position);
     fclose(pfile);
-    printf("\nFile size is %d", fpos);
+ // printf("\nFile size is %d", fpos);
     printf("File size is %d", position);
     pfile = NULL;
 }
