@@ -33,7 +33,7 @@ int main(){
     printf("Today we can offer the following pieces of furniture:\n");
     printf("1.GODMORGON - bathroom cabinet\n2.RONNSKAR - shelf\n3.BEKANT - desk\n");
     printf("What do you need built today?\n");
-    scanf("%hd", &Selector);
+    scanf("[^,]", &Selector);
 
     Furniture = CarpenterSetup(Furniture, Selector);
     Inventory = CarpenterSetup(Inventory, 0);
