@@ -1,13 +1,13 @@
 /*
-Задача 6.
-Отворете и прочетете съдържанието от файл с fscanf.
-int fscanf(FILE *stream, const char *format,....)
-Има същите формати, както scanf.
-Първият аргумент е пойнтер към файла, от който ще четем. 
-Вторият аргумент е формата- Стрингът може да има следните 
-параметри: спейс, неспейс, спецификатори;
+Пренапишете задачи 14 и 15 от лекция 22 за Потребителски 
+типове като пуснете двете екзета в pipe:
+maraton.exe | sort.exe
 
-Ползваме задача с маратона, но вместо от конзола четем от файл.
+Задача 14 Напишете програма, в която се въвеждат пореден 
+номер, име, фамилия, възраст на участници в маратон. 
+Изискването е, за името и фамилията, да не се използват масиви 
+с фиксирана дължина. След като въвеждането завърши, 
+изведете списък с участниците.
 */
 #include <stdlib.h>
 #include <stdio.h>
@@ -52,14 +52,15 @@ void addPart(participant* participant0){
         scanf(" %c",&choice); 
     }
 
-    for (i=0;i<4;i++){
-        printf(PARTICIPANT_FORMAT_OUT,participant0[i].numOfPart, participant0[i].firstName, participant0[i].secondName, participant0[i].age);
+    for (i=0;i<count;i++){
+        fprintf(stdout, PARTICIPANT_FORMAT_OUT, participant0[i].numOfPart, participant0[i].firstName, participant0[i].secondName, participant0[i].age);
     }
-
     fclose(FilePointer);
-  /*fseek(FilePointer,0,SEEK_SET);
+}
 
-    This is for printing the elements to a file: 
-    fprintf(FilePointer, PARTICIPANT_FORMAT_OUT, participant0->numOfPart, participant0->firstName, participant0->secondName, participant0->age);
-  */
+void myFree(participant* participant0){
+    for(int i=0;i<listSize;i++){
+        free(participant0[i].firstName);
+        free(participant0[i].secondName);
+    }
 }
