@@ -13,10 +13,8 @@
 #include <ctype.h>
 
 
-
 char* SwapText (char *string);
 char* MakeUpper(char *string);
-
 
 int main(){
     FILE *originalpf = NULL;
