@@ -18,7 +18,6 @@ int main(){
     FILE *pfile = NULL;
     fpos_t position;
     char *filename = "Task9.txt";
-    char StrWrt[] = "This is a test string to write";
 
     /*w+ means the file is in both read and write mode at the same time*/
     fopen_s (&pfile, filename, "w+");

@@ -58,6 +58,8 @@ void addPart(participant* participant0){
 
     fclose(FilePointer);
   /*fseek(FilePointer,0,SEEK_SET);
-  This is for printing the elements to a file: 
-    fprintf(FilePointer, PARTICIPANT_FORMAT_OUT, participant0->numOfPart, participant0->firstName, participant0->secondName, participant0->age);*/
+
+    This is for printing the elements to a file: 
+    fprintf(FilePointer, PARTICIPANT_FORMAT_OUT, participant0->numOfPart, participant0->firstName, participant0->secondName, participant0->age);
+  */
 }
