@@ -7,27 +7,40 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-
 int main(){
-    FILE *pfile = NULL;
-    char *filename = "Task2.txt";
-    char string[400];
+    FILE *pfilerd = NULL;
+    FILE *pfilewr = NULL;
+    char *filename = "Task52.txt";
+    char *writename = "Task51.txt";
+    int string[10];
 
-    fopen_s (&pfile, filename, "r");
- // pfile = fopen(filename, "r");
+    //fopen_s (&pfile, filename, "r");
+    pfilerd = fopen(filename, "r");
+    pfilewr = fopen(writename, "w+");
 
-    if(pfile==NULL){
+    if(pfilerd==NULL){
         printf("Failed to open %s.\n", filename);
+        exit(1);
+    }
+    else if(pfilewr==NULL){
+        printf("Failed to open %s.\n", writename);
+        exit(1);
     }
     else{
-        fgets(string, 200, pfile);  
-    //fgets reads one line and sets pointer to the end of the first line   
+        for(int i=0; i<(sizeof(string)/sizeof(string[0])); i++){
+            fscanf(pfilerd, "%d,", &string[i]);
+        }     
     }
 
-    printf("%s\n", string);
-    
-    fclose(pfile);
-    pfile = NULL;
+    printf("Values copied from \" %s \" are:\n", filename);
+    for(int i=0; i<(sizeof(string)/sizeof(string[0])); i++){
+        printf("%d ", string[i]);
+    }
+    printf("\nNow copying the above numbers to \" %s \" ...done", writename);
+    for(int i=0; i<(sizeof(string)/sizeof(string[0])); i++){
+        fprintf(pfilewr, "%d,", string[i]);
+    }
+
+    fclose(pfilerd);
+    fclose(pfilewr);
 }
