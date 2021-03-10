@@ -5,17 +5,19 @@
 им на стандартния изход. Ако на програмата не са подадени никакви 
 аргументи, то тя да изкара съдържанието подадено от стандартния вход 
 на стандартния изход.
+
+ЗАДЪЛЖИТЕЛНО СЕ КОМПИЛИРА С -o cat.exe или cat.out
 */
 #include <stdio.h>
 #include <stdio.h>
 
-int CatFunct(char** argv);
-void ErrorHandler(int ErrNum);
+int CatFunct (char* file);
+void ErrorHandler (int ErrNum);
 
-int main(int argc, char** argv){
+int main (int argc, char** argv){
     int FuncResult = 0;
     if (argc==1){
-        printf("Not implemented yet!");
+        printf("Not implemented yet!\n");
         return 0;
     }
     else if(argc>2){
@@ -23,26 +25,26 @@ int main(int argc, char** argv){
     }
     else if(argc == 2){
         FuncResult = CatFunct(argv[1]);
-        ErrNum(FuncResult);
+        ErrorHandler(FuncResult);
     }
     
 }
 
-int CatFunct((char** argv){
-    FILE *FilePoionter = NULL;
-    char *filename = NULL;
-    scanf("cat %s", filename);
-    FilePoionter = fopen(filename,"r");
-    if(FilePoionter==NULL){
+int CatFunct (char* file){
+    char *buffer;
+    FILE *FilePointer = NULL;
+    FilePointer = fopen(file,"r");
+    if(FilePointer==NULL){
         return 404;
     }
     else {
-        fprintf(stdin,"%s",FilePoionter);
+        fprintf(buffer,"%s", FilePointer);
+        printf("%s", buffer);
         return 0;
     }
 }
 
-void ErrorHandler(int ErrNum){
+void ErrorHandler (int ErrNum){
     switch (ErrNum){
     case 404:
         printf("404.File not found.");
@@ -50,7 +52,7 @@ void ErrorHandler(int ErrNum){
     break;
 
     case 0:
-        printf("\nHope you got what you wanted. Have a nice day!\n");
+        printf("\nIs this what you were looking for? Have a nice day!\n");
     break;
     }
 }
