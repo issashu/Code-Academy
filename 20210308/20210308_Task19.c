@@ -31,14 +31,14 @@ int main (int argc, char** argv){
 }
 
 int CatFunct (char* file){
-    char *buffer;
+    char buffer[400];
     FILE *FilePointer = NULL;
     FilePointer = fopen(file,"r");
     if(FilePointer==NULL){
         return 404;
     }
     else {
-        fprintf(buffer,"%s", FilePointer);
+        fgets(buffer, 50, FilePointer);
         printf("%s", buffer);
         return 0;
     }
