@@ -36,18 +36,19 @@ int main(){
 
 void addPart(participant* participant0){
     int i;
- int count=0;
- char choice='1';
- for(i=0;i<5;i++){
-    participant0[i].firstName=malloc(20);
-    participant0[i].secondName=malloc(20);
-    scanf(PARTICIPANT_FORMAT_IN, &participant0[i].numOfPart, participant0[i].firstName, participant0[i].secondName, &participant0[i].age);
-    count++;
- }
+    int count=0;
+    char choice='1';
+    for(i=0;i<5;i++){
+        participant0[i].firstName=malloc(20);
+        participant0[i].secondName=malloc(20);
+        scanf(PARTICIPANT_FORMAT_IN, &participant0[i].numOfPart, participant0[i].firstName, participant0[i].secondName, &participant0[i].age);
+        count++;
+    }
     Sort(participant0,count);
-  for (int i=0; i<count;i++){
-    printf(PARTICIPANT_FORMAT_OUT, participant0[i].numOfPart, participant0[i].firstName, participant0[i].secondName, participant0[i].age);
-  }
+    printf("Receiving participant data... \n");
+    for (int i=0; i<count;i++){
+        printf(PARTICIPANT_FORMAT_OUT, participant0[i].numOfPart, participant0[i].firstName, participant0[i].secondName, participant0[i].age);
+    }
 }
 
 void Sort(participant* participant0,int count){

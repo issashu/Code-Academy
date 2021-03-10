@@ -6,7 +6,7 @@
 аргументи, то тя да изкара съдържанието подадено от стандартния вход 
 на стандартния изход.
 
-ЗАДЪЛЖИТЕЛНО СЕ КОМПИЛИРА С -o cat.exe или cat.out
+ЗАДЪЛЖИТЕЛНО СЕ КОМПИЛИРА С -o cat.exe или cat (под Юникс, Линукс и Мак)
 */
 #include <stdio.h>
 #include <stdio.h>
@@ -16,9 +16,12 @@ void ErrorHandler (int ErrNum);
 
 int main (int argc, char** argv){
     int FuncResult = 0;
+    char *Buffer; 
     if (argc==1){
-        printf("Not implemented yet!\n");
-        return 0;
+        while(1){
+            fscanf(Buffer,"%s",stdin);
+            printf("%s", Buffer);
+        }
     }
     else if(argc>2){
         printf("Usage cat <filename.extension>\n");
@@ -26,8 +29,7 @@ int main (int argc, char** argv){
     else if(argc == 2){
         FuncResult = CatFunct(argv[1]);
         ErrorHandler(FuncResult);
-    }
-    
+    }  
 }
 
 int CatFunct (char* file){

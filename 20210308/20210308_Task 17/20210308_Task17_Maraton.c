@@ -38,22 +38,24 @@ int main(){
 
 void addPart(participant* participant0){
     FILE *FilePointer = NULL;
+    FILE *LinuxTerminal = NULL;
     //rt means read text and specifies we will be getting strings
     //SEEK_SET below means first position in the file
     FilePointer = fopen("Task6.txt", "rt");
+    LinuxTerminal = fopen("/dev/tty", "w+");
     int i;
     int count=0;
     char choice='1';
-    for(i=0;choice!='0';i++){
-        //printf("Reading Participant data... \n");
+    fprintf(LinuxTerminal, "Reading Participant data... \n");
+    for(i=0;choice!='0';i++){   
         fscanf(FilePointer, PARTICIPANT_FORMAT_IN, &participant0[i].numOfPart, participant0[i].firstName, participant0[i].secondName, &participant0[i].age);
         count++;
-        //printf("Do you have another participant to add?\nPress 1 to enter new participant or 0 to print a list of participants.\n");
-        scanf(" %c",&choice); 
+        fprintf(LinuxTerminal, "Do you have another participant to add?\nPress 1 to enter new participant or 0 to print a list of participants.\n");
+        fscanf(stdin, " %c", &choice); 
     }
 
     for (i=0;i<5;i++){
-        printf(PARTICIPANT_FORMAT_OUT, participant0[i].numOfPart, participant0[i].firstName, participant0[i].secondName, participant0[i].age);
+        fprintf(stdout, PARTICIPANT_FORMAT_OUT, participant0[i].numOfPart, participant0[i].firstName, participant0[i].secondName, participant0[i].age);
     }
     fclose(FilePointer);
 }
