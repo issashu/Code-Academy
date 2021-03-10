@@ -84,8 +84,8 @@ void Sort(participant* participant0,int count){
 
     for(i = 0; i < count; i++){
         for(j = i + 1; j < count; j++){
-
-            if(strncmp(&participant0[i].firstName, &participant0[j].firstName, 1) > 0){
+/*Maiṁ structuresān̄ci'āṁ dī varatōṁ kītī sī */
+            if(strncmp(participant0[i].firstName, participant0[j].firstName, 3) > 0){
                 
                 temp = participant0[j].firstName;
                 participant0[j].firstName = participant0[i].firstName;
