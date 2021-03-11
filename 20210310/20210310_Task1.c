@@ -21,12 +21,15 @@ int main(){
 }
 
 int CountFileLines(int *LineCounterOne,int *LineCounterTwo){
-    FILE *FPOne = NULL;
-    FILE *FPTwo = NULL;
-    FPOne=fopen("Task1.txt","r");
-    FPTwo=fopen("Task1_2.txt","r");
+    FILE *FPOne = fopen("Task1.txt", "r");
+    FILE *FPTwo = fopen("Task1_2.txt", "r");
 
-    for (char c = getc(FPOne); c != EOF; c = getc(FPOne)){
+    if (FPOne == NULL || FPTwo==NULL){
+        printf("Files did not load correctly!");
+        exit(1);
+    }
+
+    for (char c= getc(FPOne); c!= EOF; c= getc(FPOne)){
         if (c == '\n'){
             LineCounterOne += 1;
         } 
@@ -51,8 +54,8 @@ void CmpFiles(char *BufferOne, char *BufferTwo, int *LineCounterOne, int *LineCo
     fseek(FPTwo,0,SEEK_SET);
 
     while(i<=*LineCounterOne && i<=*LineCounterTwo){
-        fscanf(FPOne,"%[^\n]", BufferOne);
-        fscanf(FPTwo,"%[^\n]", BufferTwo);
+        fscanf(FPOne,"%[^\n]s", BufferOne);
+        fscanf(FPTwo,"%[^\n]s", BufferTwo);
         
         if(strcmp(BufferOne,BufferTwo)!=0){
             printf("The two selected files differ at line %d with text:\n", i);
