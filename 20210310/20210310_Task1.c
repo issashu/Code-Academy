@@ -32,7 +32,7 @@ int CountFileLines(int *LineCounterOne,int *LineCounterTwo){
         } 
     }
 
-    for (char c = getc(FPOne); c != EOF; c = getc(FPOne)){
+    for (char c = getc(FPTwo); c != EOF; c = getc(FPTwo)){
         if (c == '\n'){
             LineCounterTwo += 1;
         } 
