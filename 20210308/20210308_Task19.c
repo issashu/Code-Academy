@@ -19,7 +19,7 @@ int main (int argc, char** argv){
     char *Buffer; 
     if (argc==1){
         while(1){
-            fscanf(Buffer,"%s",stdin);
+            puts(Buffer);
             printf("%s", Buffer);
         }
     }

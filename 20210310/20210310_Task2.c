@@ -29,8 +29,8 @@ int main(){
     scanf("%s", FileName);
 
     CheckBrackets(Stack, FileName);
+    printf("End of file reached. All mistakes, if any printed above.\n");
     
-
     free (Stack);
     free (FileName);
 }
@@ -105,11 +105,8 @@ void CheckBrackets(skoba *Stack, char *FileName){
             break;
         } 
     }
-
-ShowErrors(Stack, &StackIndex);
-
-fclose(pfile);
-
+    ShowErrors(Stack, &StackIndex);
+    fclose(pfile);
 }
 
 void ShowErrors(skoba *Stack,  int *Index){
