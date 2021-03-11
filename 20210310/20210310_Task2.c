@@ -17,32 +17,37 @@ typedef struct{
     bool Flags;
 } skoba;
 
-int CheckBrackets(skoba *Stack, char *FileName);
+void CheckBrackets(skoba *Stack, char *FileName);
 
 void ShowErrors(skoba *Stack, int *Index);
 
 int main(){
-    skoba *Stack = malloc(MAX_STACK*sizeof(skoba));
-    char *FileName = NULL;
-    int Index =0;
+    skoba *Stack = calloc(MAX_STACK,sizeof(skoba));
+    char *FileName;
 
     printf("Please enter the name of the .c file to check. Make sure it is in the same path as this program:\n");
-   // scanf("%s", &FileName);
+    scanf("%s", FileName);
 
-    Index = CheckBrackets(Stack, FileName);
-    ShowErrors(Stack, &Index);
+    CheckBrackets(Stack, FileName);
+    
 
     free (Stack);
     free (FileName);
 }
 
-int CheckBrackets(skoba *Stack, char *FileName){
+void CheckBrackets(skoba *Stack, char *FileName){
     int StackIndex = 0;
     int LineCounter = 0;
-    FILE *C_File = fopen("20210310_Task1.c", "r");
+    int i = 0;
+    FILE *pfile;
+    pfile = fopen(FileName, "r"); 
 
+    if(pfile== NULL){
+        printf("Error opening file on line 42 in the .c file.");
+        exit(1);
+    }
 
-    for (char c = getc(C_File); c != EOF; c = getc(C_File)){
+    for (char c = getc(pfile); c != EOF; c = getc(pfile)){
         switch (c){
             case '\n':
                 LineCounter++;
@@ -73,27 +78,27 @@ int CheckBrackets(skoba *Stack, char *FileName){
             break;
 
             case '}':
-                for (int i=StackIndex; i>=0; i--){
+                for (i=StackIndex-1; i>=0; i--){
                     if(Stack[i].Type=='{' && Stack[i].Flags==true){
-                        Stack[i].Flags==false;
+                        Stack[i].Flags=false;
                         break;
                     }
                 }
             break;
 
             case ']':
-                for (int i=StackIndex; i>=0; i--){
+                for (i=StackIndex-1; i>=0; i--){
                     if(Stack[i].Type=='[' && Stack[i].Flags==true){
-                        Stack[i].Flags==false;
+                        Stack[i].Flags=false;
                         break;
                     }
                 }
             break;
 
             case ')':
-                for (int i=StackIndex; i>=0; i--){
+                for (i=StackIndex; i>=0; i--){
                     if(Stack[i].Type=='(' && Stack[i].Flags==true){
-                        Stack[i].Flags==false;
+                        Stack[i].Flags=false;
                         break;
                     }
                 }
@@ -101,12 +106,16 @@ int CheckBrackets(skoba *Stack, char *FileName){
         } 
     }
 
+ShowErrors(Stack, &StackIndex);
+
+fclose(pfile);
+
 }
 
 void ShowErrors(skoba *Stack,  int *Index){
     for(int i=0; i<=*Index; i++){
         if(Stack[i].Flags==true){
-            printf("A \" %c \" bracket has been left opened at line %d\n", Stack[i].Type, Stack[i].LineNr);
+            printf("A \" %c \" bracket has been left opened at line %d\n", Stack[i].Type, Stack[i].LineNr+1);
         }
     }
 }
