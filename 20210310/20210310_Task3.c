@@ -17,7 +17,7 @@ int main(int argc, char** argv){
         printf("No files supplied.\n Usage: printer.exe <file1> <file2> ... <file n>\n");
     }
     else{
-        for(int i=0; i<argc; i++){
+        for(int i=1; i<argc; i++){
             FilePrinter(argv[i]);
         }
     }
@@ -48,7 +48,8 @@ void FilePrinter(char* FileName){
         }
         else if(LineCount==42){
             printf("\t\t-- %hd --\t\t\n", PageNumber);
-            getch();
+            LineCount=1;
+            getchar();
             printf("\t\t=== %s ===\t\t\n", FileName);
         }
     }
