@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define MAX_STACK 100
+#define MAX_STACK 500
 
 typedef struct{
     int  BracketNR;
@@ -43,7 +43,7 @@ void CheckBrackets(skoba *Stack, char *FileName){
     pfile = fopen(FileName, "r"); 
 
     if(pfile== NULL){
-        printf("Error opening file on line 42 in the .c file.");
+        printf("Error opening file on line 42 in the .c file.\n");
         exit(1);
     }
 
