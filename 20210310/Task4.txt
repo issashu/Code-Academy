@@ -1,0 +1,3 @@
+Function void fillarr(packages *pack, int number) -> success. 
+Function void checksum(packages *pack, int number) -> success. 
+Function int main(void) -> success. 

@@ -1,0 +1,7 @@
+How it works:
+
+In line 6, an array of character str of size 50 is declared.
+In line 7, a structure pointer variable fp of type struct FILE is declared.
+In line 8, fopen() function is called with two arguments namely "myfile2.txt" and "w". On success, it returns a pointer to file myfile2.txt and opens the file myfile.txt in write-only mode. On failure or end of file, it returns NULL.
+In lines 10-14, if statement is used to test the value of fp. If it is NULL, printf() statement prints the error message and program terminates. Otherwise, the program continues with the statement following the if statement.
+In line 16 and 17, two printf() statements string "Testing fputs() function: \n\n" and "To stop reading press Ctrl+Z in windows and Ctrl+D in Linux : \n\n" to the console.
