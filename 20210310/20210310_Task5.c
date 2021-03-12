@@ -17,7 +17,7 @@ int main(){
     int *pointy = NULL;
     signal(SIGSEGV, SignalPrinter);
     signal(SIGINT, SignalPrinter);
-    signal(SIGQUIT, SignalPrinter);
+   /*Linux only: signal(SIGQUIT, SignalPrinter);*/
     while(1){
         *pointy = 1;
     }
@@ -37,9 +37,9 @@ void SignalPrinter(int signum){
             exit(1);
         break;
 
-        case SIGQUIT:
+       /* case SIGQUIT:
             printf("Program tried to quit.");
             exit(1);
-        break;
+        break;*/
     }
 }

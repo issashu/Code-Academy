@@ -15,14 +15,14 @@ typedef struct{
     int  LineNr;
     char Type;
     bool Flags;
-} skoba;
+} t_skoba;
 
-void CheckBrackets(skoba *Stack, char *FileName);
+void CheckBrackets(t_skoba *Stack, char *FileName);
 
-void ShowErrors(skoba *Stack, int *Index);
+void ShowErrors(t_skoba *Stack, int *Index);
 
 int main(){
-    skoba *Stack = calloc(MAX_STACK,sizeof(skoba));
+    t_skoba *Stack = calloc(MAX_STACK,sizeof(t_skoba));
     char *FileName;
 
     printf("Please enter the name of the .c file to check. Make sure it is in the same path as this program:\n");
@@ -35,7 +35,7 @@ int main(){
     free (FileName);
 }
 
-void CheckBrackets(skoba *Stack, char *FileName){
+void CheckBrackets(t_skoba *Stack, char *FileName){
     int StackIndex = 0;
     int LineCounter = 0;
     int i = 0;
@@ -109,7 +109,7 @@ void CheckBrackets(skoba *Stack, char *FileName){
     fclose(pfile);
 }
 
-void ShowErrors(skoba *Stack,  int *Index){
+void ShowErrors(t_skoba *Stack,  int *Index){
     for(int i=0; i<=*Index; i++){
         if(Stack[i].Flags==true){
             printf("A \" %c \" bracket has been left opened at line %d\n", Stack[i].Type, Stack[i].LineNr+1);
