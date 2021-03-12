@@ -27,15 +27,17 @@ int main(){
 
 void SignalPrinter(int signum){
     switch (signum){
-        case 11:
+        case SIGSEGV:
             printf("Seg. fault signal caught!");
+            exit(1);
         break;
 
-        case 2:
+        case SIGINT:
             printf("CTRL+C detected!");
+            exit(1);
         break;
 
-        case 3:
+        case SIGQUIT:
             printf("Program tried to quit.");
             exit(1);
         break;
