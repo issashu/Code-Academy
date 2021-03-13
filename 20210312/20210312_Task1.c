@@ -6,45 +6,120 @@ typedef struct t_node {
 int m_nValue; 
 t_node* m_pNext; 
 } t_node; 
+
+WORK INPROGRESS
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
 
-typedef struct t_node { 
-    u_int Index;
+static short NodeCounter = 0;
+typedef struct node node;
+typedef struct node{ 
     int m_nValue; 
-    t_node* m_pNext; 
-} t_node; 
+    struct node* m_pNext; 
+}node;  
 
-void AddListElement (t_node* PrevNode);
+/*I have decided to close the list to current file for now*/
+static node* Head;
+static node* PrevNode;
+static node* NextNode;
+
+
+void StartList(node* Head);
+void AddBeginning (node* Head);
+void AppendEnd (node* PrevNode);
+void AddBetween(node* PrevNode, node* NextNode);
+short Menu(short Selector);
+void ListPrinter(node* Head);
 
 int main(){
-    struct t_node* head = NULL;  
-    head = (struct t_node*)malloc(sizeof(t_node)); 
-    head->m_nValue = 1;
-    head->Index = 0;
-    head->m_pNext = NULL;
+    short Selection = 0;
+    Head = (node*)malloc(sizeof(node));
+    StartList(Head);
+    while(Selection!=5){
+        Selection = Menu(Selection);
+        switch (Selection){
+            case 1:
+                AddBeginning(Head);
+            break;
 
-    AddListElement(head);
+            case 2:
+                AddBetween(PrevNode, NextNode);
+            break;
+
+            case 3:
+                AppendEnd(PrevNode);
+            break;
+
+            case 4:
+                ListPrinter(Head);
+            break;
+
+            case 5:
+                printf("Have a nice day! See you soon!\n");
+            break;
+        }
+    }
+    return 0;
 }
 
-void AppendElement (t_node* PrevNode){
+void StartList(node* Head){
+    Head = (node*)malloc(sizeof(node));
+    printf("Please enter a value for the first element of the list: ");
+    scanf("%d", &Head->m_nValue);
+    Head->m_pNext = NULL;
+    NodeCounter++;
+
+}
+
+void AddBeginning (node* Head){
     int Value = 0;
-    t_node* NewNode = (struct t_node*)malloc(sizeof(t_node));
+    node* NewNode = (struct node*) malloc(sizeof(node));
+    printf("Enter value for the next element: ");
+    NewNode->m_nValue = scanf("%d", &Value);
+    NewNode->m_pNext = Head;
+    Head = NewNode;
+    NodeCounter++;
+}
+
+void AppendEnd (node* PrevNode){
+    int Value = 0;
+    node* NewNode = (struct node*) malloc(sizeof(node));
     printf("Enter value for the next element: ");
     NewNode->m_nValue = scanf("%d", &Value);
     PrevNode->m_pNext = NewNode;
-    NewNode->Index = PrevNode->Index+1;
     NewNode->m_pNext = NULL;
 }
 
-void AddBetween(t_node* PrevNode, t_node* NextNode){
+void AddBetween(node* PrevNode, node* NextNode){
     int Value = 0;
-    t_node* NewNode = (struct t_node*)malloc(sizeof(t_node));
+    node* NewNode = (struct node*)malloc(sizeof(node));
     printf("Enter value for the next element: ");
     NewNode->m_nValue = scanf("%d", &Value);
     PrevNode->m_pNext = NewNode;
-    NewNode->Index = PrevNode->Index+1;
     NewNode->m_pNext = NextNode;
+}
+
+short Menu(short Selector){
+    printf("Your list currently contsains %hd element(s).\n");
+    printf("What would you like to do next?\n");
+    printf("1. Add element at the begining of the list.\n2. Add element after another element.\n3. Add element at the end of the list\n4.Print the list.\n5.Quit program.\nInput: ");
+    selection:
+    scanf("%hd", &Selector);
+    if (Selector<1 || Selector>5){
+        printf("Incorrect selection, please select a number between 1 and 5!");
+        goto selection;
+    }
+    return Selector;
+}
+
+void ListPrinter(node* Head){
+    node* PrintPoint = Head;
+    printf("{");
+    while(PrintPoint!=NULL){
+        int i=0;
+        printf("\tThe %dth element is: %d;\n", i++, PrintPoint->m_nValue);
+        PrintPoint = PrintPoint->m_pNext;
+    }
+    printf("}");
 }
