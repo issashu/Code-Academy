@@ -40,7 +40,7 @@ int main(){
         Selection = Menu(Selection);
         switch (Selection){
             case 1:
-                AddBeginning(Head);
+               Head = AddBeginning(Head);
             break;
 
             case 2:
@@ -64,7 +64,6 @@ int main(){
 }
 
 node* StartList(node* Head){
-    Head = (node*)malloc(sizeof(node));
     printf("Please enter a value for the first element of the list: ");
     scanf("%d", &Head->m_nValue);
     Head->m_pNext = NULL;
@@ -77,14 +76,14 @@ node* AddBeginning (node* Head){
     int Value = 0;
     node* NewNode = (node*) malloc(sizeof(node));
     printf("Enter value for the next element: ");
-    NewNode->m_nValue = scanf("%d", &Value);
+    scanf("%d", &NewNode->m_nValue);
     NewNode->m_pNext = Head;
     Head = NewNode;
     NodeCounter++;
     return Head;
 }
 
-void AppendEnd (node* PrevNode){
+void AppendEnd (node* Head){
     int Value = 0;
     node* NewNode = (struct node*) malloc(sizeof(node));
     printf("Enter value for the next element: ");
@@ -123,5 +122,5 @@ void ListPrinter(node* Head){
         printf("\tThe %dth element is: %d;\n", i++, PrintPoint->m_nValue);
         PrintPoint = PrintPoint->m_pNext;
     }
-    printf("}");
+    printf("}\n");
 }
