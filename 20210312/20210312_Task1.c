@@ -25,8 +25,8 @@ static node* PrevNode;
 static node* NextNode;
 
 
-void StartList(node* Head);
-void AddBeginning (node* Head);
+node* StartList(node* Head);
+node* AddBeginning (node* Head);
 void AppendEnd (node* PrevNode);
 void AddBetween(node* PrevNode, node* NextNode);
 short Menu(short Selector);
@@ -35,7 +35,7 @@ void ListPrinter(node* Head);
 int main(){
     short Selection = 0;
     Head = (node*)malloc(sizeof(node));
-    StartList(Head);
+    Head = StartList(Head);
     while(Selection!=5){
         Selection = Menu(Selection);
         switch (Selection){
@@ -63,23 +63,25 @@ int main(){
     return 0;
 }
 
-void StartList(node* Head){
+node* StartList(node* Head){
     Head = (node*)malloc(sizeof(node));
     printf("Please enter a value for the first element of the list: ");
     scanf("%d", &Head->m_nValue);
     Head->m_pNext = NULL;
     NodeCounter++;
+    return Head;
 
 }
 
-void AddBeginning (node* Head){
+node* AddBeginning (node* Head){
     int Value = 0;
-    node* NewNode = (struct node*) malloc(sizeof(node));
+    node* NewNode = (node*) malloc(sizeof(node));
     printf("Enter value for the next element: ");
     NewNode->m_nValue = scanf("%d", &Value);
     NewNode->m_pNext = Head;
     Head = NewNode;
     NodeCounter++;
+    return Head;
 }
 
 void AppendEnd (node* PrevNode){
@@ -101,7 +103,7 @@ void AddBetween(node* PrevNode, node* NextNode){
 }
 
 short Menu(short Selector){
-    printf("Your list currently contsains %hd element(s).\n");
+    printf("Your list currently contsains %hd element(s).\n", NodeCounter);
     printf("What would you like to do next?\n");
     printf("1. Add element at the begining of the list.\n2. Add element after another element.\n3. Add element at the end of the list\n4.Print the list.\n5.Quit program.\nInput: ");
     selection:
