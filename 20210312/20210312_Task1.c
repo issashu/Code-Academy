@@ -8,8 +8,6 @@ t_node* m_pNext;
 } t_node; 
 
 https://www.learn-c.org/en/Linked_lists
-
-WORK INPROGRESS
 */
 #include <stdio.h>
 #include <stdlib.h>
