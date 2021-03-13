@@ -7,13 +7,15 @@ int m_nValue;
 t_node* m_pNext; 
 } t_node; 
 
+https://www.learn-c.org/en/Linked_lists
+
 WORK INPROGRESS
 */
 #include <stdio.h>
 #include <stdlib.h>
 
 static short NodeCounter = 0;
-typedef struct node_t node_t;
+//typedef struct node_t node_t;
 typedef struct node_t{ 
     int m_nValue; 
     struct node_t* m_pNext; 
@@ -26,10 +28,10 @@ static node_t* KeyNode;
 
 /*In order to work on a pointer, we use double pointer and dereference it once
 or we use single pointer and return it*/
-void* StartList(node_t** Head);
-void* AddBeginning (node_t** Head);
-node_t* AppendEnd (node_t* Tail);
-void AddBetween();
+void StartList(node_t** Head);
+void AddBeginning (node_t** Head);
+void AppendEnd (node_t** Tail);
+void AddBetween(node_t* Head);
 short Menu(short Selector);
 void ListPrinter(node_t* Head);
 
@@ -46,11 +48,11 @@ int main(){
             break;
 
             case 2:
-                AddBetween();
+                AddBetween(Head);
             break;
 
             case 3:
-                AppendEnd(Tail);
+                AppendEnd(&Tail);
             break;
 
             case 4:
@@ -67,14 +69,14 @@ int main(){
 
 /*Due to precedence of operators we need to use brackets, so 
 derefferensing happens before the ->*/
-void* StartList(node_t** Head){
+void StartList(node_t** Head){
     printf("Please enter a value for the first element of the list: ");
     scanf("%d", &(*Head)->m_nValue);
     (*Head)->m_pNext = NULL;
     NodeCounter++;
 }
 
-void* AddBeginning (node_t** Head){
+void AddBeginning (node_t** Head){
     node_t* NewNode = (node_t*) malloc(sizeof(node_t));
     printf("Enter value for the next element: ");
     scanf("%d", &NewNode->m_nValue);
@@ -83,26 +85,46 @@ void* AddBeginning (node_t** Head){
     NodeCounter++;
 }
 
-node_t* AppendEnd (node_t* Tail){
-    int Value = 0;
+void AddBetween(node_t* Head){
+    short Position;
+    KeyNode = Head;
+    node_t* NewNode = (node_t*) malloc(sizeof(node_t));
+    printf("Enter value for the next element: ");
+    scanf("%d", &NewNode->m_nValue);
+    printf("What position do you need the value added: ");
+    scanf("%hd", &Position);
+    for(int i=0; i<Position-1; i++){
+        KeyNode = KeyNode->m_pNext;
+    }
+    NewNode->m_pNext = KeyNode->m_pNext;
+    KeyNode->m_pNext = NewNode;
+}
+
+void AppendEnd (node_t** Tail){
+    while ((*Tail)->m_pNext != NULL) {
+        *Tail = (*Tail)->m_pNext;
+    }
     node_t* NewNode = (struct node_t*)malloc(sizeof(node_t));
     printf("Enter value for the next element: ");
     scanf("%d", &NewNode->m_nValue);
-    Tail->m_pNext = NewNode;
+    (*Tail)->m_pNext = NewNode;
     NewNode->m_pNext = NULL;
-    Tail = NewNode;
+    *Tail = NewNode;
     NodeCounter++;
-    return Tail;
 }
 
-void AddBetween(){
-    /*int Value = 0;
-    node_t* NewNode = (struct node_t*)malloc(sizeof(node_t));
-    printf("Enter value for the next element: ");
-    NewNode->m_nValue = scanf("%d", &Value);
-    PrevNode->m_pNext = NewNode;
-    NewNode->m_pNext = NextNode;*/
+/*ALTERNATIVE append:
+void PushBack(node_t** Tail){
+    while ((*Tail)->next != NULL) {
+        *Tail = (*Tail)->next;
+    }
+
+    (*Tail)->next = (node_t *) malloc(sizeof(node_t));
+    (*Tail)->next->m_nValue = value;
+    (*Tail)->next->next = NULL;
 }
+*/
+
 
 short Menu(short Selector){
     printf("Your list currently contsains %hd element(s).\n", NodeCounter);
