@@ -21,14 +21,13 @@ typedef struct node{
 
 /*I have decided to close the list to current file for now*/
 static node* Head;
-static node* PrevNode;
-static node* NextNode;
-
+static node* Tail;
+static node* KeyNode;
 
 node* StartList(node* Head);
 node* AddBeginning (node* Head);
-void AppendEnd (node* PrevNode);
-void AddBetween(node* PrevNode, node* NextNode);
+node* AppendEnd (node* Tail);
+void AddBetween();
 short Menu(short Selector);
 void ListPrinter(node* Head);
 
@@ -36,6 +35,7 @@ int main(){
     short Selection = 0;
     Head = (node*)malloc(sizeof(node));
     Head = StartList(Head);
+    Tail = Head;
     while(Selection!=5){
         Selection = Menu(Selection);
         switch (Selection){
@@ -44,11 +44,11 @@ int main(){
             break;
 
             case 2:
-                AddBetween(PrevNode, NextNode);
+                AddBetween();
             break;
 
             case 3:
-                AppendEnd(PrevNode);
+                AppendEnd(Tail);
             break;
 
             case 4:
@@ -83,22 +83,25 @@ node* AddBeginning (node* Head){
     return Head;
 }
 
-void AppendEnd (node* Head){
+node* AppendEnd (node* Tail){
     int Value = 0;
-    node* NewNode = (struct node*) malloc(sizeof(node));
+    node* NewNode = (struct node*)malloc(sizeof(node));
     printf("Enter value for the next element: ");
-    NewNode->m_nValue = scanf("%d", &Value);
-    PrevNode->m_pNext = NewNode;
+    scanf("%d", &NewNode->m_nValue);
+    Tail->m_pNext = NewNode;
     NewNode->m_pNext = NULL;
+    Tail = NewNode;
+    NodeCounter++;
+    return Tail;
 }
 
-void AddBetween(node* PrevNode, node* NextNode){
-    int Value = 0;
+void AddBetween(){
+    /*int Value = 0;
     node* NewNode = (struct node*)malloc(sizeof(node));
     printf("Enter value for the next element: ");
     NewNode->m_nValue = scanf("%d", &Value);
     PrevNode->m_pNext = NewNode;
-    NewNode->m_pNext = NextNode;
+    NewNode->m_pNext = NextNode;*/
 }
 
 short Menu(short Selector){
@@ -116,11 +119,12 @@ short Menu(short Selector){
 
 void ListPrinter(node* Head){
     node* PrintPoint = Head;
+    int i=0;
     printf("{");
     while(PrintPoint!=NULL){
-        int i=0;
-        printf("\tThe %dth element is: %d;\n", i++, PrintPoint->m_nValue);
+        printf("\tThe %dth element is: %d;\n", i+1, PrintPoint->m_nValue);
         PrintPoint = PrintPoint->m_pNext;
+        i++;
     }
     printf("}\n");
 }
