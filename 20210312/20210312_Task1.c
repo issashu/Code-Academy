@@ -13,34 +13,36 @@ WORK INPROGRESS
 #include <stdlib.h>
 
 static short NodeCounter = 0;
-typedef struct node node;
-typedef struct node{ 
+typedef struct node_t node_t;
+typedef struct node_t{ 
     int m_nValue; 
-    struct node* m_pNext; 
-}node;  
+    struct node_t* m_pNext; 
+}node_t;  
 
 /*I have decided to close the list to current file for now*/
-static node* Head;
-static node* Tail;
-static node* KeyNode;
+static node_t* Head;
+static node_t* Tail;
+static node_t* KeyNode;
 
-node* StartList(node* Head);
-node* AddBeginning (node* Head);
-node* AppendEnd (node* Tail);
+/*In order to work on a pointer, we use double pointer and dereference it once
+or we use single pointer and return it*/
+void* StartList(node_t** Head);
+void* AddBeginning (node_t** Head);
+node_t* AppendEnd (node_t* Tail);
 void AddBetween();
 short Menu(short Selector);
-void ListPrinter(node* Head);
+void ListPrinter(node_t* Head);
 
 int main(){
     short Selection = 0;
-    Head = (node*)malloc(sizeof(node));
-    Head = StartList(Head);
+    Head = (node_t*)malloc(sizeof(node_t));
+    StartList(&Head);
     Tail = Head;
     while(Selection!=5){
         Selection = Menu(Selection);
         switch (Selection){
             case 1:
-               Head = AddBeginning(Head);
+               AddBeginning(&Head);
             break;
 
             case 2:
@@ -63,29 +65,27 @@ int main(){
     return 0;
 }
 
-node* StartList(node* Head){
+/*Due to precedence of operators we need to use brackets, so 
+derefferensing happens before the ->*/
+void* StartList(node_t** Head){
     printf("Please enter a value for the first element of the list: ");
-    scanf("%d", &Head->m_nValue);
-    Head->m_pNext = NULL;
+    scanf("%d", &(*Head)->m_nValue);
+    (*Head)->m_pNext = NULL;
     NodeCounter++;
-    return Head;
-
 }
 
-node* AddBeginning (node* Head){
-    int Value = 0;
-    node* NewNode = (node*) malloc(sizeof(node));
+void* AddBeginning (node_t** Head){
+    node_t* NewNode = (node_t*) malloc(sizeof(node_t));
     printf("Enter value for the next element: ");
     scanf("%d", &NewNode->m_nValue);
-    NewNode->m_pNext = Head;
-    Head = NewNode;
+    NewNode->m_pNext = *Head;
+    *Head = NewNode;
     NodeCounter++;
-    return Head;
 }
 
-node* AppendEnd (node* Tail){
+node_t* AppendEnd (node_t* Tail){
     int Value = 0;
-    node* NewNode = (struct node*)malloc(sizeof(node));
+    node_t* NewNode = (struct node_t*)malloc(sizeof(node_t));
     printf("Enter value for the next element: ");
     scanf("%d", &NewNode->m_nValue);
     Tail->m_pNext = NewNode;
@@ -97,7 +97,7 @@ node* AppendEnd (node* Tail){
 
 void AddBetween(){
     /*int Value = 0;
-    node* NewNode = (struct node*)malloc(sizeof(node));
+    node_t* NewNode = (struct node_t*)malloc(sizeof(node_t));
     printf("Enter value for the next element: ");
     NewNode->m_nValue = scanf("%d", &Value);
     PrevNode->m_pNext = NewNode;
@@ -117,12 +117,12 @@ short Menu(short Selector){
     return Selector;
 }
 
-void ListPrinter(node* Head){
-    node* PrintPoint = Head;
+void ListPrinter(node_t* Head){
+    node_t* PrintPoint = Head;
     int i=0;
     printf("{");
     while(PrintPoint!=NULL){
-        printf("\tThe %dth element is: %d;\n", i+1, PrintPoint->m_nValue);
+        printf("\tThe %d element of list is: %d;\n", i+1, PrintPoint->m_nValue);
         PrintPoint = PrintPoint->m_pNext;
         i++;
     }
