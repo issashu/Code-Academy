@@ -1,6 +1,7 @@
 #
 # 'make'        build executable file 'main'
 # 'make clean'  removes all .o and executable files
+# 'make run'    runs the executable
 #
 
 # define the C compiler to use
