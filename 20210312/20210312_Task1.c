@@ -30,6 +30,7 @@ void StartList(node_t** Head);
 void AddBeginning (node_t** Head);
 void AppendEnd (node_t** Tail);
 void AddBetween(node_t* Head);
+void RemoveNode(node_t* Head);
 short Menu(short Selector);
 void ListPrinter(node_t* Head);
 
@@ -38,7 +39,7 @@ int main(){
     Head = (node_t*)malloc(sizeof(node_t));
     StartList(&Head);
     Tail = Head;
-    while(Selection!=5){
+    while(Selection!=6){
         Selection = Menu(Selection);
         switch (Selection){
             case 1:
@@ -58,6 +59,10 @@ int main(){
             break;
 
             case 5:
+                RemoveNode(Head);
+            break;
+
+            case 6:
                 printf("Have a nice day! See you soon!\n");
             break;
         }
@@ -122,16 +127,29 @@ void PushBack(node_t** Tail){
     (*Tail)->next->next = NULL;
 }
 */
-
+void RemoveNode(node_t* Head){
+    short Position;
+    KeyNode = Head;
+    node_t* TempPoint=(node_t*)malloc(sizeof(node_t));
+    printf("What position do you need the value removed from: ");
+    scanf("%hd", &Position);
+    //Itterates tot he node just before the one to delete
+    for(int i=1; i<Position-1; i++){
+        KeyNode = KeyNode->m_pNext;
+    }
+    TempPoint = KeyNode->m_pNext;
+    KeyNode->m_pNext = TempPoint->m_pNext;
+    free(TempPoint);
+}
 
 short Menu(short Selector){
     printf("Your list currently contsains %hd element(s).\n", NodeCounter);
     printf("What would you like to do next?\n");
-    printf("1. Add element at the begining of the list.\n2. Add element after another element.\n3. Add element at the end of the list\n4.Print the list.\n5.Quit program.\nInput: ");
+    printf("1. Add element at the begining of the list.\n2. Add element after another element.\n3. Add element at the end of the list\n4.Print the list.\n5.Delete an element\n6.Quit program.\nInput: ");
     selection:
     scanf("%hd", &Selector);
-    if (Selector<1 || Selector>5){
-        printf("Incorrect selection, please select a number between 1 and 5!");
+    if (Selector<1 || Selector>6){
+        printf("Incorrect selection, please select a number between 1 and 6!");
         goto selection;
     }
     return Selector;
