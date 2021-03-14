@@ -29,7 +29,7 @@ int main(){
 /*Due to precedence of operators we need to use brackets, so 
 derefferensing happens before the ->*/
 void StartList(node_t** Head){
-    printf("Filling out the list with numbers ...");
+    printf("Filling out the list with numbers ...\n");
     *Head = (node_t*)malloc(sizeof(node_t));
     (*Head)->m_nValue = 14;
     (*Head)->m_pNext = NULL;
@@ -50,7 +50,7 @@ void ListPrinter(node_t* Head){
         PrintPoint = PrintPoint->m_pNext;
     }
     PrintPoint = Head;
-    NodeCounter -= 5;
+    NodeCounter -= 4;
     while(NodeCounter!=0){
         PrintPoint = PrintPoint->m_pNext;
         NodeCounter--;
