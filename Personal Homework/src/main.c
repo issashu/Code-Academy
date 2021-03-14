@@ -1,26 +1,40 @@
-/*
-Напишете програма, която добавя и изтрива елемент от списъка по зададена стойност, която се пази в него. Използвайте следния елемент на двойно-свързания списък:
- 
-doubly linked list
-
-typedef struct TDListNode { 
-  int m_nValue; 
-  struct TDListNode* m_pNextNode; 
-  struct TDListNode* m_pPrevNode; 
-} TDListNode;
-*/
 #include <stdio.h>
 #include <stdlib.h>
+#include "ListOperations.h"
 
-typedef struct TDListNode { 
-  int m_nValue; 
-  struct TDListNode* m_pNextNode; 
-  struct TDListNode* m_pPrevNode; 
-} TDListNode;
+int main(){
+    short Selection = 0;
+    Head = (TDListNode*)malloc(sizeof(TDListNode));
+    StartList(&Head);
+    Tail = Head;
+    while(Selection!=6){
+        Selection = Menu(Selection);
+        switch (Selection){
+            case 1:
+               AddBeginning(&Head);
+            break;
 
-int main()
-{
-	printf("Hello World!\n");
+            case 2:
+                AddBetween(Head);
+            break;
 
-	return (0);
+            case 3:
+                AppendEnd(&Tail);
+            break;
+
+            case 4:
+                ListPrinter(Head);
+            break;
+
+            case 5:
+                RemoveNode(Head);
+            break;
+
+            case 6:
+                printf("Have a nice day! See you soon!\n");
+            break;
+        }
+    }
+    return 0;
 }
+
