@@ -8,7 +8,7 @@
 
 static short NodeCounter = 0;
 static const short Maxnumber = 14;
-//typedef struct node_t node_t;
+
 typedef struct node_t{ 
     int m_nValue; 
     struct node_t* m_pNext; 
@@ -56,5 +56,5 @@ void ListPrinter(node_t* Head){
         NodeCounter--;
     }
     printf("\n");
-    printf("The 5th element from the end is: %d\n", PrintPoint->m_nValue);
+    printf("The 5th node from the end is: %d\n", PrintPoint->m_nValue);
 }
