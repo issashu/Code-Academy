@@ -6,12 +6,12 @@
  * @brief The StartList function generates the initial head node of the list. 
  *        It requires a pointer to the allocated area for the head node.
  */
-void StartList(TDListNode** Head){
+void SetupList(TDListNode** Head, TDListNode** Tail){
     printf("Please enter a value for the first element of the list: ");
     scanf("%d", &(*Head)->m_nValue);
     (*Head)->m_pNextNode = NULL;
     (*Head)->m_pPrevNode = NULL;
-    
+    *Tail = *Head;
     NodeCounter++;
 }
 
@@ -20,6 +20,8 @@ void AddBeginning (TDListNode** Head){
     printf("Enter value for the next element: ");
     scanf("%d", &NewNode->m_nValue);
     NewNode->m_pNextNode = *Head;
+    NewNode->m_pPrevNode = NULL;
+    (*Head)->m_pPrevNode = NewNode;
     *Head = NewNode;
     NodeCounter++;
 }
@@ -36,23 +38,26 @@ void AddBetween(TDListNode* Head){
         KeyNode = KeyNode->m_pNextNode;
     }
     NewNode->m_pNextNode = KeyNode->m_pNextNode;
+    KeyNode->m_pNextNode->m_pPrevNode = NewNode;
+    NewNode->m_pPrevNode = KeyNode;
     KeyNode->m_pNextNode = NewNode;
 }
 
 void AppendEnd (TDListNode** Tail){
-    while ((*Tail)->m_pNextNode != NULL) {
+    /*while ((*Tail)->m_pNextNode != NULL) {
         *Tail = (*Tail)->m_pNextNode;
-    }
+    }*/
     TDListNode* NewNode = (struct TDListNode*)malloc(sizeof(TDListNode));
     printf("Enter value for the next element: ");
     scanf("%d", &NewNode->m_nValue);
     (*Tail)->m_pNextNode = NewNode;
     NewNode->m_pNextNode = NULL;
+    NewNode->m_pPrevNode = (*Tail);
     *Tail = NewNode;
     NodeCounter++;
 }
 
-void RemoveNode(TDListNode* Head){
+void RemoveNode(TDListNode* Head, TDListNode* Tail){
     short Position;
     KeyNode = Head;
     TDListNode* TempPoint=(TDListNode*)malloc(sizeof(TDListNode));

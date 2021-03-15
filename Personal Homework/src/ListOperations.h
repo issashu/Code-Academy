@@ -11,10 +11,10 @@ static TDListNode* Head;
 static TDListNode* Tail;
 static TDListNode* KeyNode;
 
-void StartList(TDListNode** Head);
+void SetupList(TDListNode** Head, TDListNode** Tail);
 void AddBeginning (TDListNode** Head);
 void AppendEnd (TDListNode** Tail);
 void AddBetween(TDListNode* Head);
-void RemoveNode(TDListNode* Head);
+void RemoveNode(TDListNode* Head, TDListNode* Tail);
 short Menu(short Selector);
 void ListPrinter(TDListNode* Head);

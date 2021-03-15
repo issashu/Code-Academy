@@ -1,3 +1,5 @@
+/*Chsracter navigates back and forth a train to solve a mystery. Waggons are linked in a doubly linked list
+for the purpose of the exercise*/
 #include <stdio.h>
 #include <stdlib.h>
 #include "ListOperations.h"
@@ -5,8 +7,7 @@
 int main(){
     short Selection = 0;
     Head = (TDListNode*)malloc(sizeof(TDListNode));
-    StartList(&Head);
-    Tail = Head;
+    SetupList(&Head, &Tail);
     while(Selection!=6){
         Selection = Menu(Selection);
         switch (Selection){
@@ -27,7 +28,7 @@ int main(){
             break;
 
             case 5:
-                RemoveNode(Head);
+                RemoveNode(Head, Tail);
             break;
 
             case 6:
