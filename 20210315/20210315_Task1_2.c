@@ -3,15 +3,15 @@
 #include "20210315_Task1.h"
 /*Due to precedence of operators we need to use brackets, so 
 derefferensing happens before the ->*/
-void StartList(stack_t** Head){
+void StartList(stek** Head){
     printf("Please enter a value for the first element of the stack: ");
     scanf("%d", &(*Head)->m_nValue);
     (*Head)->m_pNext = NULL;
     NodeCounter++;
 }
 
-void Push (stack_t** Head){
-    stack_t* NewNode = (stack_t*) malloc(sizeof(stack_t));
+void Push (stek** Head){
+    stek* NewNode = (stek*) malloc(sizeof(stek));
     printf("Enter value for the next element: ");
     scanf("%d", &NewNode->m_nValue);
     NewNode->m_pNext = *Head;
@@ -19,8 +19,8 @@ void Push (stack_t** Head){
     NodeCounter++;
 }
 
-void Pop(stack_t** Head){
-    stack_t* TempPoint=(stack_t*)malloc(sizeof(stack_t));
+void Pop(stek** Head){
+    stek* TempPoint=(stek*)malloc(sizeof(stek));
     //Itterates tot he node just before the one to delete
     TempPoint = (*Head);
     *Head=(*Head)->m_pNext;
@@ -44,8 +44,8 @@ short Menu(short Selector){
     return Selector;
 }
 
-void ListPrinter(stack_t* Head){
-    stack_t* PrintPoint = Head;
+void ListPrinter(stek* Head){
+    stek* PrintPoint = Head;
     int i=0;
     printf("{");
     while(PrintPoint!=NULL){

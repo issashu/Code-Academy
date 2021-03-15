@@ -1,18 +1,18 @@
 static short NodeCounter = 0;
-typedef struct stack_t{ 
+typedef struct stek{ 
     int m_nValue; 
-    struct stack_t* m_pNext; 
-}stack_t;  
+    struct stek* m_pNext; 
+}stek;  
 
 /*I have decided to close the list to current file for now*/
-static stack_t* Head;
-static stack_t* Tail;
-static stack_t* KeyNode;
+static stek* Head;
+static stek* Tail;
+static stek* KeyNode;
 
 /*In order to work on a pointer, we use double pointer and dereference it once
 or we use single pointer and return it*/
-void StartList(stack_t** Head);
-void Push (stack_t** Head);
-void Pop(stack_t** Head);
-void ListPrinter(stack_t* Head);
+void StartList(stek** Head);
+void Push (stek** Head);
+void Pop(stek** Head);
+void ListPrinter(stek* Head);
 short Menu(short Selector);

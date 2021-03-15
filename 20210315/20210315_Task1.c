@@ -4,7 +4,7 @@
 
 int main(){
     short Selection = 0;
-    Head = (stack_t*)malloc(sizeof(stack_t));
+    Head = (stek*)malloc(sizeof(stek));
     StartList(&Head);
     Tail = Head;
     while(Selection!=4){

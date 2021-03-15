@@ -10,6 +10,8 @@ void StartList(TDListNode** Head){
     printf("Please enter a value for the first element of the list: ");
     scanf("%d", &(*Head)->m_nValue);
     (*Head)->m_pNextNode = NULL;
+    (*Head)->m_pPrevNode = NULL;
+    
     NodeCounter++;
 }
 
