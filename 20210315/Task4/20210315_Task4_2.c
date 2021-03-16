@@ -44,10 +44,15 @@ void RemoveNode(Tnode* key, int Data){
         Daddy = key;
         if (Data<key->NodeValue){
            key = key->Left;
-            
+           if(key==NULL){
+               printf("No such element.");
+           }
         }
         else if(Data>key->NodeValue){
             key = key->Right;
+            if(key==NULL){
+               printf("No such element.");
+           }
         }
     }while(key->NodeValue!=Data);
 
