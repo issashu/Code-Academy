@@ -7,15 +7,6 @@
 	<name>Bandit</name>
 	<age>3</age>
 	<gender>M</gender>
-</cat><cat>
-	<name>Amellie</name>
-	<age>5</age>
-	<gender>F</gender>
-</cat>
-<cat>
-	<name>Bandit</name>
-	<age>3</age>
-	<gender>M</gender>
 </cat>
 <cat>
 	<name>Amellie</name>
@@ -41,19 +32,4 @@
 	<name>Amellie</name>
 	<age>5</age>
 	<gender>F</gender>
-</cat>
-<cat>
-	<name>Bandit</name>
-	<age>3</age>
-	<gender>M</gender>
-</cat>
-<cat>
-	<name>Amellie</name>
-	<age>5</age>
-	<gender>F</gender>
-</cat>
-<cat>
-	<name>Bandit</name>
-	<age>3</age>
-	<gender>M</gender>
 </cat>

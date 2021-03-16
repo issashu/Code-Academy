@@ -4,8 +4,9 @@
 
 int main(){
     short Selection = 0;
-    Head = (stack_t*)malloc(sizeof(stack_t));
-    StartList(&Head, &Tail);
+    Head = (queue*)malloc(sizeof(queue));
+    StartList(&Head);
+    Tail = Head;
     while(Selection!=4){
         Selection = Menu(Selection);
         switch (Selection){
@@ -18,7 +19,7 @@ int main(){
             break;
 
             case 3:
-                Pop(&Head);
+                Pop(&Tail, Head);
             break;
 
             case 4:

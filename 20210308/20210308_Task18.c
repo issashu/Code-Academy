@@ -18,7 +18,7 @@ char gender;
 }t_person;
 
 const char* FORMAT_XML_WRITE = "<cat>\n\t<name>%s</name>\n\t<age>%d</age>\n\t<gender>%c</gender>\n</cat>\n";
-const char* FORMAT_XML_READ = "<cat>\n\t<name>%[^<]</name>\n\t<age>%d</age>\n\t<gender>%c</gender>\n</cat>\n";
+const char* FORMAT_XML_READ = "<cat>\n\t<name>%s</name>\n\t<age>%d</age>\n\t<gender>%c</gender>\n</cat>\n";
 
 int main(){
     FILE *xmlfp = NULL;
@@ -43,7 +43,7 @@ int main(){
     }
     /*Writing to xml file*/
     fprintf(xmlfp,FORMAT_XML_WRITE, Cat1.name, Cat1.age, Cat1.gender);
-    fprintf(xmlfp,FORMAT_XML_WRITE, Cat2.name, Cat2.age, Cat2.gender);
+   // fprintf(xmlfp,FORMAT_XML_WRITE, Cat2.name, Cat2.age, Cat2.gender);
 
     /*Reading from xml file*/
     fscanf(xmlfp,FORMAT_XML_READ, Cat3.name, Cat3.age, Cat3.gender);

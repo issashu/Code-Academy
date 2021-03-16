@@ -11,12 +11,17 @@ void StartList(stek** Head){
 }
 
 void Push (stek** Head){
-    stek* NewNode = (stek*) malloc(sizeof(stek));
-    printf("Enter value for the next element: ");
-    scanf("%d", &NewNode->m_nValue);
-    NewNode->m_pNext = *Head;
-    *Head = NewNode;
-    NodeCounter++;
+    int Temp=0;
+    
+    do{
+        stek* NewNode = (stek*) malloc(sizeof(stek));
+        printf("Enter value for the next element: ");
+        scanf("%d", &Temp);
+        NewNode->m_nValue = Temp;
+        NewNode->m_pNext = *Head;
+        *Head = NewNode;
+        NodeCounter++;
+    }while(Temp!=0);
 }
 
 void Pop(stek** Head){
@@ -34,10 +39,10 @@ void Pop(stek** Head){
 short Menu(short Selector){
     printf("Your stack currently contains %hd element(s).\n", NodeCounter);
     printf("What would you like to do next?\n");
-    printf("1. Add element\n2.Print the list.\n3.Delete an element\n4.Quit program.\nInput: ");
+    printf("1.Add elements\n2.Print the list.\n3.Delete an element\n4.Quit program.\nInput: ");
     selection:
     scanf("%hd", &Selector);
-    if (Selector<1 || Selector>6){
+    if (Selector<1 || Selector>4){
         printf("Incorrect selection, please select a number between 1 and 6!");
         goto selection;
     }
@@ -47,11 +52,10 @@ short Menu(short Selector){
 void ListPrinter(stek* Head){
     stek* PrintPoint = Head;
     int i=0;
-    printf("{");
     while(PrintPoint!=NULL){
-        printf("\tThe %d element of list is: %d;\n", i+1, PrintPoint->m_nValue);
+        printf("%d  ", PrintPoint->m_nValue);
         PrintPoint = PrintPoint->m_pNext;
         i++;
     }
-    printf("}\n");
+    printf("\n");
 }
