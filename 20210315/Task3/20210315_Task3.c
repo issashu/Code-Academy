@@ -27,19 +27,19 @@ int main(){
     }
     
     for (int i=0; i<13; i++){
-        AddNode(&root2,ArrayOne[i]);
+        AddNode(&root2,ArrayTwo[i]);
     }
 
     for (int i=0; i<13; i++){
-        AddNode(&root3,ArrayOne[i]);
+        AddNode(&root3,ArrayThree[i]);
     }
 
     for (int i=0; i<13; i++){
-        AddNode(&root4,ArrayOne[i]);
+        AddNode(&root4,ArrayFour[i]);
     }
 
     for (int i=0; i<13; i++){
-        AddNode(&root5,ArrayOne[i]);
+        AddNode(&root5,ArrayFive[i]);
     }
 }
 
