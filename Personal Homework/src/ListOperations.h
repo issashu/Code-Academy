@@ -1,3 +1,8 @@
+#ifndef LISTOPERATIONS_H
+#define LISTOPERATIONS_H
+
+#include <stdio.h>
+#include <stdlib.h>
 typedef struct TDListNode { 
   int m_nValue; 
   struct TDListNode* m_pNextNode; 
@@ -20,3 +25,5 @@ void RemoveBegining(TDListNode** Head);
 void RemoveEnd(TDListNode** Tail);
 short Menu(short Selector);
 void ListPrinter(TDListNode* Head);
+
+#endif /*LISTOPERATIONS_H*/

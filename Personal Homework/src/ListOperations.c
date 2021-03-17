@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "ListOperations.h"
 
 /**
@@ -73,11 +71,13 @@ void RemoveNode(TDListNode* Head){
 }
 
 void RemoveEnd(TDListNode** Tail){
-    KeyNode = (*Tail);
-    (*Tail) = (*Tail)->m_pPrevNode;
-    (*Tail)->m_pNextNode = NULL;
-    free(KeyNode); 
-    NodeCounter--;
+    if((*Tail)->m_pPrevNode!=NULL){
+        KeyNode = (*Tail);
+        (*Tail) = (*Tail)->m_pPrevNode;
+        (*Tail)->m_pNextNode = NULL;
+        free(KeyNode); 
+        NodeCounter--;
+    }
 }
 
 void RemoveBegining(TDListNode** Head){
@@ -91,10 +91,12 @@ void RemoveBegining(TDListNode** Head){
 short Menu(short Selector){
     printf("Your list currently contsains %hd element(s).\n", NodeCounter);
     printf("What would you like to do next?\n");
-    printf("1. Add element at the begining of the list.\n2. Add element after another element.\n3. Add element at the end of the list\n4.Print the list.\n5.Delete an element\n6.Quit program.\nInput: ");
+    printf("1. Add element at the begining of the list.\n2. Add element after another element.\n");
+    printf("3. Add element at the end of the list\n4.Print the list.\n5.Delete an element\n6.Delete at end\n");
+    printf("7.Delete at beginning\n8.Quit program.\nInput: ");
     selection:
     scanf("%hd", &Selector);
-    if (Selector<1 || Selector>6){
+    if (Selector<1 || Selector>8){
         printf("Incorrect selection, please select a number between 1 and 6!");
         goto selection;
     }

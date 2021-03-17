@@ -1,7 +1,5 @@
 /*Character navigates back and forth a train to solve a mystery. Waggons are linked in a doubly linked list
 for the purpose of the exercise*/
-#include <stdio.h>
-#include <stdlib.h>
 #include "ListOperations.h"
 
 int main(){
@@ -28,7 +26,7 @@ int main(){
             break;
 
             case 5:
-                RemoveNode(Head, Tail);
+                RemoveNode(Head);
             break;
 
             case 6:
