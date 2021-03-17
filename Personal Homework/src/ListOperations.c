@@ -72,6 +72,22 @@ void RemoveNode(TDListNode* Head, TDListNode* Tail){
     free(TempPoint);
 }
 
+void RemoveEnd(TDListNode** Tail){
+    KeyNode = (*Tail);
+    (*Tail) = (*Tail)->m_pPrevNode;
+    (*Tail)->m_pNextNode = NULL;
+    free(KeyNode); 
+    NodeCounter--;
+}
+
+void RemoveBegining(TDListNode** Head){
+    KeyNode = (*Head);
+    (*Head) = (*Head)->m_pNextNode;
+    KeyNode->m_pNextNode = NULL;
+    free(KeyNode); 
+    NodeCounter--;
+}
+
 short Menu(short Selector){
     printf("Your list currently contsains %hd element(s).\n", NodeCounter);
     printf("What would you like to do next?\n");
