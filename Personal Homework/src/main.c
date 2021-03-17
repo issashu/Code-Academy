@@ -1,4 +1,4 @@
-/*Chsracter navigates back and forth a train to solve a mystery. Waggons are linked in a doubly linked list
+/*Character navigates back and forth a train to solve a mystery. Waggons are linked in a doubly linked list
 for the purpose of the exercise*/
 #include <stdio.h>
 #include <stdlib.h>
