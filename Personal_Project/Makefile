@@ -1,7 +1,6 @@
 #
 # 'make'        build executable file 'main'
 # 'make clean'  removes all .o and executable files
-# 'make run'    runs the executable
 #
 
 # define the C compiler to use
@@ -36,7 +35,7 @@ FIXPATH = $(subst /,\,$1)
 RM			:= del /q /f
 MD	:= mkdir
 else
-MAIN	:= main.out
+MAIN	:= main
 SOURCEDIRS	:= $(shell find $(SRC) -type d)
 INCLUDEDIRS	:= $(shell find $(INCLUDE) -type d)
 LIBDIRS		:= $(shell find $(LIB) -type d)

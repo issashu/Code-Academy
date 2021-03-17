@@ -1,9 +1,72 @@
-#include "ListOperations.h"
+/*Character navigates back and forth a train to solve a mystery. Waggons are linked in a doubly linked list
+for the purpose of the exercise*/
+//#include "ListOperations.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct TDListNode { 
+  int m_nValue; 
+  struct TDListNode* m_pNextNode; 
+  struct TDListNode* m_pPrevNode; 
+} TDListNode;
+
+static short NodeCounter = 0;
+
+static TDListNode* Head;
+static TDListNode* Tail;
+static TDListNode* KeyNode;
+
+void SetupList(TDListNode** Head, TDListNode** Tail);
+void AddBeginning (TDListNode** Head);
+void AppendEnd (TDListNode** Tail);
+void AddBetween(TDListNode* Head);
+void RemoveNode(TDListNode* Head);
+void RemoveBegining(TDListNode** Head);
+void RemoveEnd(TDListNode** Tail);
+short Menu(short Selector);
+void ListPrinter(TDListNode* Head);
+
+int main(){
+    short Selection = 0;
+    Head = (TDListNode*)malloc(sizeof(TDListNode));
+    SetupList(&Head, &Tail);
+    while(Selection!=6){
+        Selection = Menu(Selection);
+        switch (Selection){
+            case 1:
+               AddBeginning(&Head);
+            break;
+
+            case 2:
+                AddBetween(Head);
+            break;
+
+            case 3:
+                AppendEnd(&Tail);
+            break;
+
+            case 4:
+                ListPrinter(Head);
+            break;
+
+            case 5:
+                RemoveNode(Head);
+            break;
+
+            case 6:
+                printf("Have a nice day! See you soon!\n");
+            break;
+        }
+    }
+    return 0;
+}
+//============================================================================================
 
 /**
  * @brief The StartList function generates the initial head node of the list. 
  *        It requires a pointer to the allocated area for the head node.
  */
+
 void SetupList(TDListNode** Head, TDListNode** Tail){
     printf("Please enter a value for the first element of the list: ");
     scanf("%d", &(*Head)->m_nValue);
@@ -65,9 +128,18 @@ void RemoveNode(TDListNode* Head){
     for(int i=1; i<Position-1; i++){
         KeyNode = KeyNode->m_pNextNode;
     }
-    TempPoint = KeyNode->m_pNextNode;
-    KeyNode->m_pNextNode = TempPoint->m_pNextNode;
-    free(TempPoint);
+
+    if (KeyNode==Head){
+        RemoveBegining(&Head);
+    }
+    else if(KeyNode==Tail){
+        RemoveEnd(&Tail);
+    }
+    else{
+        TempPoint = KeyNode->m_pNextNode;
+        KeyNode->m_pNextNode = TempPoint->m_pNextNode;
+        free(TempPoint);
+    }    
 }
 
 void RemoveEnd(TDListNode** Tail){
@@ -114,3 +186,4 @@ void ListPrinter(TDListNode* Head){
     }
     printf("}\n");
 }
+
