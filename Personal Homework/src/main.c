@@ -32,6 +32,14 @@ int main(){
             break;
 
             case 6:
+                RemoveEnd(&Tail);
+            break;
+
+            case 7:
+                RemoveBegining(&Head);
+            break;
+
+            case 8:
                 printf("Have a nice day! See you soon!\n");
             break;
         }

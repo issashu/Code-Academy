@@ -57,13 +57,13 @@ void AppendEnd (TDListNode** Tail){
     NodeCounter++;
 }
 
-void RemoveNode(TDListNode* Head, TDListNode* Tail){
+void RemoveNode(TDListNode* Head){
     short Position;
     KeyNode = Head;
     TDListNode* TempPoint=(TDListNode*)malloc(sizeof(TDListNode));
     printf("What position do you need the value removed from: ");
     scanf("%hd", &Position);
-    //Itterates tot he node just before the one to delete
+    //Itterates to the node just before the one to delete
     for(int i=1; i<Position-1; i++){
         KeyNode = KeyNode->m_pNextNode;
     }
@@ -83,7 +83,7 @@ void RemoveEnd(TDListNode** Tail){
 void RemoveBegining(TDListNode** Head){
     KeyNode = (*Head);
     (*Head) = (*Head)->m_pNextNode;
-    KeyNode->m_pNextNode = NULL;
+    (*Head)->m_pPrevNode = NULL;
     free(KeyNode); 
     NodeCounter--;
 }
