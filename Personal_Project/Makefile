@@ -86,6 +86,10 @@ clean:
 	$(RM) $(call FIXPATH,$(OBJECTS))
 	@echo Cleanup complete!
 
+dev: all
+	valgrind ./$(OUTPUTMAIN) --leak-check=full
+	@echo Executing 'run: dev' complete!
+
 run: all
 	./$(OUTPUTMAIN)
 	@echo Executing 'run: all' complete!
