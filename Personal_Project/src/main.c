@@ -46,7 +46,7 @@ int main(){
             break;
 
             case 4:
-                RemoveNode(gHead, gTail);
+                RemoveNode(&gHead, &gTail);
             break;
 
             case 5:
@@ -120,7 +120,7 @@ void AppendEnd (TDListNode** Tail){
 
 void RemoveNode(TDListNode** Head, TDListNode** Tail){
     short KeyValue = 0;
-    KeyNode = Head;
+    KeyNode = (*Head);
     TDListNode* PrevPoint=(TDListNode*)malloc(sizeof(TDListNode));
     TDListNode* NextPoint=(TDListNode*)malloc(sizeof(TDListNode));
     printf("What value do you want deleted: ");
@@ -135,8 +135,8 @@ void RemoveNode(TDListNode** Head, TDListNode** Tail){
             KeyNode = KeyNode->m_pNextNode;
         }
     }
-    if (KeyNode==Head){
-        if(&(*Head)->m_pPrevNode==NULL && &(*Head)->m_pNextNode==NULL){
+    if (KeyNode==(*Head)){
+        if((*Head)->m_pPrevNode==NULL && (*Head)->m_pNextNode==NULL){
             printf("List is empty now\n");
             (*Head)=NULL;
             NodeCounter = 0;
@@ -149,7 +149,7 @@ void RemoveNode(TDListNode** Head, TDListNode** Tail){
         }
     }
     else if(KeyNode==Tail){
-        if(&(*Tail)->m_pPrevNode!=NULL){
+        if((*Tail)->m_pPrevNode!=NULL){
             KeyNode = (*Tail);
             Tail = (*Tail)->m_pPrevNode;
             (*Tail)->m_pNextNode = NULL;
@@ -157,6 +157,7 @@ void RemoveNode(TDListNode** Head, TDListNode** Tail){
             NodeCounter--;
         }
     }
+
     else{
         NextPoint = KeyNode->m_pNextNode;
         PrevPoint = KeyNode->m_pPrevNode;
