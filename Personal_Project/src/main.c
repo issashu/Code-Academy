@@ -20,9 +20,9 @@ void SetupList(TDListNode** Head, TDListNode** Tail);
 void AddBeginning (TDListNode** Head);
 void AppendEnd (TDListNode** Tail);
 void AddBetween(TDListNode* Head);
-void RemoveNode(TDListNode* Head, TDListNode* Tail);
-void RemoveBegining(TDListNode** Head);
-void RemoveEnd(TDListNode** Tail);
+void RemoveNode(TDListNode** Head, TDListNode** Tail);
+//void RemoveBegining(TDListNode** Head);
+//void RemoveEnd(TDListNode** Tail);
 short DevMenu(short Selector);
 void ListPrinter(TDListNode* Head);
 
@@ -118,7 +118,7 @@ void AppendEnd (TDListNode** Tail){
     NodeCounter++;
 }
 
-void RemoveNode(TDListNode* Head, TDListNode* Tail){
+void RemoveNode(TDListNode** Head, TDListNode** Tail){
     short KeyValue = 0;
     KeyNode = Head;
     TDListNode* PrevPoint=(TDListNode*)malloc(sizeof(TDListNode));
@@ -136,10 +136,26 @@ void RemoveNode(TDListNode* Head, TDListNode* Tail){
         }
     }
     if (KeyNode==Head){
-        RemoveBegining(&Head);
+        if(&(*Head)->m_pPrevNode==NULL && &(*Head)->m_pNextNode==NULL){
+            printf("List is empty now\n");
+            (*Head)=NULL;
+            NodeCounter = 0;
+        }
+        else{
+            (*Head) = (*Head)->m_pNextNode;
+            (*Head)->m_pPrevNode = NULL;
+            free(KeyNode); 
+            NodeCounter--;
+        }
     }
     else if(KeyNode==Tail){
-        RemoveEnd(&Tail);
+        if(&(*Tail)->m_pPrevNode!=NULL){
+            KeyNode = (*Tail);
+            Tail = (*Tail)->m_pPrevNode;
+            (*Tail)->m_pNextNode = NULL;
+            free(KeyNode); 
+            NodeCounter--;
+        }
     }
     else{
         NextPoint = KeyNode->m_pNextNode;
@@ -148,31 +164,6 @@ void RemoveNode(TDListNode* Head, TDListNode* Tail){
         NextPoint->m_pPrevNode = PrevPoint;
         free(KeyNode);
     }    
-}
-
-void RemoveEnd(TDListNode** Tail){
-    if((*Tail)->m_pPrevNode!=NULL){
-        KeyNode = (*Tail);
-        (*Tail) = (*Tail)->m_pPrevNode;
-        (*Tail)->m_pNextNode = NULL;
-        free(KeyNode); 
-        NodeCounter--;
-    }
-}
-
-void RemoveBegining(TDListNode** Head){
-    KeyNode = (*Head);
-    if((*Head)->m_pPrevNode==NULL && (*Head)->m_pNextNode==NULL){
-        printf("List is empty now\n");
-        (*Head)=NULL;
-        NodeCounter = 0;
-    }
-    else{
-        (*Head) = (*Head)->m_pNextNode;
-        (*Head)->m_pPrevNode = NULL;
-        free(KeyNode); 
-        NodeCounter--;
-    }
 }
 
 short DevMenu(short Selector){
