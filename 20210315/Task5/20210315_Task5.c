@@ -13,17 +13,17 @@
  * @return int 
  */
 int main(){
-    key=root;
     int ArrayOne[] = {7, 14, 28, 35, 65, 12, 18, 42, 81, 64, 61, 4, 13};
     int Data = 0;
 
     for (int i=0; i<13; i++){
         AddNode(&root,ArrayOne[i]);
     }
+    key=root;
 
-    printf("What are ye lookin' for?");
+    printf("What are ye lookin' for: ");
     scanf("%d", &Data);
-    SearchNode(key,Data);
+    SearchNode(&key,Data);
 
 }
 //======================================================================
@@ -67,15 +67,15 @@ void SearchNode(Tnode** key, int Data){
         exit(1);
     }
     else{
-        if (Data<(*key)->NodeValue){
-            SearchNode((*key)->Left, Data);
+        if (Data < (*key)->NodeValue){
+            SearchNode(&(*key)->Left, Data);
             //-> =(*).
         }
-        else if(Data>(*key)->NodeValue){
-            SearchNode((*key)->Right, Data);
+        else if(Data > (*key)->NodeValue){
+            SearchNode(&(*key)->Right, Data);
         }
         else if (Data==(*key)->NodeValue){
-            printf("I climbed the tree and found the leaf at address %p and the value was %d", &(*key), (*key)->NodeValue);
+            printf("I climbed the tree and found the leaf at address %p and the value was %d\n", *key, (*key)->NodeValue);
         }
     }
 }
