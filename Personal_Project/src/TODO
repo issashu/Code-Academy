@@ -1,0 +1,5 @@
+1. Add a developer menu option
+2. Add gameplay
+3. BUG: Head == NULL is treated as if equal 0
+4. BUG: Print logic is flawed. Quick fix applied, but needs rework
+5. TO CHECK: Possible Seg fault at only 1 element.

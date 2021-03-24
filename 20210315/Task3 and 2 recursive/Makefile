@@ -15,18 +15,6 @@ CFLAGS	:= -Wall -Wextra -g
 #   their path using -Lpath, something like:
 LFLAGS =
 
-# define output directory
-OUTPUT	:= output
-
-# define source directory
-SRC		:= src
-
-# define include directory
-INCLUDE	:= include
-
-# define lib directory
-LIB		:= lib
-
 ifeq ($(OS),Windows_NT)
 MAIN	:= main.exe
 SOURCEDIRS	:= $(SRC)
@@ -36,7 +24,7 @@ FIXPATH = $(subst /,\,$1)
 RM			:= del /q /f
 MD	:= mkdir
 else
-MAIN	:= main
+MAIN	:= main.out
 SOURCEDIRS	:= $(shell find $(SRC) -type d)
 INCLUDEDIRS	:= $(shell find $(INCLUDE) -type d)
 LIBDIRS		:= $(shell find $(LIB) -type d)
