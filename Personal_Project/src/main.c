@@ -128,7 +128,7 @@ void RemoveNode(TDListNode** Head, TDListNode** Tail){
     //Itterates to the node just before the one to delete
     while(KeyNode->m_nValue!=KeyValue){
         if(KeyNode->m_pNextNode==NULL){
-            printf("No node ocntains the value %d\n", KeyValue);
+            printf("No node contains the value %d\n", KeyValue);
             return;
         }
         else{
