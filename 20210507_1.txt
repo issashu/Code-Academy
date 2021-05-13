@@ -1,0 +1,14 @@
+issashu@beastrout:~/Coding/Code-Academy/Linux$ touch home{1..9}
+
+issashu@beastrout:~/Coding/Code-Academy/Linux$ ls -l home*
+-rw-rw-r-- 1 issashu issashu 0 May 13 07:52 home1
+-rw-rw-r-- 1 issashu issashu 0 May 13 07:52 home2
+-rw-rw-r-- 1 issashu issashu 0 May 13 07:52 home3
+-rw-rw-r-- 1 issashu issashu 0 May 13 07:52 home4
+-rw-rw-r-- 1 issashu issashu 0 May 13 07:52 home5
+-rw-rw-r-- 1 issashu issashu 0 May 13 07:52 home6
+-rw-rw-r-- 1 issashu issashu 0 May 13 07:52 home7
+-rw-rw-r-- 1 issashu issashu 0 May 13 07:52 home8
+-rw-rw-r-- 1 issashu issashu 0 May 13 07:52 home9
+
+

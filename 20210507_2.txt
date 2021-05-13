@@ -1,0 +1,12 @@
+issashu@beastrout:~$ mkdir -p ~/Coding/Code-Academy/Linux/LinuxHW/projects/houses && mkdir -p ~/Coding/Code-Academy/Linux/LinuxHW/projects/houses/doors && mkdir -p ~/Coding/Code-Academy/Linux/LinuxHW/projects/outdoors/vegetation
+
+issashu@beastrout:~$ touch $HOME/Coding/Code-Academy/Linux/LinuxHW/projects/houses/bungalow.txt && touch $HOME/Coding/Code-Academy/Linux/LinuxHW/projects/houses/doors/bifold.txt && touch $HOME/Coding/Code-Academy/Linux/LinuxHW/projects/outdoors/vegetation/landscape.txt
+
+issashu@beastrout:~$ cd Coding/Code-Academy/Linux/
+
+#home files are w/o extension in my case
+issashu@beastrout:~/Coding/Code-Academy/Linux$ mv home{1..5} ./LinuxHW/projects/houses/
+
+#no instructions given for home9 file
+issashu@beastrout:~/Coding/Code-Academy/Linux$ rm -rf home{6..8}
+
