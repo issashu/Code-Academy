@@ -14,6 +14,7 @@ class PasswordPolicy:
     
     def __init__(self):
         pass
+    
     def CheckPassword(self, parola):
         if len(parola) < self.minLength or len(parola) > self.maxLength:
             return False
